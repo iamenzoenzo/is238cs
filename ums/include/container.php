@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="http://www.webdamn.com" class="navbar-brand">WEBDAMN.COM</a>
+          <a href="http://www.webdamn.com" class="navbar-brand">PLeMA - Philippine Local eMergency App</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

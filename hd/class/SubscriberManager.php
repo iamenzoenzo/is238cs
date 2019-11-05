@@ -11,6 +11,8 @@ class SubscriberManager extends Database{
         $this->dbConnect = $this->dbConnect();
     }
 
+    
+
 }
 
 ?>
