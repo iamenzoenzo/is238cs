@@ -1,27 +1,28 @@
 <?php
-class Users extends Database { 
-	private $userTable = 'hd_users';
+class Users extends Database {
+	//private $userTable = 'hd_users';
+	private $userTable = 'user';
 	private $dbConnect = false;
-	public function __construct(){		
+	public function __construct(){
         $this->dbConnect = $this->dbConnect();
-    }	
+    }
 	public function isLoggedIn () {
 		if(isset($_SESSION["userid"])) {
-			return true; 			
+			return true;
 		} else {
 			return false;
 		}
 	}
-	public function login(){		
+	public function login(){
 		$errorMessage = '';
-		if(!empty($_POST["login"]) && $_POST["email"]!=''&& $_POST["password"]!='') {	
+		if(!empty($_POST["login"]) && $_POST["email"]!=''&& $_POST["password"]!='') {
 			$email = $_POST['email'];
 			$password = $_POST['password'];
-			$sqlQuery = "SELECT * FROM ".$this->userTable." 
+			$sqlQuery = "SELECT * FROM ".$this->userTable."
 				WHERE email='".$email."' AND password='".md5($password)."'";
-				
+
 			$resultSet = mysqli_query($this->dbConnect, $sqlQuery);
-			$isValidLogin = mysqli_num_rows($resultSet);	
+			$isValidLogin = mysqli_num_rows($resultSet);
 			if($isValidLogin){
 				$userDetails = mysqli_fetch_assoc($resultSet);
 				$_SESSION["userid"] = $userDetails['id'];
@@ -29,29 +30,29 @@ class Users extends Database {
 				if($userDetails['user_group']) {
 					$_SESSION["admin"] = $userDetails['user_group'];
 				}
-				header("location: index.php"); 		
-			} else {		
-				$errorMessage = "Invalid login!";		 
+				header("location: index.php");
+			} else {
+				$errorMessage = "Invalid login!";
 			}
 		} else if(!empty($_POST["login"])){
-			$errorMessage = "Enter Both user and password!";	
+			$errorMessage = "Enter Both user and password!";
 		}
-		return $errorMessage; 		
+		return $errorMessage;
 	}
 	public function getUserInfo() {
 		if(!empty($_SESSION["userid"])) {
-			$sqlQuery = "SELECT * FROM ".$this->userTable." 
+			$sqlQuery = "SELECT * FROM ".$this->userTable."
 				WHERE id ='".$_SESSION["userid"]."'";
-			$result = mysqli_query($this->dbConnect, $sqlQuery);		
+			$result = mysqli_query($this->dbConnect, $sqlQuery);
 			$userDetails = mysqli_fetch_assoc($result);
 			return $userDetails;
-		}		
+		}
 	}
-	public function getColoumn($id, $column) {     
-        $sqlQuery = "SELECT * FROM ".$this->userTable." 
+	public function getColoumn($id, $column) {
+        $sqlQuery = "SELECT * FROM ".$this->userTable."
 			WHERE id ='".$id."'";
-		$result = mysqli_query($this->dbConnect, $sqlQuery);		
+		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		$userDetails = mysqli_fetch_assoc($result);
-		return $userDetails[$column];       
+		return $userDetails[$column];
     }
 }
