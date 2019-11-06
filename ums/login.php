@@ -2,12 +2,13 @@
 include('class/User.php');
 $user = new User();
 $errorMessage =  $user->login();
-include('include/header.php');
+include('inc/header.php');
 ?>
-<title>webdamn.com : Demo User Management System with PHP & MySQL</title>
+<title>PLeMA - Philippine Local eMergency App User Management</title>
 <?php include('include/container.php');?>
+
 <div class="container contact">	
-	<h2>Example: User Management System with PHP & MySQL</h2>	
+	<!-- <h2>PLeMA - Philippine Local eMergency App User Management</h2>	 -->
 	<div class="col-md-6">                    
 		<div class="panel panel-info" >
 			<div class="panel-heading">
