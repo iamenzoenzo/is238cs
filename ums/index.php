@@ -4,10 +4,10 @@ $user = new User();
 $user->loginStatus();
 include('include/header.php');
 ?>
-<title>PLeMA - Philippine Local eMergency App User Management</title>
+<title>webdamn.com : Demo User Management System with PHP & MySQL</title>
 <?php include('include/container.php');?>
 <div class="container contact">	
-	<h2>PLeMA User Management</h2>	
+	<h2>Example: User Management System with PHP & MySQL</h2>	
 	<?php include('menu.php');?>
 	<div class="table-responsive">	
 	You're welcome!

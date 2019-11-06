@@ -9,7 +9,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count"></span> 
-				<img src="//gravatar.com/avatar/<?php echo md5($user['email']); ?>?s=100" width="20px">&nbsp;<?php //if(isset($_SESSION["userid"])) { echo $user['nick_name']; } ?></a>
+				<img src="//gravatar.com/avatar/<?php echo md5($user['email']); ?>?s=100" width="20px">&nbsp;<?php if(isset($_SESSION["userid"])) { echo $user['nick_name']; } ?></a>
 				<ul class="dropdown-menu">
 					<li><a href="settings.php">Account</a></li>
 					<li><a href="logout.php">Logout</a></li>

@@ -9,14 +9,14 @@ $ticketReplies = $tickets->getTicketReplies($ticketDetails['id']);
 $user = $users->getUserInfo();
 $tickets->updateTicketReadStatus($ticketDetails['id']);
 ?>	
-<title>PLeMA - Philippine Local eMergency App</title>
+<title>webdamn.com : Demo Build Helpdesk System with PHP & MySQL</title>
 <script src="js/ajax.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 <?php include('inc/container.php');?>
 <div class="container">
 	<div class="row home-sections">
-		<h2>PLeMA - Philippine Local eMergency App</h2>	
-		<?php include('menus.php'); ?>		
+	<h2>Example: Build Helpdesk System with PHP & MySQL</h2>	
+	<?php include('menus.php'); ?>		
 	</div> 
 	
 	<section class="comment-list">          
