@@ -4,10 +4,10 @@ $user = new User();
 $message =  $user->register();
 include('include/header.php');
 ?>
-<title>PLeMA - Philippine Local eMergency App User Management</title>
+<title>webdamn.com : Demo User Management System with PHP & MySQL</title>
 <?php include('include/container.php');?>
 <div class="container contact">	
-	<h2>PLeMA - Philippine Local eMergency App User Management</h2>
+	<h2>Example: User Management System with PHP & MySQL</h2>
 	<div id="signupbox" class="col-md-7">
 		<div class="panel panel-info">
 			<div class="panel-heading">

@@ -6,32 +6,30 @@ if(!$users->isLoggedIn()) {
 include('inc/header.php');
 $user = $users->getUserInfo();
 ?>
-<title>PLEMA - Philippine Local eMergency App</title>
-
+<title>webdamn.com : Demo Build Helpdesk System with PHP & MySQL</title>
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
 <script src="js/ajax.js"></script>
 <link rel="stylesheet" href="css/style.css" />
-
 <?php include('inc/container.php');?>
 <div class="container">	
 	<div class="row home-sections">
-		<?php include('menus.php'); ?>		
-	</div>
-	<div>
+	<h2>Example: Build Helpdesk System with PHP & MySQL</h2>	
+	<?php include('menus.php'); ?>		
+	</div> 
 	<div class="">   		
-		<p>This is where you view and manage your tickets.</p>		
+		<p>View and manage tickets that may have responses from support team.</p>		
 		<table id="listTickets" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>S/N</th>
 					<th>Ticket ID</th>
 					<th>Subject</th>
+					<th>Department</th>
 					<th>Created By</th>					
 					<th>Created</th>	
 					<th>Status</th>
-					<th>Assignee</th>
 					<th></th>
 					<th></th>
 					<th></th>					
