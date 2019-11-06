@@ -35,15 +35,25 @@ include('inc/header.php');
 							<span class="input-group-addon" style = "padding-right:25px;"><i class="glyphicon glyphicon-lock"></i></span>
 							<input type="password" class="form-control" id="password" name="password"placeholder="Password" required>
 						</div>
-						
-						<div class="row justify-content-end">
-							<div class="lead" style="margin-bottom:0px;"><a href="https://www.plema.digital" class="navbar-brand" style="padding-top:12px; padding-right:0px; margin-right:0px;">Home</a></div>
-							<div style="margin-right:15px; margin-left:15px; padding:0px;margin-bottom:0px" class="form-group">
-								<div class="controls" style="margin-bottom:0px;">
-									<input type="submit" name="login" value="Login" class="btn btn-success btn-primary btn-lg" style="padding-right:20px; padding-left:20px; margin-bottom:0px;">
+						<div class="row" style="margin-left:0px; margin-right:0px;">
+							<div class="col-md-7">	
+								<div style="margin-top:10px;margin-bottom: 0px;" class="form-group">
+									<div class="col-sm-12 controls">
+										Admin: admin@webdamn.com // password:123	<br>
+										User: smith@webdamn.com // 	password:123
+									</div>
 								</div>
 							</div>
-						</div>	
+							<div class="col-md-5">
+								<div class="lead col-md-6" style="margin-bottom:0px;"><a href="https://www.plema.digital" class="navbar-brand" style="padding-top:12px;padding-right:0px;margin-right:0px;padding-bottom: 0px;padding-left: 50px;">Home</a></div>
+								<div style="margin-right:15px; margin-left:15px; padding:0px;margin-bottom:0px" class="form-group">
+									<div class="controls col-md-6" style="margin-bottom:0px;">
+										<input type="submit" name="login" value="Login" class="btn btn-success btn-primary btn-lg" style="padding-right:20px; padding-left:20px; margin-bottom:0px; margin-top:5px;">
+									</div>
+								</div>
+							</div>
+						</div>
+							
 						
 					</form>
 				</div>
@@ -52,14 +62,7 @@ include('inc/header.php');
 	</div>
 </div>
 
-<div class="row justify-content-center">	
-	<div style="margin-top:10px" class="form-group">
-		<div class="col-sm-12 controls">
-			Admin: admin@webdamn.com // password:123	<br>
-			User: smith@webdamn.com // 	password:123
-		</div>
-	</div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

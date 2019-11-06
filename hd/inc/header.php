@@ -9,14 +9,16 @@
 
 <style>
     body  {
-        background-image: url("../hd-bg-2.jpg");
+        background-image: url("img/hd-bg-1.jpg");
         /* Full height */
         height: 100%;
 
         /* Center and scale the image nicely */
-        background-position: center;
+        background-position: center center;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         background-size: cover;
+        background-color: #464646;
     }
 </style>    
 <!-- jQuery -->
