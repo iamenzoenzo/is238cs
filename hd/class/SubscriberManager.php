@@ -2,11 +2,6 @@
 
 class SubscriberManager{
 
-    
-    public function __construct(){		
-        $this->dbConnect = $this->dbConnect();
-    }
-
     // get number, access token from POST data from API
     public function getSubscriberInfo(){
 
