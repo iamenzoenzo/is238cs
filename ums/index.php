@@ -2,7 +2,7 @@
 include('class/User.php');
 $user = new User();
 $user->loginStatus();
-include('include/header.php');
+include('../include/header.php');
 ?>
 <title>PLeMA - Philippine Local eMergency App User Management</title>
 <?php include('include/container.php');?>
@@ -13,4 +13,4 @@ include('include/header.php');
 	You're welcome!
 	</div>
 </div>	
-<?php include('include/footer.php');?>
+<?php include('../include/footer.php');?>

@@ -9,7 +9,7 @@
 
 <style>
     body  {
-        background-image: url("img/hd-bg-1.jpg");
+        background-image: url("../img/hd-bg-1.jpg");
         /* Full height */
         height: 100%;
 
@@ -19,6 +19,24 @@
         background-attachment: fixed;
         background-size: cover;
         background-color: #464646;
+    }
+
+    .dash-container  {
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #F5F5F1;
+
+        border-radius: 3px;
+    }
+
+    .container {
+        height: 100%;
     }
 </style>    
 <!-- jQuery -->
