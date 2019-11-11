@@ -34,11 +34,6 @@ include('inc/header.php');
 							<span class="input-group-addon" style = "padding-right:25px;"><i class="glyphicon glyphicon-lock"></i></span>
 							<input type="password" class="form-control" id="password" name="password"placeholder="password" required>
 						</div>
-						<div style="margin-top:10px" class="form-group">
-							<div class="col-sm-12 controls">
-							<input type="submit" name="login" value="Login" class="btn btn-success">
-							</div>
-						</div>
 						<div class="row" style="margin-left:0px; margin-right:0px;">
 							<div class="col-md-7">	
 								<div style="margin-top:10px;margin-bottom: 0px;" class="form-group">
@@ -69,5 +64,5 @@ include('inc/header.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<?php include('../footer.php');?>
-<?php //include('inc/footer.php');?>
+<?php //include('../footer.php');?>
+<?php include('inc/footer.php');?>
