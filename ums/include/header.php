@@ -12,7 +12,7 @@
 
 <style>
     body  {
-        background-image: url("../img/hd-bg-2.jpg");
+        background-image: url("img/hd-bg-2.jpg");
         /* Full height */
         height: 100%;
 

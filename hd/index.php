@@ -3,7 +3,7 @@ include 'init.php';
 if(!$users->isLoggedIn()) {
 	header("Location: login.php");	
 }
-include('../inc/header.php');
+include('inc/header.php');
 $user = $users->getUserInfo();
 ?>
 <title>PLEMA - Philippine Local eMergency App</title>
@@ -14,7 +14,7 @@ $user = $users->getUserInfo();
 <script src="js/ajax.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 
-<?php include('../inc/container.php');?>
+<?php include('inc/container.php');?>
 <div class="container dash-container rounded">	
 	<div class="row home-sections">
 		<?php include('menus.php'); ?>		
@@ -46,4 +46,4 @@ $user = $users->getUserInfo();
 	</div>
 	<?php include('add_ticket_model.php'); ?>
 </div>	
-<?php include('../inc/footer.php');?>
+<?php include('inc/footer.php');?>

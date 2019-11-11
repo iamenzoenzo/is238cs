@@ -9,7 +9,7 @@
 
 <style>
     body  {
-        background-image: url("../img/hd-bg-1.jpg");
+        background-image: url("img/hd-bg-1.jpg");
         /* Full height */
         height: 100%;
 
