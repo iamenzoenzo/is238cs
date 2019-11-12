@@ -59,13 +59,15 @@ class Tickets extends Database {
 			$ticketRows[] = $ticket['id'];
 			$ticketRows[] = $ticket['uniqid'];
 			$ticketRows[] = $title;
-			$ticketRows[] = $ticket['department'];
 			$ticketRows[] = $ticket['creater']; 			
 			$ticketRows[] = $time->ago($ticket['date']);
 			$ticketRows[] = $status;
-			$ticketRows[] = '<a href="ticket.php?id='.$ticket["uniqid"].'" class="btn btn-success btn-xs update">View Ticket</a>';	
-			$ticketRows[] = '<button type="button" name="update" id="'.$ticket["id"].'" class="btn btn-warning btn-xs update" '.$disbaled.'>Edit</button>';
-			$ticketRows[] = '<button type="button" name="delete" id="'.$ticket["id"].'" class="btn btn-danger btn-xs delete"  '.$disbaled.'>Close</button>';
+			$ticketRows[] = '';
+			$ticketRows[] = '<a href="ticket.php?id='.$ticket["uniqid"].'" class="btn btn-success btn-xs update"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
+							'<button type="button" name="update" id="'.$ticket["id"].'" class="btn btn-warning btn-xs update" '.$disbaled.'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'.' '.
+							'<button type="button" name="delete" id="'.$ticket["id"].'" class="btn btn-danger btn-xs delete"  '.$disbaled.'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';	
+			$ticketRows[] = '';
+			$ticketRows[] = '';
 			$ticketData[] = $ticketRows;
 		}
 		$output = array(

@@ -4,7 +4,7 @@
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom:10px;">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<div class="panel-title display-4"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>Create Ticket</div> 
+					<div class="panel-title display-4"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>New Ticket</div> 
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
