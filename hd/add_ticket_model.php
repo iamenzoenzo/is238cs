@@ -2,21 +2,15 @@
 	<div class="modal-dialog">
 		<form method="post" id="ticketForm">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header" style="padding-bottom:10px;">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"><i class="fa fa-plus"></i> Add Ticket</h4>
+					<div class="panel-title display-4"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>Create Ticket</div> 
 				</div>
 				<div class="modal-body">
-					<div class="form-group"
+					<div class="form-group">
 						<label for="subject" class="control-label">Subject</label>
 						<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>			
 					</div>
-					<div class="form-group">
-						<label for="department" class="control-label">Department</label>							
-						<select id="department" name="department" class="form-control" placeholder="Department...">					
-							<?php $tickets->getDepartments(); ?>
-						</select>						
-					</div>						
 					<div class="form-group">
 						<label for="message" class="control-label">Message</label>							
 						<textarea class="form-control" rows="5" id="message" name="message"></textarea>							
@@ -36,7 +30,7 @@
 				<div class="modal-footer">
 					<input type="hidden" name="ticketId" id="ticketId" />
 					<input type="hidden" name="action" id="action" value="" />
-					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+					<input type="submit" name="save" id="save" class="btn btn-success" value="Save" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
