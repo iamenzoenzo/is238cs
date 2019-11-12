@@ -10,9 +10,10 @@ $user = $users->getUserInfo();
 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
-<link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
 <script src="js/ajax.js"></script>
+
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
 
 <?php include('inc/container.php');?>
 <div class="container dash-container rounded">	
@@ -27,8 +28,8 @@ $user = $users->getUserInfo();
 				<a href="#" id="createTicket" class="btn btn-info btn-primary btn-sm" style="padding-right:20px; padding-left:20px; margin-bottom:0px; margin-top:5px;">Create Ticket</a>
 			</div>
 		</div>
-		<table id="listTickets" class="table">
-			<thead class=".table-light">
+		<table id="listTickets" class="table table-striped table-hover table-responsive ">
+			<thead class="">
 				<tr>
 					<th>S/N</th>
 					<th>Ticket ID</th>

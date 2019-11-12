@@ -9,19 +9,17 @@ $ticketReplies = $tickets->getTicketReplies($ticketDetails['id']);
 $user = $users->getUserInfo();
 $tickets->updateTicketReadStatus($ticketDetails['id']);
 ?>	
-<title>PLeMA - Philippine Local eMergency App</title>
 <script src="js/ajax.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 <?php include('inc/container.php');?>
 <div class="container">
 	<div class="row home-sections">
-		<h2>PLeMA - Philippine Local eMergency App</h2>	
 		<?php include('menus.php'); ?>		
 	</div> 
 	
 	<section class="comment-list">          
 		<article class="row">            
-			<div class="col-md-10 col-sm-10">
+			<div class="col-md-12 col-sm-12">
 				<div class="panel panel-default arrow left">
 					<div class="panel-heading right">
 					<?php if($ticketDetails['resolved']) { ?>
@@ -53,7 +51,7 @@ $tickets->updateTicketReadStatus($ticketDetails['id']);
 		
 		<?php foreach ($ticketReplies as $replies) { ?>		
 			<article class="row">
-				<div class="col-md-10 col-sm-10">
+				<div class="col-md-11 col-sm-11">
 					<div class="panel panel-default arrow right">
 						<div class="panel-heading">
 							<?php if($replies['user_group'] == 1) { ?>							
@@ -78,14 +76,14 @@ $tickets->updateTicketReadStatus($ticketDetails['id']);
 		
 		<form method="post" id="ticketReply">
 			<article class="row">
-				<div class="col-md-10 col-sm-10">				
+				<div class="col-md-11 col-sm-11">				
 					<div class="form-group">							
 						<textarea class="form-control" rows="5" id="message" name="message" placeholder="Enter your reply..." required></textarea>	
 					</div>				
 			</div>
 			</article>  
 			<article class="row">
-				<div class="col-md-10 col-sm-10">
+				<div class="col-md-11 col-sm-11">
 					<div class="form-group">							
 						<input type="submit" name="reply" id="reply" class="btn btn-success" value="Reply" />		
 					</div>
