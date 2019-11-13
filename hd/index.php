@@ -23,12 +23,11 @@ $user = $users->getUserInfo();
 	<div class="row home-sections">
 		<?php include('menus.php'); ?>		
 	</div>
-	<div>
 	<div class="">   		
 		<p>This is where you view and manage your tickets.</p>		
 		<div style="margin-right:15px; margin-left:0px; margin-bottom:0px" class="form-group">
 			<div class="controls col-md-6" style="margin-bottom:0px; padding-left:0px;">
-				<a href="#" id="createTicket" class="btn btn-primary" style="padding-right:20px; padding-left:20px; margin-bottom:0px; margin-top:5px;"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>&nbsp;New Ticket</a>
+				<a href="#" id="createTicket" class="btn btn-primary" style="padding-right:20px; padding-left:20px; margin-bottom:0px; margin-top:5px;"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px;"></span>&nbsp;Create Ticket</a>
 			</div>
 		</div>
 		<table id="listTickets" class="table table-striped table-hover table-responsive ">

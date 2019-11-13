@@ -23,4 +23,26 @@
         background-size: cover;
         background-color: #464646;
     }
+
+    .dash-container  {
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #F5F5F1;
+
+        border-radius: 3px;
+
+        padding-left:0px;
+        padding-right:0px;
+        padding-bottom:15px;
+    }
+
+    .container {
+        height: 100%;
+    }
 </style>
