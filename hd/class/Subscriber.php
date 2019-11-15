@@ -4,7 +4,7 @@ class Subscriber extends Database{
 
     private $subscriberTable = 'hd_subscribers';
     private $database = 'teamlaban';
-	private $dbConnect = false;
+    private $dbConnect = false;
     
     public function __construct(){		
         $this->dbConnect = $this->dbConnect();
@@ -12,8 +12,10 @@ class Subscriber extends Database{
 
     public function getSubscriberInfoFromDb(){
         
-        if(!empty($_SESSION["userid"])) {
-			$sqlQuery = "SELECT * FROM ".$this->subscriberTable." WHERE id ='".$_SESSION["userid"]."'";
+        // Update function to get subscriber info using mobile number instead of access token
+        
+        if(!empty($_SESSION["subaccesstoken"])) {
+			$sqlQuery = "SELECT * FROM ".$this->subscriberTable." WHERE subscriber_access_token ='".$_SESSION["subaccesstoken"]."'";
 			$result = mysqli_query($this->dbConnect, $sqlQuery);		
 			$userDetails = mysqli_fetch_assoc($result);
             
@@ -43,6 +45,7 @@ class Subscriber extends Database{
 
     public function updateSubscriberInfo($subscriberId,$subscriberNumber,$accessToken){
 
+        // Update function to get subscriber info using mobile number instead of access token
         $sqlQuery = "
         UPDATE ".$database.".".$this->subscriberTable." 
         SET `subscriber_number` = '".$subscriberNumber."', `subscriber_access_token` = '".$accessToken."'
@@ -59,6 +62,61 @@ class Subscriber extends Database{
         ";
         $result = mysqli_query($this->dbConnect, $sqlQuery);		
         
+    }
+
+    // get number, access token from POST data from API
+    public function getSubscriberInfoFromAPI(){
+
+        $sqlQuery = " ";
+        $subscriberInfo = mysqli_query($this->dbConnect, $sqlQuery);
+
+        return $subscriberInfo;
+    }
+    
+    // insert number, access token to subscriber table
+    public function saveSubscriberInfo($subscriberInfo){
+
+        $sqlQuery = " ";
+		mysqli_query($this->dbConnect, $sqlQuery);
+        
+    }
+
+    // retrieve access token from subscriber table
+    public function retrieveAccessToken($subscriberId){
+
+        $sqlQuery = " ";
+		$subAccessToken = mysqli_query($this->dbConnect, $sqlQuery);
+
+        return $subAccessToken;
+    }
+
+    // update access token of subscriber
+    public function updateSubscriberAccessToken($subscriberId, $newAccessToken){
+
+        $sqlQuery = " ";
+		mysqli_query($this->dbConnect, $sqlQuery);
+    }
+
+    public function getSubscriberMessages(){
+        // Function to retrieve messages, from Subscriber_Messages, belonging to subscriber
+        
+        $sqlQuery = " ";
+        $subscriberMessages = mysqli_query($this->dbConnect, $sqlQuery);
+        
+        return $subscriberMessages;
+    }
+
+    public function mergeSubscriberMessages(){
+        // Function to combine/merge multiple messages received for a subscriber
+
+        // retrieve all messages for a subscriber
+        $sqlQuery = " ";
+        $subscriberMessages = mysqli_query($this->dbConnect, $sqlQuery);
+
+        // merge messages
+        $mergedSubscriberMessages=""; 
+
+        return $mergedSubscriberMessages;
     }
 }
 

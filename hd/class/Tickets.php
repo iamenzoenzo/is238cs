@@ -83,19 +83,27 @@ class Tickets extends Database {
 		return $title; 		
 	}
 	public function createTicket() {      
-		if(!empty($_POST['subject']) && !empty($_POST['message'])) {                
+		// Create new ticket using subscriber info and combined message
+
+		// should use subscriber info as parameter
+
+		// retrieve messages from subscriber
+		// merge messages into ticket message
+
+		if(!empty($_POST['subscriberinfo']) && !empty($_POST['subscribermessage'])) {                
+			
 			$date = new DateTime();
 			$date = $date->getTimestamp();
 			$uniqid = uniqid();                
-			$message = strip_tags($_POST['subject']);              
-			$queryInsert = "INSERT INTO ".$this->ticketTable." (uniqid, user, title, init_msg, department, date, last_reply, user_read, admin_read, resolved) 
-			VALUES('".$uniqid."', '".$_SESSION["userid"]."', '".$_POST['subject']."', '".$message."', '".$_POST['department']."', '".$date."', '".$_SESSION["userid"]."', 0, 0, '".$_POST['status']."')";			
+			
+			$message = "";              
+			$queryInsert = "";			
+			
 			mysqli_query($this->dbConnect, $queryInsert);			
 			echo 'success ' . $uniqid;
-		} else {
-			echo '<div class="alert error">Please fill in all fields.</div>';
 		}
-	}	
+	}
+
 	public function getTicketDetails(){
 		if($_POST['ticketId']) {	
 			$sqlQuery = "
@@ -123,11 +131,11 @@ class Tickets extends Database {
 		}
 	}	
 	public function getDepartments() {       
-		$sqlQuery = "SELECT * FROM ".$this->departmentsTable;
-		$result = mysqli_query($this->dbConnect, $sqlQuery);
-		while($department = mysqli_fetch_assoc($result) ) {       
-            echo '<option value="' . $department['id'] . '">' . $department['name']  . '</option>';           
-        }
+		// $sqlQuery = "SELECT * FROM ".$this->departmentsTable;
+		// $result = mysqli_query($this->dbConnect, $sqlQuery);
+		// while($department = mysqli_fetch_assoc($result) ) {       
+        //     echo '<option value="' . $department['id'] . '">' . $department['name']  . '</option>';           
+        // }
     }	    
     public function ticketInfo($id) {  		
 		$sqlQuery = "SELECT t.id, t.uniqid, t.title, t.user, t.init_msg as message, t.date, t.last_reply, t.resolved, u.nick_name as creater, d.name as department 
