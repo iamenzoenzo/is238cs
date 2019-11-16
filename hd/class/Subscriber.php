@@ -2,11 +2,11 @@
 
 class Subscriber extends Database {  
  private $subscribersTable = 'Subscribers';
-	private $dbConnect = false;
- 
-	public function __construct(){		
-        $this->dbConnect = $this->dbConnect();
-    } 
+private $dbConnect = false;
+
+public function __construct(){		
+    $this->dbConnect = $this->dbConnect();
+} 
  
 public function saveSubscriber($Mobile_Number,$Access_Token) {
 		
@@ -43,9 +43,8 @@ public function getAccessTokenById($subscriberId){
     }     
 }
 
-
 public function getSubscriberNumberById($subscriberId){
-
+    //final code
     $sqlQuery = "SELECT Subscribers.mobileNumber FROM ".$this->subscribersTable." WHERE idSubscribers='".$subscriberId."'";
     $result = mysqli_query($this->dbConnect, $sqlQuery);		
     $row = mysqli_fetch_array($result);
@@ -54,14 +53,12 @@ public function getSubscriberNumberById($subscriberId){
     
 }
 
-
 public function updateSubscriber($subscriberId,$accessToken){
 
     $sqlQuery = "
     UPDATE ".$database."".$this->subscribersTable." 
     SET accessToken = '".$accessToken."'
-    WHERE idSubscribers = ".$subscriberId.";
-    ";
+    WHERE idSubscribers = ".$subscriberId.";";
     mysqli_query($this->dbConnect, $sqlQuery);
     return "success";
     
