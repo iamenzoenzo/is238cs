@@ -1,0 +1,95 @@
+<?php
+
+class Subscribers extends Database {  
+ private $subscribersTable = 'Subscribers';
+	private $dbConnect = false;
+ 
+	public function __construct(){		
+        $this->dbConnect = $this->dbConnect();
+    } 
+
+public function saveSubscriber($Mobile_Number,$Access_Token) {
+	//final code	
+    $date = new DateTime();
+    $date = $date->getTimestamp();
+    $sqlQuery = "INSERT INTO ".$this->subscribersTable." (mobileNumber, accessToken) 
+        VALUES('".$Mobile_Number."', '".$Access_Token."')";
+    return $result = mysqli_query($this->dbConnect, $sqlQuery);
+}
+    
+public function getSubscriberIdByNumber($subscriberNumber){
+    //final code
+    $sqlQuery = "SELECT Subscribers.idSubscribers FROM ".$this->subscribersTable." WHERE  mobileNumber='".$subscriberNumber."'";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $row = mysqli_fetch_array($result);
+    $userId = $row['idSubscribers']; 
+    if($userId!=0){
+    return $userId;
+    }else{return 0;}
+}
+
+public function getSubscriberNumberById($subscriberId){
+    //final code
+    $sqlQuery = "SELECT Subscribers.mobileNumber FROM ".$this->subscribersTable." WHERE idSubscribers='".$subscriberId."'";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);		
+    $row = mysqli_fetch_array($result);
+    $mobileNumber = $row['mobileNumber']; 
+    if(isset($mobileNumber)){
+        return $mobileNumber;
+    }
+    else{
+        return 0;
+    } 
+    
+}
+
+public function updateSubscriber($subscriberId,$accessToken){
+
+    $sqlQuery = "
+    UPDATE ".$database.".".$this->subscribersTable." 
+    SET 'accessToken' = '".$accessToken."'
+    WHERE `id` = ".$subscriberId.";
+    ";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    return $result;
+    
+}
+
+//------------------------------------------------------------------------------
+public function getSubscriberInfoFromDb(){
+    
+    if(!empty($_SESSION["userid"])) {
+        $sqlQuery = "SELECT * FROM ".$this->subscriberTable." WHERE id ='".$_SESSION["userid"]."'";
+        $result = mysqli_query($this->dbConnect, $sqlQuery);		
+        $userDetails = mysqli_fetch_assoc($result);
+        
+        return $userDetails;
+    }
+}
+
+public function getAllSubscribers(){
+
+    $sqlQuery = "SELECT * FROM ".$this->subscriberTable;
+    $result = mysqli_query($this->dbConnect, $sqlQuery);		
+    $userDetails = mysqli_fetch_assoc($result);
+    
+    return $userDetails;
+}
+
+
+
+
+  
+
+  public function removeSubscriber(){
+
+      $sqlQuery = "
+          DELETE FROM ".$database.".".$this->subscriberTable." WHERE `id` = ".$subscriberId.";
+      ";
+      $result = mysqli_query($this->dbConnect, $sqlQuery);		
+      
+  }
+
+ 
+
+}
