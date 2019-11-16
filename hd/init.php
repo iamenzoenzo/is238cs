@@ -9,8 +9,12 @@ require 'class/Database.php';
 require 'class/Users.php';
 require 'class/Time.php';
 require 'class/Tickets.php';
+require 'class/Subscribers.php';
+require 'class/InboundSms.php';
 $database = new Database;
 $users = new Users;
 $time = new Time;
 $tickets = new Tickets;
+$subs = new Subscribers;
+$inbound = new InboundSms;
 ?>
