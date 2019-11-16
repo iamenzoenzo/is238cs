@@ -1,19 +1,11 @@
 <?php 
+include 'hd/init.php'; 
 
-$logFilePath = 'logs/debug.txt';
-ob_start();
+if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
+  $subs->saveSubscriber($_GET["subscriber_number"],$_GET["access_token"]);
+}else{echo "Invalid invoke! Please subscribe thru SMS.";}
 
-// if you want to concatenate:
-if (file_exists($logFilePath)) {
-    include($logFilePath);
-}
 
-echo "ACCESS TOKEN: ".$_GET["access_token"]."\n";
-echo "MOBILE NUMBER: ".$_GET["subscriber_number"]."\n";
-
-$logFile = fopen($logFilePath, 'w');
-fwrite($logFile, ob_get_contents());
-fclose($logFile);
-ob_end_flush();
+//echo $subs->getSubscriberId($_GET["subscriber_number"]);
 
 ?>
