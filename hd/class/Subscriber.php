@@ -1,8 +1,8 @@
 <?php
 
 class Subscriber extends Database {  
- private $subscribersTable = 'Subscribers';
-private $dbConnect = false;
+    private $subscribersTable = 'Subscribers';
+    private $dbConnect = false;
 
 public function __construct(){		
     $this->dbConnect = $this->dbConnect();
@@ -13,14 +13,15 @@ public function saveSubscriber($Mobile_Number,$Access_Token) {
     $date = new DateTime();
     $date = $date->getTimestamp();
     $sqlQuery = "INSERT INTO ".$this->subscribersTable." (mobileNumber, accessToken) 
-        VALUES('".$Mobile_Number."', '".$Access_Token."')";
+                VALUES('".$Mobile_Number."', '".$Access_Token."')";
     $result = mysqli_query($this->dbConnect, $sqlQuery);
-    return "Result: ".$result;
-    }
+    return $result;
+}
     
 public function getSubscriberIdByNumber($subscriberNumber){
 
-    $sqlQuery = "SELECT Subscribers.idSubscribers FROM ".$this->subscribersTable." WHERE  mobileNumber='".$subscriberNumber."'";
+    $sqlQuery = "SELECT Subscribers.idSubscribers FROM ".$this->subscribersTable.
+    " WHERE  mobileNumber='".$subscriberNumber."'";
     $result = mysqli_query($this->dbConnect, $sqlQuery);
     $row = mysqli_fetch_array($result);
     $userId = $row['idSubscribers']; 
@@ -31,7 +32,8 @@ public function getSubscriberIdByNumber($subscriberNumber){
 
 public function getAccessTokenById($subscriberId){
     //final code
-    $sqlQuery = "SELECT Subscribers.accessToken FROM ".$this->subscribersTable." WHERE idSubscribers='".$subscriberId."'";
+    $sqlQuery = "SELECT Subscribers.accessToken FROM ".$this->subscribersTable.
+    " WHERE idSubscribers='".$subscriberId."'";
     $result = mysqli_query($this->dbConnect, $sqlQuery);		
     $row = mysqli_fetch_array($result);
     $access_token = $row['accessToken']; 
@@ -45,7 +47,8 @@ public function getAccessTokenById($subscriberId){
 
 public function getSubscriberNumberById($subscriberId){
     //final code
-    $sqlQuery = "SELECT Subscribers.mobileNumber FROM ".$this->subscribersTable." WHERE idSubscribers='".$subscriberId."'";
+    $sqlQuery = "SELECT Subscribers.mobileNumber FROM ".$this->subscribersTable.
+    " WHERE idSubscribers='".$subscriberId."'";
     $result = mysqli_query($this->dbConnect, $sqlQuery);		
     $row = mysqli_fetch_array($result);
     $mobileNumber = $row['mobileNumber']; 
