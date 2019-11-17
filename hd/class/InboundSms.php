@@ -105,7 +105,8 @@ public function getTicketIdByByReference($TicketReference,$MobileNumber){
     }
     else{
         return 0;
-    }     
+	}   
+	  
 }
 
 }
