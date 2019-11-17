@@ -1,8 +1,8 @@
 <?php
 /*
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -201,19 +201,19 @@ class User {
 					$update = $this->_db->query("UPDATE $this->tableName SET oauth_provider = '".$oauth_provider."', oauth_uid = '".$oauth_uid."', fname = '".$fname."', lname = '".$lname."', email = '".$email."', gender = '".$gender."', locale = '".$locale."', username = '".$fakeUN."',permissions = '".$active."',email_verfied = '".$active."',active = '".$active."',picture = '".$picture."', gpluslink = '".$link."', modified = '".date("Y-m-d H:i:s")."' WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die("Google oAuth Error");
 
 				}else{
-				//Check to see if the user has a regular PLEMA UserSpice account that matches the google email.
+				//Check to see if the user has a regular PLEMA Digital account that matches the google email.
 				$findExistingUS=$this->_db->query("SELECT * FROM users WHERE email = ?",array($email));
 				$foundUS=$findExistingUS->count();
 				$found=$findExistingUS->count();
 
 
 				if ($foundUS == 1){
-					//Found an existing PLEMA UserSpice user with the same email
-					// die("user already has userspice");
+					//Found an existing PLEMA Digital user with the same email
+					// die("user already has Digital");
 					$this->_db->query("UPDATE users WHERE id = 3 SET lname = ?",array($email)) or die("Google oAuth Error");
 
 				}else{
-					//If a user has neither PLEMA UserSpice nor oAuth creds
+					//If a user has neither PLEMA Digital nor oAuth creds
 						//die("user has neither");
 						//$password = password_hash(Token::generate(),PASSWORD_BCRYPT,array('cost' => 12));
 						$settings=$this->_db->query("SELECT * FROM settings")->first();

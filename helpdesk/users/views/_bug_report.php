@@ -69,13 +69,13 @@ if(!empty($_POST) && $settings->spice_api != ''){
     <a href="https://userspice.com/developer-api-keys/"><font color='red'><strong>The Bug Report feature will not work with out a FREE API Key.</font></strong>
       Get One Here</a>
       <form class="" action="" method="post">
-        <input type="password" autocomplete="off" class="form-control" data-desc="PLEMA UserSpice API Key" name="spice_api" id="spice_api" value="<?=$settings->spice_api?>" placeholder="Paste your key here">
+        <input type="password" autocomplete="off" class="form-control" data-desc="PLEMA Digital API Key" name="spice_api" id="spice_api" value="<?=$settings->spice_api?>" placeholder="Paste your key here">
         <input type="submit" name="submitKey" value="Save Key">
       </form>
 
     <?php } ?>
     <h3>System Report</h3><br>
-    <strong>PLEMA UserSpice Version:</strong> <?=$user_spice_ver?><br>
+    <strong>PLEMA Digital Version:</strong> <?=$user_spice_ver?><br>
     <strong>DB Version:</strong> <?=$dataB[0]["version()"];?><br>
     <strong>OS Info:</strong> <?=php_uname('s');?>-<?=php_uname('v');?></br>
     <strong>Software Info:</strong> <?=$_SERVER['SERVER_SOFTWARE']?><br><br>

@@ -24,7 +24,7 @@ $top = $db->query("SELECT id, logins FROM users ORDER BY logins DESC LIMIT 5")->
 
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-        PLEMA UserSpice Version <span class="badge badge-primary"><?=$user_spice_ver?></span>
+        PLEMA Digital Version <span class="badge badge-primary"><?=$user_spice_ver?></span>
         <span class="pull-right"><a href="<?=$us_url_root?>users/admin.php?view=updates">Check for Updates</a></span>
       </li>
       <li class="list-group-item">
@@ -89,11 +89,11 @@ $top = $db->query("SELECT id, logins FROM users ORDER BY logins DESC LIMIT 5")->
       </li>
 
       <li class="list-group-item">
-        <a href="https://www.youtube.com/playlist?list=PLixQt02ELp8onA67F4yrVbLnTOYsSBhxZ" target="_blank"> <i class="fa fa-quote-left"></i>  PLEMA UserSpice Videos</a>
+        <a href="https://www.youtube.com/playlist?list=PLixQt02ELp8onA67F4yrVbLnTOYsSBhxZ" target="_blank"> <i class="fa fa-quote-left"></i>  PLEMA Digital Videos</a>
       </li>
 
       <li class="list-group-item">
-        <a href="https://www.patreon.com/userspice" target="_blank"> <i class="fa fa-heart"></i>  Support PLEMA UserSpice </a>
+        <a href="https://www.patreon.com/userspice" target="_blank"> <i class="fa fa-heart"></i>  Support PLEMA Digital </a>
       </li>
     </ul>
   </section>

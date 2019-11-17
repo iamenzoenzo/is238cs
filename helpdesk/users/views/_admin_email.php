@@ -271,7 +271,7 @@ if(!empty($_POST)){
   </select>
   </div>
   <div class="form-group">
-  <label>Root URL of your PLEMA UserSpice install <a href="#!" tabindex="-1" title="Note" data-trigger="click" class="nounderline" data-toggle="popover" data-content="Including http or https protocol (VERY Important). Default location would be: <?=$urlProtocol.$_SERVER['HTTP_HOST'].$us_url_root?>"><i class="fa fa-question-circle"></i></a></label>
+  <label>Root URL of your PLEMA Digital install <a href="#!" tabindex="-1" title="Note" data-trigger="click" class="nounderline" data-toggle="popover" data-content="Including http or https protocol (VERY Important). Default location would be: <?=$urlProtocol.$_SERVER['HTTP_HOST'].$us_url_root?>"><i class="fa fa-question-circle"></i></a></label>
   <br>Put http://yourdomain.com/ with the final / below
   <input required  size='50' class='form-control' type='text' name='verify_url' value='<?=$results->verify_url?>' />
   </div>

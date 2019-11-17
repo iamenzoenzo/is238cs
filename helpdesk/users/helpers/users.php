@@ -1,4 +1,4 @@
-<?php //PLEMA UserSpice User-Related functions
+<?php //PLEMA Digital User-Related functions
 //Do not deactivate!
 
 //Check if a user ID exists in the DB

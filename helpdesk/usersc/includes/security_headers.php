@@ -10,7 +10,7 @@
 
 The content-security-policy HTTP header provides an additional layer of security. This policy helps prevent attacks such as Cross Site Scripting (XSS) and other code injection attacks by defining content sources which are approved and thus allowing the browser to load them.
 
-** Not specified because you cannot predict what content sources will be required by the users of PLEMA UserSpice **
+** Not specified because you cannot predict what content sources will be required by the users of PLEMA Digital **
 */
 
 

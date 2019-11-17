@@ -72,7 +72,7 @@
    ?>
 
    <h2>Spice Shaker Auto Installer</h2>
-   Spice Shaker allows you to download and automatically install Updates, Plugins, Templates, Widgets, and Languages for PLEMA UserSpice.<br>Users with a (free) API key can make 2000 requests a day.<br>
+   Spice Shaker allows you to download and automatically install Updates, Plugins, Templates, Widgets, and Languages for PLEMA Digital.<br>Users with a (free) API key can make 2000 requests a day.<br>
    <?php
  $failed = 0;
  if(!function_exists('curl_version')){
@@ -92,7 +92,7 @@
        <div class="col-6">
        <div class="form-group">
 
-         <label for="gid">PLEMA UserSpice API Key (
+         <label for="gid">PLEMA Digital API Key (
            <a href="https://userspice.com/developer-api-keys/">
              <?php if($settings->spice_api == ''){
                echo "<font color='red'><strong>Spice Shaker will not work with out a FREE API Key. Please refresh after pasting your key.</font></strong>";
@@ -100,7 +100,7 @@
                ?>
                Get One Here</a>
            )</label>
-         <input type="password" autocomplete="off" class="form-control ajxtxt" data-desc="PLEMA UserSpice API Key" name="spice_api" id="spice_api" value="<?=$settings->spice_api?>">
+         <input type="password" autocomplete="off" class="form-control ajxtxt" data-desc="PLEMA Digital API Key" name="spice_api" id="spice_api" value="<?=$settings->spice_api?>">
        </div>
      </div>
      <div class="col-4">

@@ -40,7 +40,7 @@ $GLOBALS['config'] = array(
 )
 );
 
-//If you changed your PLEMA UserSpice or UserCake database prefix
+//If you changed your PLEMA Digital or UserCake database prefix
 //put it here.
 $db_table_prefix = "uc_";  //Old database prefix
 

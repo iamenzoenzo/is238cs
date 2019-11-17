@@ -1,5 +1,5 @@
 <?php
-//NOTE: This also serves as the reference file for how to do One Click Edit with PLEMA UserSpice. See comments below.
+//NOTE: This also serves as the reference file for how to do One Click Edit with PLEMA Digital. See comments below.
   require_once '../init.php';
   $db = DB::getInstance();
   $settings = $db->query("SELECT * FROM settings")->first();

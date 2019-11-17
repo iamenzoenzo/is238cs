@@ -1,8 +1,8 @@
 <?php
 /*
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// PLEMA UserSpice Specific Functions
+// PLEMA Digital Specific Functions
 
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 

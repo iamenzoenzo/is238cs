@@ -1,12 +1,12 @@
 <?php
 if(count(get_included_files()) ==1) die(); //Direct Access Not Permitted
-  // PLEMA UserSpice Announcements
+  // PLEMA Digital Announcements
   $rc = @fsockopen("rss.userspice.com",443,$errCode,$errStr,1);
   if (is_resource($rc))  {
     $filename= 'https://rss.userspice.com/rss.xml';
     $file_headers = @get_headers($filename);
     if(($file_headers[0] != 'HTTP/1.1 200 OK') && ($file_headers[1] != 'HTTP/1.1 200 OK')){
-      //logger($user->data()->id,"Errors","PLEMA UserSpice Announcements feed not found. Please tell PLEMA UserSpice!");
+      //logger($user->data()->id,"Errors","PLEMA Digital Announcements feed not found. Please tell PLEMA Digital!");
     } else {
       $limit = 0;
       $dis = $db->query("SELECT * FROM us_announcements")->results();
