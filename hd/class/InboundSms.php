@@ -1,7 +1,7 @@
 <?php
 
 class InboundSms extends Database {  
- 	private $subscribersTable = 'Subscriber_Messages';
+ 	private $messagesTable = 'Subscriber_Messages';
 	private $dbConnect = false;
  
 	public function __construct(){		
@@ -9,21 +9,53 @@ class InboundSms extends Database {
 	} 
  
 public function saveMessages($dateTime,$destinationAddress,$messageID,$message,$resourceURL,$senderAddress,$numberOfMessageInThisBatch,$totalNumberOfPendingMsg,$multipartRefId,$multipartSeqNum,$isDeleted) {
-	
-	//$date = new DateTime();
-	//$date = $date->getTimestamp();
-	$sqlQuery = "INSERT INTO ".$this->subscribersTable." (dateTime,destinationAddress,messageID,message,resourceURL,senderAddress,numberOfMessageInThisBatch,totalNumberOfPendingMsg,multipartRefId,multipartSeqNum,isDeleted) VALUES('".$dateTime."', '".$destinationAddress."', '".$messageID."', '".$message."', '".$resourceURL."', '".$senderAddress."', ".$numberOfMessageInThisBatch.", ".$totalNumberOfPendingMsg.", '".$multipartRefId."', ".$multipartSeqNum.", ".$isDeleted.")";
+	//final code
+	$sqlQuery = "INSERT INTO ".$this->messagesTable." (dateTime,destinationAddress,messageID,message,resourceURL,senderAddress,numberOfMessageInThisBatch,totalNumberOfPendingMsg,multipartRefId,multipartSeqNum,isDeleted) VALUES('".$dateTime."', '".$destinationAddress."', '".$messageID."', '".$message."', '".$resourceURL."', '".$senderAddress."', ".$numberOfMessageInThisBatch.", ".$totalNumberOfPendingMsg.", '".$multipartRefId."', ".$multipartSeqNum.", ".$isDeleted.")";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	return $result;
 }
 
 public function getMessagesByMultipartReferenceId($multipartRefId){
-	$sqlQuery = "SELECT Subscriber_Messages.idSubscribers FROM ".$this->subscribersTable.
-	" WHERE  mobileNumber='".$subscriberNumber."'";
-  			  $result = mysqli_query($this->dbConnect, $sqlQuery);		
-  			  $userId = mysqli_fetch_assoc($result);
-            
-       return $userId;	
+	$sqlQuery = "SELECT * FROM ".$this->messagesTable.
+	" WHERE  multipartRefId='".$multipartRefId."'  ORDER BY multipartSeqNum ASC";
+	$result = mysqli_query($this->dbConnect, $sqlQuery);
+	$data= array();
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+			$data[]=$row;            
+		}
+        return $data;	
 }
+
+public function checkIfAllMessagesReceived($multipartRefId,$numberOfMessageInThisBatch){
+	$sqlQuery = "SELECT * FROM ".$this->messagesTable.
+	" WHERE  multipartRefId='".$multipartRefId."'";
+	$result = mysqli_query($this->dbConnect, $sqlQuery);
+	$count = mysqli_num_rows($result);	
+	if($count=$numberOfMessageInThisBatch){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+public function deleteMessagesByMultipartRefId($multipartRefId){
+    $sqlQuery = "
+    UPDATE ".$this->messagesTable." 
+    SET isDeleted = 1 WHERE multipartRefId = ".$multipartRefId.";";
+    mysqli_query($this->dbConnect, $sqlQuery);
+    return "success";
+    
+}
+
+public function deleteMessagesById($messageDbId){
+    $sqlQuery = "
+    UPDATE ".$this->messagesTable." 
+    SET isDeleted = 1 WHERE id = ".$messageDbId.";";
+    mysqli_query($this->dbConnect, $sqlQuery);
+    return "success";
+    
+}
+
+
 
 }
