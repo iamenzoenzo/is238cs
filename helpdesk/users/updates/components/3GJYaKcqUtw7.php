@@ -1,7 +1,7 @@
 <?php
 
 //This update fixes vericodes
-//Released PLEMA UserSpice Alpha 4.3.025
+//Released PLEMA Digital Alpha 4.3.025
 //September 24, 2017
 //Rewrote 2019-02-19 BA
 

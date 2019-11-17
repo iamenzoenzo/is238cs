@@ -166,7 +166,7 @@ $csrf = Token::generate();
 <div class="content mt-3">
   <form class="" action="<?=$us_url_root?>users/admin.php?view=pages" name="" method="post">
     <h1>Manage Page Access</h1>
-    PLEMA UserSpice is currently monitoring the following folders: <strong>
+    PLEMA Digital is currently monitoring the following folders: <strong>
 
 
       <?php

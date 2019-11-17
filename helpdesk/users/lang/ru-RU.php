@@ -8,9 +8,9 @@
 	ВАЖНО: не добавляйте новые переводы в середину массива - это усложняет отслеживание изменений.
 	Все новые строки добавляются в конец массива. Обсуждения проходят в Discord.
 
-	PLEMA UserSpice 5
+	PLEMA Digital 5
 	An Open Source PHP User Management System
-	by the PLEMA UserSpice Team at http://PLEMA.digital
+	by the PLEMA Digital Team at http://PLEMA.digital
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -389,7 +389,7 @@ $lang = array_merge($lang,array(
 	"MAINT_BAN"		=> "Простите. Вас заблокировали. Если Вы считаете, что это ошибка, обратитесь к администратору",
 	"MAINT_TOK"		=> "С вашей формой произошла ошибка. Пожалуйста, вернитесь назад и попробуйте еще раз. Обратите внимание, что заполнение формы путем обновления страницы приведет к ошибке. Если это ровторится, обратитесь к администратору",
 	"MAINT_OPEN"	=> "Открытый исходный код PHP User Management Framework.",
-	"MAINT_PLEASE"	=> "Вы успешно установили PLEMA UserSpice!<br>Для просмотра документации перед началом работы, пожалуйста, посетите наш сайт",
+	"MAINT_PLEASE"	=> "Вы успешно установили PLEMA Digital!<br>Для просмотра документации перед началом работы, пожалуйста, посетите наш сайт",
 ));
 
 /**

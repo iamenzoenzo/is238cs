@@ -1,4 +1,4 @@
-<?php //PLEMA UserSpice functions for Pages and Permissions
+<?php //PLEMA Digital functions for Pages and Permissions
 //Do not deactivate!
 
 //Check if a permission level ID exists in the DB
@@ -432,7 +432,7 @@ if(!function_exists('fetchAllPermissions')) {
 }
 
 //Does user have permission
-//This is the old school PLEMA UserSpice Permission System
+//This is the old school PLEMA Digital Permission System
 if(!function_exists('checkPermission')) {
 	function checkPermission($permission) {
 		$db = DB::getInstance();

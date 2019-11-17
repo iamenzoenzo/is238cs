@@ -1,9 +1,9 @@
 <?php
 // This is a user-facing page
 /*
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

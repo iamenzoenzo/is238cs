@@ -39,7 +39,7 @@ if(file_exists($abs_us_root.$us_url_root.'usersc/templates/'.$settings->template
 </head>
 <?php require_once($abs_us_root.$us_url_root.'users/includes/template/header3_must_include.php'); ?>
 
-<!-- Grab the initial menu work that PLEMA UserSpice does for you -->
+<!-- Grab the initial menu work that PLEMA Digital does for you -->
 <?php require_once($abs_us_root.$us_url_root.'users/includes/template/database_navigation_prep.php');?>
 
 <!-- This file is a way of allowing the end user to customize stuff -->

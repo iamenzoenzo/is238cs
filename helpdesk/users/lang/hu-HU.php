@@ -9,9 +9,9 @@ you to update it and thank you for your hard work!
 
 PLEASE NOTE: DO NOT ADD RANDOM KEYS in the middle of the translations.  In order to make it easier to tell what language keys are missing, from this point forward, we are going to add all new language keys at the BOTTOM of this file. The number of lines in your language file will tell you which keys still need to be translated.  If you have questions please ask on the forums or on Discord.
 
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -367,7 +367,7 @@ $lang = array_merge($lang,array(
 		"MAINT_BAN"			=> "Sajnálom. Ki lettél tiltva a webhelyről. Ha úgy érzed, ez hiba, kérlek, fordulj az adminisztrátorhoz.",
 		"MAINT_TOK"			=> "Hiba történt az űrlap elküldésekor. Kérlek, próbáld újra és vedd figyelembe, hogy az űrlap újraküldése az oldal frissítésével hibát okoz. Ha ez továbbra is fennáll, fordulj az adminisztrátorhoz.",
 		"MAINT_OPEN"		=> "Egy nyílt forráskódú PHP alapú Felhasználó-kezelő Keretrendszer",
-		"MAINT_PLEASE"	=> "Sikeresen telepítetted a PLEMA UserSpice-t! <br> Az első lépések megtételében sokat segít az alábbi webhely: "
+		"MAINT_PLEASE"	=> "Sikeresen telepítetted a PLEMA Digital-t! <br> Az első lépések megtételében sokat segít az alábbi webhely: "
 		));
 
 		//dataTables Added in 4.4.08

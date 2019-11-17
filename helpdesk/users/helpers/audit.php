@@ -121,7 +121,7 @@ function countLoginsSince($eventcode,$since) {
 	return $num_returns;
 	}
 
-// handy ago() function for PLEMA UserSpice timestamps
+// handy ago() function for PLEMA Digital timestamps
 function ago($time) {
     $timediff=time()-$time;
     $days=intval($timediff/86400);

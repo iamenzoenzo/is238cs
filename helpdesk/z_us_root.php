@@ -17,7 +17,7 @@ for($i = 1; $i < $self_path_length; $i++){
 		$file_found=FALSE;
 	}
 }
-//redirect back to Userspice URL root (usually /)
+//redirect back to Digital URL root (usually /)
 header('Location: '.$us_url_root);
 exit;
 ?>

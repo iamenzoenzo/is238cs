@@ -1,9 +1,9 @@
 <?php
 /*
 This is a user-facing page
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ Special thanks to John Bovey for the password strenth feature.
         </style>
         ';
 
-        //3.) Javascript to check to see if user has met conditions on keyup (NOTE: It seems like we shouldn't have to include jquery here because it's already included by PLEMA UserSpice, but the code doesn't work without it.)
+        //3.) Javascript to check to see if user has met conditions on keyup (NOTE: It seems like we shouldn't have to include jquery here because it's already included by PLEMA Digital, but the code doesn't work without it.)
         echo '
         <script type="text/javascript">
         $(document).ready(function(){

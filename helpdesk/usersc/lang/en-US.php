@@ -1,5 +1,5 @@
 <?php
-//Anything you put in this file will override the default PLEMA UserSpice language that's located in
+//Anything you put in this file will override the default PLEMA Digital language that's located in
 // users/lang/en-US.php
 //NOTE: You can also add as many other language keys as you wish and use them wherever you want in
 //your project.

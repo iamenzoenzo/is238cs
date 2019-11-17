@@ -26,7 +26,7 @@ $pages = [
   ['Menu Manager','users/admin_menu.php','Manage Menus'],
   ['Menu Manager','users/admin_menus.php','Manage Menus'],
   ['Menu Manager','users/admin_menu_item.php','Manage Menus'],
-  ['Update Manager','users/update.php','Update PLEMA UserSpice'],
+  ['Update Manager','users/update.php','Update PLEMA Digital'],
   ['Logs Manager','users/admin_logs.php','Site Logs'],
   ['Logs Manager','users/admin_logs_exempt.php','Site Logs'],
   ['Logs Manager','users/admin_logs_manager.php','Site Logs'],

@@ -7,9 +7,9 @@ allow us to autoformat numbers on the sites.
 PLEASE put your name somewhere at the top of the language file so we can get in touch with
 you to update it and thank you for your hard work!
 
-PLEMA UserSpice 5
+PLEMA Digital 5
 An Open Source PHP User Management System
-by the PLEMA UserSpice Team at http://PLEMA.digital
+by the PLEMA Digital Team at http://PLEMA.digital
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -360,7 +360,7 @@ $lang = array_merge($lang,array(
 		"MAINT_BAN" => "Scuze. Ati fost interzis. Daca credeti ca este o eroare, contactati administratorul.",
 		"MAINT_TOK" => "A aparut o eroare la formularul dvs. Reveniti si încercati din nou. Rețineți ca trimiterea formularului prin actualizarea paginii va duce la o eroare. Daca acest lucru se întâmpla în continuare, contactati administratorul.",
 		"MAINT_OPEN" => "Un cadru de gestionare a utilizatorilor PHP Open Source.",
-		"MAINT_PLEASE" => "Ati instalat cu succes PLEMA UserSpice!<br>Pentru a vedea documentatia noastra de început, va rugam sa vizitati",
+		"MAINT_PLEASE" => "Ati instalat cu succes PLEMA Digital!<br>Pentru a vedea documentatia noastra de început, va rugam sa vizitati",
 		));
 
 		//LEAVE THIS LINE AT THE BOTTOM.  It allows users/lang to override these keys

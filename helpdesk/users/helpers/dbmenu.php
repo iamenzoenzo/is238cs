@@ -1,4 +1,4 @@
-<?php //PLEMA UserSpice Database-based Menu Functions
+<?php //PLEMA Digital Database-based Menu Functions
 //Retrieve list of groups that can access a menu
 if(!function_exists('fetchGroupsByMenu')) {
 	function fetchGroupsByMenu($menu_id) {

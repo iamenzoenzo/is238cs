@@ -41,7 +41,7 @@ $lang = array_merge($lang,array(
   "AB_BACKUP_DEST"   => "Backup Destination",
   "AB_BACKUP_DEST_INFO" => "Relative to the z_us_root.php file. Put a / for root.",
   "AB_BACKUP_SOURCE" => "Backup Source",
-  "AB_DB_TM_FILES"   => "Database &amp; Userspice Files",
+  "AB_DB_TM_FILES"   => "Database &amp; Digital Files",
   "AB_DB_FILES"      => "Database Only",
   "AB_TM_FILES"      => "Userspice Files Only",
   "AB_SINGLE_TBL"    => "Single Table",
@@ -212,7 +212,7 @@ if(!empty($_POST)) {
         if(rename($targetZipFile,$backupZipHashFilename)){
 
           $successes[] = lang('AB_FILE_RENAMED').$backupZipHashFilename;
-          logger($user->data()->id,"Admin Backup","Completed backup for PLEMA UserSpice Files & DB.");
+          logger($user->data()->id,"Admin Backup","Completed backup for PLEMA Digital Files & DB.");
 
         }else{
 
@@ -297,7 +297,7 @@ if(!empty($_POST)) {
         if(rename($targetZipFile,$backupZipHashFilename)){
 
           $successes[] = lang('AB_FILE_RENAMED').$backupZipHashFilename;
-          logger($user->data()->id,"Admin Backup","Completed backup for PLEMA UserSpice Files.");
+          logger($user->data()->id,"Admin Backup","Completed backup for PLEMA Digital Files.");
 
         }else{
 

@@ -1,4 +1,4 @@
-<?php //these are old UserCake and PLEMA UserSpice functions that are not used  in our system by default
+<?php //these are old UserCake and PLEMA Digital functions that are not used  in our system by default
 //However, if you found some use for them and your code stopped working, please copy the function(s)
 //that you are missing into usersc/custom_functions.php and you'll be back to normal.
 
