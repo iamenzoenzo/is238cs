@@ -86,11 +86,26 @@ public function saveToTickets($MobileNumber,$message,$Status) {
 	return $result;
 }
 
-public function saveToReplies($ticketRef,$message,$datereplied) {
+public function saveToReplies($ticketId,$message,$datereplied) {
 	$sqlQuery = "INSERT INTO ".$this->repliesTable." (ticket_id,Reply,Date) 
-	VALUES('".$ticketRef."','".$message."', '".$datereplied."');";
+	VALUES(".$ticketId.",'".$message."', '".$datereplied."');";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	return $result;
+}
+
+public function getTicketIdByByReference($TicketReference,$MobileNumber){
+    //final code
+    $sqlQuery = "SELECT Tickets.idTickets FROM ".$this->ticketsTable.
+    " WHERE TicketReference='".$TicketReference."' AND MobileNumber='".$MobileNumber."';";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);		
+    $row = mysqli_fetch_array($result);
+    $id = $row['idTickets']; 
+    if($id!=0){
+        return $id;
+    }
+    else{
+        return 0;
+    }     
 }
 
 }
