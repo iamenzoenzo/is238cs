@@ -1,9 +1,9 @@
 <?php
 
 class InboundSms extends Database {  
-	 private $messagesTable = 'Subscriber_Messages';
-	 private $ticketsTable = 'Tickets';
-	 private $repliesTable = 'Ticket_replies';
+	private $messagesTable = 'Subscriber_Messages';
+	private $ticketsTable = 'Tickets';
+	private $repliesTable = 'Ticket_replies';
 	private $dbConnect = false;
  
 	public function __construct(){		
@@ -78,8 +78,8 @@ public function deleteMessagesByMessageId($messageId){
     
 }
 
-public function saveToTickets($MobileNumber,$message,$Status) {
-	$ticketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
+public function saveToTickets($MobileNumber,$message,$Status,$ticketRef) {
+	
 	$sqlQuery = "INSERT INTO ".$this->ticketsTable." (TicketReference,MobileNumber,message,Status) 
 	VALUES('".$ticketRef."', '".$MobileNumber."','".$message."', '".$Status."');";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
