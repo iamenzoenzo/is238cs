@@ -45,6 +45,21 @@ public function getAccessTokenById($subscriberId){
     }     
 }
 
+public function getAccessTokenByMobileNumber($mobileNumber){
+    //final code
+    $sqlQuery = "SELECT Subscribers.accessToken FROM ".$this->subscribersTable.
+    " WHERE mobileNumber='".$mobileNumber."'";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);		
+    $row = mysqli_fetch_array($result);
+    $access_token = $row['accessToken']; 
+    if(isset($access_token)){
+        return $access_token;
+    }
+    else{
+        return 0;
+    }     
+}
+
 public function getSubscriberNumberById($subscriberId){
     //final code
     $sqlQuery = "SELECT Subscribers.mobileNumber FROM ".$this->subscribersTable.
