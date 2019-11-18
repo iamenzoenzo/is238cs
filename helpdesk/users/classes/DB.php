@@ -26,24 +26,18 @@ class DB {
 			$opts = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET SESSION sql_mode = ''");
 		try{
 			if($config == []){
-				$this->_pdo = new PDO('mysql:host=' .
-					Config::get('mysql/host') .';dbname='.
-					Config::get('mysql/db') . ';charset=utf8',
+				$this->_pdo = new PDO('mysql:host='.Config::get('mysql/host').';dbname='.Config::get('mysql/db').';charset=utf8',
 					Config::get('mysql/username'),
 					Config::get('mysql/password'),
 					$opts);
 			}else{
 				if(!is_array($config)){
-				$this->_pdo = new PDO('mysql:host=' .
-					Config::get($config[0].'/host') .';dbname='.
-					Config::get($config[0].'/db') . ';charset=utf8',
+				$this->_pdo = new PDO('mysql:host='.Config::get($config[0].'/host').';dbname='.Config::get($config[0].'/db').';charset=utf8',
 					Config::get($config[0].'/username'),
 					Config::get($config[0].'/password'),
 					$opts);
 				}else{
-					$this->_pdo = new PDO('mysql:host=' .
-					$config[0].';dbname='.
-					$config[1]. ';charset=utf8',
+					$this->_pdo = new PDO('mysql:host='.$config[0].';dbname='.$config[1]. ';charset=utf8',
 					$config[2],
 					$config[3],
 						$opts);

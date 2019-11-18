@@ -30,14 +30,12 @@ if(isset($user) && $user->isLoggedIn()){
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
 </head>
 <body>
-  <section class="cid-rI3jhRoPqe mbr-fullscreen mbr-parallax-background" id="header2-0">
-
-
-
+    <section class="cid-rI3jhRoPqe mbr-fullscreen mbr-parallax-background" id="header2-0">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);"></div>
 
     <div class="container align-center">
@@ -47,12 +45,13 @@ if(isset($user) && $user->isLoggedIn()){
                     PLEMA Digital</h1>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    Click any text to edit or style it. Select text to insert a link. Click blue "Gear" icon in the top right corner to hide/show buttons, text, title and change the block background. Click red "+" in the bottom right corner to add a new block. Use the top left menu to create new pages, sites and add themes.
+                    Philippine Local Emergency App.</br>Providing emergency services communication to every Juan and Juana.
                 </p>
 								<p align="center">
 									<?php
 									if($user->isLoggedIn()){?>
-										<a class="btn btn-primary" href="users/account.php" role="button"><?=lang("ACCT_HOME");?> &raquo;</a>
+                                        <a class="btn btn-primary" href="users/account.php" role="button"><?=lang("ACCT_HOME");?> &raquo;</a>
+                                        <a class="btn btn-primary" href="users/dashboard.php" role="button"><?=lang("BE_DASH");?> &raquo;</a>
 									<?php }else{?>
 										<a class="btn btn-warning" href="users/login.php" role="button"><?=lang("SIGNIN_TEXT");?> &raquo;</a>
 										<a class="btn btn-info" href="users/join.php" role="button"><?=lang("SIGNUP_TEXT");?> &raquo;</a>
