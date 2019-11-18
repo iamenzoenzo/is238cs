@@ -56,7 +56,7 @@ if($numberOfMessagesInThisBatch>1){
 //$message = "Note: Response parameters deliveryInfo, callbackData, senderName are optional parameters that are not currently supported by the Globe Labs SMS API. Error response with 400 series will deduct 0.50 from your wallet balance.";
 $randomTicketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
 $mess="Thank you for contacting TeamLaban's PLEMA. Your helpdesk reference is ".$randomTicketRef.
-            ".To follow up or reply use the following format: PLEMA-REPLY ".$randomTicketRef.
+            ". To follow up or reply use the following format: PLEMA-REPLY ".$randomTicketRef.
             "<SPACE> Followed by your message.";
 $scode = "21588207";
 $atoken = $subs->getAccessTokenByMobileNumber($MobileNo);
