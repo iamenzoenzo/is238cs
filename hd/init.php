@@ -11,10 +11,12 @@ require 'class/Time.php';
 require 'class/Tickets.php';
 require 'class/Subscriber.php';
 require 'class/InboundSms.php';
+require 'class/OutboundSms.php';
 $database = new Database;
 $users = new Users;
 $time = new Time;
 $tickets = new Tickets;
 $subs = new Subscriber;
 $inbound = new InboundSms;
+$outbound = new OutboundSms;
 ?>
