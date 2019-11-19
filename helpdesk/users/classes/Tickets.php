@@ -11,19 +11,28 @@ class Tickets{
     } 
 	public function showTickets(){
 		$sqlWhere = '';	
-		if(!isset($_SESSION["admin"])) {
-			$sqlWhere .= " WHERE t.user = '".$_SESSION["userid"]."' ";
-			if(!empty($_POST["search"]["value"])){
-				$sqlWhere .= " and ";
-			}
-		} else if(isset($_SESSION["admin"]) && !empty($_POST["search"]["value"])) {
-			$sqlWhere .= " WHERE ";
-		} 		
+		// if(!isset($_SESSION["admin"])) {
+		// 	$sqlWhere .= " WHERE t.user = '".$_SESSION["userid"]."' ";
+			
+		// 	if(!empty($_POST["search"]["value"])){
+		// 		$sqlWhere .= " and ";
+		// 	}
+		// } 
+		// else if(isset($_SESSION["admin"]) && !empty($_POST["search"]["value"])) {
+		// 	$sqlWhere .= " WHERE ";
+		// } 		
+		
 		$time = new time;  			 
-		$sqlQuery = "SELECT t.id, t.uniqid, t.title, t.init_msg as message, t.date, t.last_reply, t.resolved, u.nick_name as creater, d.name as department, u.user_group, t.user, t.user_read, t.admin_read
-			FROM hd_tickets t 
-			LEFT JOIN hd_users u ON t.user = u.id 
-			LEFT JOIN hd_departments d ON t.department = d.id $sqlWhere ";
+		$sqlQuery = "
+			SELECT 
+				t.id, t.uniqid, t.title, t.init_msg as message, t.date, t.last_reply, t.resolved, u.nick_name as creater, d.name as department, u.user_group, t.user, t.user_read, t.admin_read
+			FROM 
+				hd_tickets t 
+				LEFT JOIN hd_users u ON t.user = u.id 
+				LEFT JOIN hd_departments d ON t.department = d.id 
+			$sqlWhere 
+			";
+		
 		if(!empty($_POST["search"]["value"])){
 			$sqlQuery .= ' (uniqid LIKE "%'.$_POST["search"]["value"].'%" ';					
 			$sqlQuery .= ' OR title LIKE "%'.$_POST["search"]["value"].'%" ';

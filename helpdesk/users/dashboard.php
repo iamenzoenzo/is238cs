@@ -30,31 +30,27 @@ if($settings->twofa == 1){
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
-<?php //include('inc/container.php');?>
-<div class="row" style="margin-top:5%; text-align:center; color:#ffffff; text-shadow: 2px 2px 3px #000000;">
-	<h1>PLeMA - Philippine Local eMergency App</h1>
-</div>
-<div class="container dash-container rounded" >	
-	<div class="row home-sections">
-		<?php //include('menus.php'); ?>		
-	</div>
-	<div class="">   		
-		<p>This is where you view and manage your tickets.</p>		
-		<table id="listTickets" class="table table-striped table-hover table-responsive ">
-			<thead class="">
-				<tr>
-					<th>S/N</th>
-					<th>Ticket ID</th>
-					<th>Subject</th>
-					<th>Created By</th>					
-					<th>Created</th>	
-					<th>Status</th>
-					<th>Assignee</th>
-					<th>Actions</th>	
-					<th></th>		
-					<th></th>		
-				</tr>
-			</thead>
-		</table>
-	</div>
+<div class="container dash-container rounded" style="margin-top:2%;">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<p>This is where you view and manage your tickets.</p>	
+	
+			<table id="listTickets" class="table table-hover table-responsive" width="100%" style="margin:0; padding:0;">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">S/N</th>
+						<th scope="col">Ticket ID</th>
+						<th scope="col">Subject</th>
+						<th scope="col">Created By</th>					
+						<th scope="col">Created</th>	
+						<th scope="col">Status</th>
+						<th scope="col">Assignee</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody class="table-striped">
+				</tbody>
+			</table>
+		</div>
+	</div>   		
 </div>	
