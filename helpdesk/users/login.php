@@ -145,48 +145,51 @@ if (!$res['success']) {
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-12">
-            <form name="login" id="login-form" class="form-signin" action="login.php" method="post">
-              <h2 class="form-signin-heading"></i> <?=lang("SIGNIN_TITLE","");?></h2>
-              <input type="hidden" name="dest" value="<?= $dest ?>" />
+          <div class="container justify-content-center col-md-8"; style="margin-top:5%;">
+            <div class="row">
+              <div class="col-sm-12">
+                <form name="login" id="login-form" class="form-signin" action="login.php" method="post">
+                  <h2 class="form-signin-heading"></i> <?=lang("SIGNIN_TITLE","");?></h2>
+                  <input type="hidden" name="dest" value="<?= $dest ?>" />
 
-              <div class="form-group">
-                <label for="username"><?=lang("SIGNIN_UORE")?></label>
-                <input  class="form-control" type="text" name="username" id="username" placeholder="<?=lang("SIGNIN_UORE")?>" required autofocus autocomplete="username">
-              </div>
+                  <div class="form-group">
+                    <!-- <label for="username"><?=lang("SIGNIN_UORE")?></label> -->
+                    <input  class="form-control" type="text" name="username" id="username" placeholder="<?=lang("SIGNIN_UORE")?>" required autofocus autocomplete="username">
+                  </div>
 
-              <div class="form-group">
-                <label for="password"><?=lang("SIGNIN_PASS")?></label>
-                <input type="password" class="form-control"  name="password" id="password"  placeholder="<?=lang("SIGNIN_PASS")?>" required autocomplete="current-password">
-              </div>
-              <?php   includeHook($hooks,'form');?>
-              <div class="form-group">
-                <label for="remember">
-                  <input type="checkbox" name="remember" id="remember" > <?=lang("SIGNIN_REMEMBER")?></label>
+                  <div class="form-group">
+                    <!-- <label for="password"><?=lang("SIGNIN_PASS")?></label> -->
+                    <input type="password" class="form-control"  name="password" id="password"  placeholder="<?=lang("SIGNIN_PASS")?>" required autocomplete="current-password">
+                  </div>
+                  <?php   includeHook($hooks,'form');?>
+                  <div class="form-group">
+                    <label for="remember">
+                      <input type="checkbox" name="remember" id="remember" > <?=lang("SIGNIN_REMEMBER")?></label>
+                    </div>
+                    <input type="hidden" name="login_hook" value="1">
+                    <input type="hidden" name="csrf" value="<?=$token?>">
+                    <input type="hidden" name="redirect" value="<?=Input::get('redirect')?>" />
+                    <button class="submit  btn  btn-primary" id="next_button" type="submit"><i class="fa fa-sign-in"></i> <?=lang("SIGNIN_BUTTONTEXT","");?></button>
+                    <?php
+                    if($settings->recaptcha == 1){
+                      ?>
+                      <div class="g-recaptcha" data-sitekey="<?=$settings->recap_public; ?>" data-bind="next_button" data-callback="submitForm"></div>
+                    <?php } ?>
+                  </form>
                 </div>
-                <input type="hidden" name="login_hook" value="1">
-                <input type="hidden" name="csrf" value="<?=$token?>">
-                <input type="hidden" name="redirect" value="<?=Input::get('redirect')?>" />
-                <button class="submit  btn  btn-primary" id="next_button" type="submit"><i class="fa fa-sign-in"></i> <?=lang("SIGNIN_BUTTONTEXT","");?></button>
-                <?php
-                if($settings->recaptcha == 1){
-                  ?>
-                  <div class="g-recaptcha" data-sitekey="<?=$settings->recap_public; ?>" data-bind="next_button" data-callback="submitForm"></div>
-                <?php } ?>
-              </form>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6"><br>
-              <a class="pull-left" href='../users/forgot_password.php'><i class="fa fa-wrench"></i> <?=lang("SIGNIN_FORGOTPASS","");?></a>
-              <br><br>
-            </div>
-            <?php if($settings->registration==1) {?>
+              </div>
+            <div class="row">
               <div class="col-sm-6"><br>
-                <a class="pull-right" href='../users/join.php'><i class="fa fa-plus-square"></i> <?=lang("SIGNUP_TEXT","");?></a><br><br>
-              </div><?php } ?>
-              <?php   includeHook($hooks,'bottom');?>
-                <?php languageSwitcher();?>
+                <a class="pull-left" href='../users/forgot_password.php'><i class="fa fa-wrench"></i> <?=lang("SIGNIN_FORGOTPASS","");?></a>
+                <br><br>
+              </div>
+              <?php if($settings->registration==1) {?>
+                <div class="col-sm-6"><br>
+                  <a class="pull-right" href='../users/join.php'><i class="fa fa-plus-square"></i> <?=lang("SIGNUP_TEXT","");?></a><br><br>
+                </div><?php } ?>
+                <?php   includeHook($hooks,'bottom');?>
+                  <?php languageSwitcher();?>
+              </div>
             </div>
           </div>
         </div>

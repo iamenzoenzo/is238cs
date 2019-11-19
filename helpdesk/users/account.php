@@ -62,38 +62,40 @@ $userdetails = fetchUserDetails(NULL, NULL, $get_info_id); //Fetch user details
 <div class="container">
 <div class="well">
 <div class="row">
-	<div class="col-sm-12 col-md-3">
-		<p>
-		</p>
-		<p>
-			<?php
-			if(isset($user->data()->steam_avatar) && $user->data()->steam_avatar != ''){
-				$grav = $user->data()->steam_avatar;
-			}elseif(isset($user->data()->picture) && $user->data()->picture != ''){
-				$grav = $user->data()->picture;
-			}
-			?>
-			<img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p>
-		<p><a href="../users/user_settings.php" class="btn btn-primary"><?=lang("ACCT_EDIT")?></a></p>
-	<?php if(isset($_SESSION['cloak_to'])){ ?>
-		<form class="" action="account.php" method="post">
-			<input type="submit" name="uncloak" value="Uncloak!" class='btn btn-danger'>
-		</form><br>
-		<?php }
-		?>
-		<?php includeHook($hooks,'body');?>
+	<div class="container justify-content-center col-md-6" style="margin-top:5%;">
+		<div class="row">
+			<div class="col-md-44">
+				<p>
+					<?php
+					if(isset($user->data()->steam_avatar) && $user->data()->steam_avatar != ''){
+						$grav = $user->data()->steam_avatar;
+					}elseif(isset($user->data()->picture) && $user->data()->picture != ''){
+						$grav = $user->data()->picture;
+					}
+					?>
+					<img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail" style="width:150px;"></p>
+				<p><a href="../users/user_settings.php" class="btn btn-primary"><?=lang("ACCT_EDIT")?></a></p>
+			<?php if(isset($_SESSION['cloak_to'])){ ?>
+				<form class="" action="account.php" method="post">
+					<input type="submit" name="uncloak" value="Uncloak!" class='btn btn-danger'>
+				</form><br>
+				<?php }
+				?>
+				<?php includeHook($hooks,'body');?>
+			</div>
+			<div class="col-md-8">
+				<h1><?=echousername($user->data()->id)?></h1>
+				<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?> / <?=echouser($user->data()->id)?></p>
+				<p><?=lang("ACCT_SINCE")?>: <?=$signupdate?></p>
+				<p><?=lang("ACCT_LOGINS")?>: <?=$user->data()->logins?></p>
+				<?php if($settings->session_manager==1) {?><p><?=lang("ACCT_SESSIONS")?>: <?=UserSessionCount()?> <sup><a class="nounderline" data-toggle="tooltip" title="<?=lang("ACCT_MNG_SES")?>">?</a></sup></p><?php }
+				?>
+				<?php
+				includeHook($hooks,'bottom');?>
+			</div>
+		</div>
+		
 	</div>
-	<div class="col-sm-12 col-md-9">
-		<h1><?=echousername($user->data()->id)?></h1>
-		<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?> / <?=echouser($user->data()->id)?></p>
-		<p><?=lang("ACCT_SINCE")?>: <?=$signupdate?></p>
-		<p><?=lang("ACCT_LOGINS")?>: <?=$user->data()->logins?></p>
-		<?php if($settings->session_manager==1) {?><p><?=lang("ACCT_SESSIONS")?>: <?=UserSessionCount()?> <sup><a class="nounderline" data-toggle="tooltip" title="<?=lang("ACCT_MNG_SES")?>">?</a></sup></p><?php }
-		?>
-		<?php
-		includeHook($hooks,'bottom');?>
-	</div>
-
 </div>
 
 </div>
@@ -104,4 +106,4 @@ $userdetails = fetchUserDetails(NULL, NULL, $get_info_id); //Fetch user details
 
 <!-- footers -->
 
-<?php require_once $abs_us_root . $us_url_root . 'users/includes/html_footer.php'; ?>
+<?php //require_once $abs_us_root . $us_url_root . 'users/includes/html_footer.php'; ?>
