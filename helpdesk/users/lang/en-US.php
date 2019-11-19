@@ -363,7 +363,7 @@ $lang = array_merge($lang,array(
 		"MAINT_MSG"			=> "Sorry for the inconvenience but we are performing some maintenance at the moment.<br> We will be back online shortly!",
 		"MAINT_BAN"			=> "Sorry. You have been banned. If you feel this is an error, please contact the administrator.",
 		"MAINT_TOK"			=> "There was an error with your form. Please go back and try again. Please note that submitting the form by refreshing the page will cause an error. If this continues to happen, please contact the administrator.",
-		"MAINT_OPEN"		=> "An Open Source PHP User Management Framework.",
+		"MAINT_OPEN"		=> "PLEMA Digital is based from an Open Source PHP User Management Framework.",
 		"MAINT_PLEASE"	=> "You have successfully installed PLEMA Digital!<br>To view our getting started documentation, please visit"
 		));
 
