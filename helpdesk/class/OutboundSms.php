@@ -10,17 +10,20 @@ public function __construct(){
     $this->dbConnect = $this->dbConnect();
 }
 
-public function sendSms($scode, $access_token,$recipient,$message, $clientCorrelator){
+public function sendSms($short_code, $access_token,$recipient_mobile_number,$message){
+    
+    $clientCorrelator = strtoupper(substr(md5(microtime()),rand(0,26),10))."-".$recipient_mobile_number;
+    
     $curl = curl_init();
     curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/".$scode."/requests?access_token=".$access_token ,
+    CURLOPT_URL => "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/".$short_code."/requests?access_token=".$access_token ,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => "{\"outboundSMSMessageRequest\": { \"clientCorrelator\": \"".$clientCorrelator."\", \"senderAddress\": \"".$scode."\", \"outboundSMSTextMessage\": {\"message\": \"".$message."\"}, \"address\": \"".$recipient."\" } }",
+    CURLOPT_POSTFIELDS => "{\"outboundSMSMessageRequest\": { \"clientCorrelator\": \"".$clientCorrelator."\", \"senderAddress\": \"".$short_code."\", \"outboundSMSTextMessage\": {\"message\": \"".$message."\"}, \"address\": \"".$recipient_mobile_number."\" } }",
     CURLOPT_HTTPHEADER => array(
         "Content-Type: application/json"
     ),
