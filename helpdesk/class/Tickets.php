@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 
 class Tickets extends Database {  
     private $ticketTable = 'hd_tickets';
@@ -174,6 +175,18 @@ class Tickets extends Database {
 		$updateTicket = "UPDATE ".$this->ticketTable." 
 			SET $updateField
 			WHERE id = '".$ticketId."'";				
+		mysqli_query($this->dbConnect, $updateTicket);
+	}
+
+	public function updateExpiryDate($ticketId) {	
+		$date = new DateTime();
+		$dateTimestamp = $date->getTimestamp();
+
+		$dateTime = date('Y-m-d H:i:s',$dateTimestamp);
+		$exprDate = date('Y-m-d H:i:s', strtotime('+1 day', $dateTimestamp));
+
+		$updateTicket = "UPDATE Tickets SET expiry_date='".$exprDate."',modifiedDate='".$dateTime."'
+			WHERE idTickets = ".$ticketId."";					
 		mysqli_query($this->dbConnect, $updateTicket);
 	}
 }
