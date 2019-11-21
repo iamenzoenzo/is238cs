@@ -8,8 +8,7 @@ if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
   $subscriberId = $subs->getSubscriberIdByNumber($_GET["subscriber_number"]);
   
   //if already subscribed
-  if(isset($subscriberId)){
-
+  if($subscriberId!=0){
     $access_token = $subs->getAccessTokenById($subscriberId);
 
     //check if not the same access_token
@@ -19,7 +18,6 @@ if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
       $subs->updateSubscriber($subscriberId,$_GET["access_token"]);
     }
   }else{
-    
     //not yet subscribed
     $subs->saveSubscriber($_GET["subscriber_number"],$_GET["access_token"]);
   }
