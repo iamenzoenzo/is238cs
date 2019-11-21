@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 
 class InboundSms extends Database {
 	private $messagesTable = 'Subscriber_Messages';
@@ -20,7 +21,7 @@ public function saveMessages($dateTime,$destinationAddress,$messageID,$message,$
 public function getMessagesByMultipartReferenceId($multipartRefId){
 	$sqlQuery = "SELECT * FROM ".$this->messagesTable.
 	" WHERE  multipartRefId='".$multipartRefId.
-	"'  ORDER BY multipartSeqNum ASC";
+	"' AND isDeleted=0 ORDER BY multipartSeqNum ASC";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	$data= array();
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -34,7 +35,7 @@ public function checkIfAllMessagesReceived($multipartRefId,$numberOfMessageInThi
 	" WHERE  multipartRefId='".$multipartRefId."' AND IsDeleted=0;";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	$count = mysqli_num_rows($result);
-	if($count=$numberOfMessageInThisBatch){
+	if($count==$numberOfMessageInThisBatch){
 		return true;
 	}else{
 		return false;
