@@ -4,4 +4,5 @@ $username = "teamlaban";
 $password = "teamlaban";
 $database = "teamlaban";
 $api_short_code ="21588207";
+$keywords_list = array("PLEMA-HELP","PLEMA-REPLY");
 ?>

@@ -1,8 +1,7 @@
 <?php
-include 'helpdesk/init.php';
-date_default_timezone_set('Asia/Manila'); 
+include 'helpdesk/init.php'; 
+date_default_timezone_set('Asia/Manila');
 
-/* Test JSON
 $json_data = '{
     "inboundSMSMessageList": {
       "inboundSMSMessage": [
@@ -10,22 +9,22 @@ $json_data = '{
           "dateTime": "Sun Nov 17 2019 08:21:05 GMT+0000 (UTC)",
           "destinationAddress": "tel:21588207",
           "messageId": "5dd102f145526e546defac59",
-          "message": "the last part of a reply message ",
+          "message": "plema-reply A5C4A test reply message ",
           "resourceURL": null,
           "senderAddress": "tel:+639363139273",
-          "multipartRefId": "002",
-          "multipartSeqNum": "2"
+          "multipartRefId": "",
+          "multipartSeqNum": ""
         }
       ],
-      "numberOfMessagesInThisBatch": 2,
+      "numberOfMessagesInThisBatch": 1,
       "resourceURL": null,
       "totalNumberOfPendingMessages": 0
     }
   }';
-*/
+
 
 //get POST data from globelabs API via file_get_contents method
-$json_data = file_get_contents('php://input');
+//$json_data = file_get_contents('php://input');
 
 //decode json data into array
 $jason_arr = json_decode($json_data,true);
@@ -60,6 +59,13 @@ $autoReplyMessageText="Thank you for contacting TeamLaban's PLEMA. Your helpdesk
 
 $autoReplyInvalidTicket = "Invalid Ticket ID. Please make sure that you are replying to a correct ticket ID using the same mobile number.";
 
+echo $tickets->updateExpiryDate(32);
+
+
+
+/*
+
+
 if(isset($messId)){
     //Save the message
     $inbound->saveMessages($dateTime,$destinationAddress,$messId,$message,$resourceURL,$senderAddress,$numberOfMessagesInThisBatch,$totalNumberOfPendingMessages,$multipartRefId,$multipartSeqNum,0);
@@ -84,22 +90,25 @@ if(isset($messId)){
                 
                 //save to replies
                 $inbound->saveToReplies($ticketId,$user_message,$date);
+
+                echo "Update result".$tickets->updateExpiryDate($ticketId);
             }else{
                 //Reply to user and remind to use valid ticket reference.
-                $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
+                //$outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
             }
 
         }else{
             //not a reply. Save to tickets table
             $ticketId = $inbound->saveToTickets($MobileNo,$message,'Open',$randomTicketRef);                 
 
+            echo "Update result".$tickets->updateExpiryDate($ticketId);
             if($ticketId!=0){
                 
                 //Delete message by id
                 $inbound->deleteMessagesByMessageId($messId);
                 
                 //auto-reply to subscriber
-                $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
+                //$outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
             }
         }
     }else{
@@ -138,7 +147,7 @@ if(isset($messId)){
                     $inbound->deleteMessagesByMultipartRefId($multipartRefId);
                 }else{
                     //Reply to user and remind to use valid ticket reference.
-                    $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
+                    //$outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
                 }
             }else{
                 //not a reply. Save to tickets table
@@ -148,7 +157,7 @@ if(isset($messId)){
                     //Delete message by multiPartId
                     $inbound->deleteMessagesByMultipartRefId($multipartRefId);
                     //auto-reply to subscriber
-                    $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
+                    //$outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
                 }
             }                       
                         
@@ -158,8 +167,8 @@ if(isset($messId)){
 
     }
 }else{
-    echo "no messages";
+    echo "no messages:".$messId;
 }
 
-
+*/
 ?>
