@@ -1,5 +1,6 @@
 <?php
 include 'helpdesk/init.php';
+date_default_timezone_set('Asia/Manila');
 
 //check if subscriber_number and access_token has value
 if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
@@ -26,14 +27,4 @@ if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
 else{
   echo "Invalid invoke! Please subscribe thru SMS.";
 }
-
-
-
-
-
-
-
-
-
-
 ?>
