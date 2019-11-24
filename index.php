@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="assets/images/plema-122x122.png" type="image/x-icon">
   <meta name="description" content="">
 
-  <title>Home</title>
+  <title>PLEMA Digital</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -55,11 +55,11 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/m">free website design templates</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://www.youtube.com/watch?v=36YgDDJ7XSc" id="header8-c">
+<section class="engine"><a href="https://mobirise.info/y">html website templates</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://youtu.be/OUuk6PAorN8" id="header8-c">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(85, 180, 212);">
+    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(70, 80, 82);">
     </div>
 
     <div class="container align-center">
@@ -82,7 +82,7 @@
             <div class="modalWindow-container">
                 <div class="modalWindow-video-container">
                     <div class="modalWindow-video">
-                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen="1" data-src="https://www.youtube.com/watch?v=36YgDDJ7XSc"></iframe>
+                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen="1" data-src="https://youtu.be/OUuk6PAorN8"></iframe>
                     </div>
                     <a class="close" role="button" data-dismiss="modal">
                         <span aria-hidden="true" class="mbri-close mbr-iconfont closeModal"></span>
@@ -243,7 +243,7 @@
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
-                    <img src="assets/images/face2.jpg" alt="" title="">
+                    <img src="assets/images/camille2-510x765.jpg" alt="" title="">
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
