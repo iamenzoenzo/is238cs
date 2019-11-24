@@ -35,7 +35,7 @@ if($settings->twofa == 1){
 		<div class="col-md-12">
 			<p>This is where you view and manage your tickets.</p>	
 
-			<a href="#" id="open-ticket-details">Modal</a>
+			<a href="../users/ticket_details.php?id=34" id="open-ticket-details">Ticket Update Test</a>
 	
 			<table id="listTickets" class="table table-hover table-responsive" width="100%" style="margin:0; padding:0;">
 				<thead class="thead-light">
@@ -99,16 +99,15 @@ $(document).ready(function() {
 $('#open-ticket-details').click(function(){
 	console.log('here');
 	$.ajax({
-     type: "POST",
-	url: '../users/classes/TicketManager/manageTickets', 
-	data: {
-		action:'getTicketDetails',
-		id:34
-	},
-	dataType: "json",
-	success: function (data) {
-		alert(data);
-	}
+    	type: "POST",
+		url: '../users/TicketManager/manageTickets', 
+		data: {
+			action:'getTicketDetails',
+			id:34
+		},
+		success: function (data) {
+			alert(data);
+		}
 	})
 })
 
