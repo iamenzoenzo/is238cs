@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="assets/images/plema-122x122.png" type="image/x-icon">
   <meta name="description" content="">
 
-  <title>PLEMA Digital</title>
+  <title>Home</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -55,11 +55,11 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/y">html website templates</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://youtu.be/OUuk6PAorN8" id="header8-c">
+<section class="engine"><a href="https://mobirise.info/o">portfolio web templates</a></section><section class="header8 cid-rIIK2ZOBXa mbr-parallax-background" id="header8-c">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(70, 80, 82);">
+    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(118, 118, 118);">
     </div>
 
     <div class="container align-center">
@@ -94,7 +94,7 @@
     </div>
 </section>
 
-<section class="team1 cid-rII1TZvdIo" id="team1-6">
+<section class="team1 cid-rIK783iMSs" id="team1-d">
 
 
 
@@ -102,7 +102,7 @@
         <h2 class="pb-3 mbr-fonts-style mbr-section-title display-2">
             OUR AWESOME TEAM
         </h2>
-        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">University of the Philippines Open University<div>Master of Information Systems<br>IS 238 TeamLaban Group</div></h3>
+        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">University of the Philippines Open University<div>Master of Information Systems</div><div>IS 238 TeamLaban Group</div></h3>
         <div class="row media-row">
 
         <div class="team-item col-lg-3 col-md-6">
@@ -142,11 +142,12 @@
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
-                        <p class="mbr-fonts-style display-5"></p><p>Karen</p><p></p>
+                        <p class="mbr-fonts-style display-5">
+                           Karen</p>
                     </div>
 
                     <div class="item-social pt-2">
-                        <a href="http://www.linkedin.com/in/kmdelarosa" target="_blank">
+                        <a href="https://www.linkedin.com/in/kmdelarosa" target="_blank">
                             <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
                         </a>
                         <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
@@ -299,8 +300,7 @@
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/ytplayer/jquery.mb.ytplayer.min.js"></script>
-  <script src="assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
+  <script src="assets/parallax/jarallax.min.js"></script>
   <script src="assets/dropdown/js/nav-dropdown.js"></script>
   <script src="assets/dropdown/js/navbar-dropdown.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
