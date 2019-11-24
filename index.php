@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/plema-122x122.png" type="image/x-icon">
   <meta name="description" content="">
-  
+
   <title>Home</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -19,14 +19,14 @@
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  
-  
+
+
+
 </head>
 <body>
   <section class="menu cid-rII4hVtsjv" once="menu" id="menu1-a">
 
-    
+
 
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,24 +40,24 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="https://www.plema.digital">
+                    <a href="index.php">
                          <img src="assets/images/plema-122x122.png" alt="PLEMA Digital" title="PLEMA Digital" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://mobirise.co">
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="index.php">
                         PLEMA Digital</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-            
+
+
         </div>
     </nav>
 </section>
 
 <section class="engine"><a href="https://mobirise.info/s">bootstrap themes</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://www.youtube.com/watch?v=36YgDDJ7XSc" id="header8-c">
 
-    
+
 
     <div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(85, 180, 212);">
     </div>
@@ -72,8 +72,8 @@
                 <div class="mbr-media show-modal align-center py-2" data-modal=".modalWindow">
                          <span class="mbr-iconfont mbri-play" style="color: rgb(20, 157, 204); fill: rgb(20, 157, 204);"></span>
                 </div>
-                
-                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="https://www.plema.digital/users/login.php">Login</a></div>
+
+                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="helpdesk/users/login.php">Login</a></div>
             </div>
         </div>
     </div>
@@ -95,16 +95,16 @@
 </section>
 
 <section class="team1 cid-rII1TZvdIo" id="team1-6">
-    
-    
-    
+
+
+
     <div class="container align-center">
         <h2 class="pb-3 mbr-fonts-style mbr-section-title display-2">
             OUR AWESOME TEAM
         </h2>
         <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">IS 238 TeamLaban Group</h3>
         <div class="row media-row">
-            
+
         <div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
                     <img src="assets/images/face3.jpg" alt="" title="">
@@ -114,8 +114,8 @@
                         <p class="mbr-fonts-style display-5">
                            Jeff</p>
                     </div>
-                    
-                    
+
+
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
@@ -125,8 +125,8 @@
                     <div class="item-name px-2">
                         <p class="mbr-fonts-style display-5"></p><p>Karen</p><p></p>
                     </div>
-                    
-                    
+
+
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
@@ -137,22 +137,22 @@
                         <p class="mbr-fonts-style display-5">
                            Joben</p>
                     </div>
-                    
-                    
+
+
                 </div>
-            </div></div>    
+            </div></div>
     </div>
 </section>
 
 <section class="team1 cid-rII1UqP0tG" id="team1-7">
-    
-    
-    
+
+
+
     <div class="container align-center">
-        
-        
+
+
         <div class="row media-row">
-            
+
         <div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
                     <img src="assets/images/face3.jpg" alt="" title="">
@@ -162,8 +162,8 @@
                         <p class="mbr-fonts-style display-5">
                            Enzo</p>
                     </div>
-                    
-                    
+
+
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
@@ -174,18 +174,18 @@
                         <p class="mbr-fonts-style display-5">
                            Camille</p>
                     </div>
-                    
-                    
+
+
                 </div>
-            </div></div>    
+            </div></div>
     </div>
 </section>
 
 <section once="footers" class="cid-rIIJdWXyAP" id="footer6-b">
 
-    
 
-    
+
+
 
     <div class="container">
         <div class="media-container-row align-center mbr-white">
@@ -211,7 +211,7 @@
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/playervimeo/vimeo_player.js"></script>
   <script src="assets/theme/js/script.js"></script>
-  
-  
+
+
 </body>
 </html>
