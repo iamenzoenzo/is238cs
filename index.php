@@ -102,7 +102,7 @@
         <h2 class="pb-3 mbr-fonts-style mbr-section-title display-2">
             OUR AWESOME TEAM
         </h2>
-        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">IS 238 TeamLaban Group</h3>
+        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">University of the Philippines Open University<br>Master of Information Systems<br>IS 238 TeamLaban Group</h3>
         <div class="row media-row">
 
         <div class="team-item col-lg-3 col-md-6">
