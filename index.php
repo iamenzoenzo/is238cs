@@ -55,7 +55,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/s">bootstrap themes</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://www.youtube.com/watch?v=36YgDDJ7XSc" id="header8-c">
+<section class="engine"><a href="https://mobirise.info/m">free website design templates</a></section><section class="header8 cid-rIIK2ZOBXa" data-bg-video="https://www.youtube.com/watch?v=36YgDDJ7XSc" id="header8-c">
 
 
 
@@ -73,7 +73,7 @@
                          <span class="mbr-iconfont mbri-play" style="color: rgb(20, 157, 204); fill: rgb(20, 157, 204);"></span>
                 </div>
 
-                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="helpdesk/users/login.php">Login</a></div>
+                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="https://www.plema.digital/users/login.php">Login</a></div>
             </div>
         </div>
     </div>
@@ -102,12 +102,12 @@
         <h2 class="pb-3 mbr-fonts-style mbr-section-title display-2">
             OUR AWESOME TEAM
         </h2>
-        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">University of the Philippines Open University<br>Master of Information Systems<br>IS 238 TeamLaban Group</h3>
+        <h3 class="pb-5 mbr-section-subtitle mbr-fonts-style mbr-light display-5">University of the Philippines Open University<div>Master of Information Systems<br>IS 238 TeamLaban Group</div></h3>
         <div class="row media-row">
 
         <div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
-                    <img src="assets/images/face3.jpg" alt="" title="">
+                    <img src="assets/images/jeff1-510x765.jpg" alt="" title="">
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
@@ -115,22 +115,60 @@
                            Jeff</p>
                     </div>
 
+                    <div class="item-social pt-2">
+                        <a href="https://www.linkedin.com/in/jeffrymanhulad/" target="_blank">
+                            <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                        </a>
+                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
 
+                        </a>
+                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.instagram.com/mobirise/" target="_blank">
+
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+
+                        </a>
+                    </div>
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
-                    <img src="assets/images/face2.jpg" alt="" title="">
+                    <img src="assets/images/karen2-510x765.jpg" alt="" title="">
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
                         <p class="mbr-fonts-style display-5"></p><p>Karen</p><p></p>
                     </div>
 
+                    <div class="item-social pt-2">
+                        <a href="http://www.linkedin.com/in/kmdelarosa" target="_blank">
+                            <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                        </a>
+                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
 
+                        </a>
+                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.instagram.com/mobirise/" target="_blank">
+
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+
+                        </a>
+                    </div>
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
-                    <img src="assets/images/face3.jpg" alt="" title="">
+                    <img src="assets/images/joben1-510x765.jpg" alt="" title="">
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
@@ -138,7 +176,26 @@
                            Joben</p>
                     </div>
 
+                    <div class="item-social pt-2">
+                        <a href="https://www.linkedin.com/in/mcjobenreyes/" target="_blank">
+                            <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                        </a>
+                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
 
+                        </a>
+                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.instagram.com/mobirise/" target="_blank">
+
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+
+                        </a>
+                    </div>
                 </div>
             </div></div>
     </div>
@@ -155,15 +212,34 @@
 
         <div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
-                    <img src="assets/images/face3.jpg" alt="" title="">
+                    <img src="assets/images/enzo5-510x765.jpg" alt="" title="">
                 </div>
                 <div class="item-caption py-3">
                     <div class="item-name px-2">
                         <p class="mbr-fonts-style display-5">
-                           Enzo</p>
+                           <a href="https://www.enzoenzo.cf">Enzo</a></p>
                     </div>
 
+                    <div class="item-social pt-2">
+                        <a href="https://www.linkedin.com/in/enzoenzo" target="_blank">
+                            <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                        </a>
+                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
 
+                        </a>
+                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.instagram.com/mobirise/" target="_blank">
+
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+
+                        </a>
+                    </div>
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
                 <div class="item-image">
@@ -175,7 +251,26 @@
                            Camille</p>
                     </div>
 
+                    <div class="item-social pt-2">
+                        <a href="https://twitter.com/mobirise" target="_blank">
+                            <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                        </a>
+                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
 
+                        </a>
+                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
+
+                        </a>
+                        <a href="https://www.instagram.com/mobirise/" target="_blank">
+
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+
+                        </a>
+                    </div>
                 </div>
             </div></div>
     </div>
