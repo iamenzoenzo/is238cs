@@ -688,7 +688,8 @@ blockquote {
 .lazy-bg {
   background-image: none !important;
 }
-.lazy-placeholder:not(section) {
+.lazy-placeholder:not(section),
+.lazy-none {
   display: block;
   position: relative;
   padding-bottom: 56.25%;
@@ -709,86 +710,11 @@ iframe.lazy-placeholder,
 section.lazy-placeholder:after {
   opacity: 0.3;
 }
-.cid-rI3jhRoPqe {
-  background-image: url("../../../assets/images/background4.jpg");
-}
-.cid-rI3jn3wCOh {
+.cid-rIKluawaYo {
   padding-top: 90px;
   padding-bottom: 90px;
-  background-color: #ffffff;
+  background-color: #efefef;
 }
-.cid-rI3jn3wCOh .mbr-section-subtitle {
+.cid-rIKluawaYo P {
   color: #767676;
-}
-.cid-rI3jn3wCOh .media-row {
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-}
-.cid-rI3jn3wCOh .team-item {
-  transition: all .2s;
-  margin-bottom: 2rem;
-}
-.cid-rI3jn3wCOh .team-item .item-image img {
-  width: 100%;
-}
-.cid-rI3jn3wCOh .team-item .item-name p {
-  margin-bottom: 0;
-}
-.cid-rI3jn3wCOh .team-item .item-role p {
-  margin-bottom: 0;
-}
-.cid-rI3jn3wCOh .team-item .item-social {
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  -webkit-flex-wrap: wrap;
-  -webkit-justify-content: center;
-}
-.cid-rI3jn3wCOh .team-item .item-social .socicon {
-  color: #232323;
-  font-size: 17px;
-}
-.cid-rI3jn3wCOh .team-item .item-caption {
-  background: #efefef;
-}
-.cid-rI3jqrY2L3 {
-  padding-top: 90px;
-  padding-bottom: 90px;
-  background-color: #ffffff;
-}
-.cid-rI3jqrY2L3 .mbr-section-subtitle {
-  color: #767676;
-}
-.cid-rI3jqrY2L3 .media-row {
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-}
-.cid-rI3jqrY2L3 .team-item {
-  transition: all .2s;
-  margin-bottom: 2rem;
-}
-.cid-rI3jqrY2L3 .team-item .item-image img {
-  width: 100%;
-}
-.cid-rI3jqrY2L3 .team-item .item-name p {
-  margin-bottom: 0;
-}
-.cid-rI3jqrY2L3 .team-item .item-role p {
-  margin-bottom: 0;
-}
-.cid-rI3jqrY2L3 .team-item .item-social {
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  -webkit-flex-wrap: wrap;
-  -webkit-justify-content: center;
-}
-.cid-rI3jqrY2L3 .team-item .item-social .socicon {
-  color: #232323;
-  font-size: 17px;
-}
-.cid-rI3jqrY2L3 .team-item .item-caption {
-  background: #efefef;
 }
