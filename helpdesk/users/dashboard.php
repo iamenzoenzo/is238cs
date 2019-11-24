@@ -34,6 +34,8 @@ if($settings->twofa == 1){
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<p>This is where you view and manage your tickets.</p>	
+
+			<a href="#" id="open-ticket-details">Modal</a>
 	
 			<table id="listTickets" class="table table-hover table-responsive" width="100%" style="margin:0; padding:0;">
 				<thead class="thead-light">
@@ -53,4 +55,61 @@ if($settings->twofa == 1){
 			</table>
 		</div>
 	</div>   		
-</div>	
+</div>
+
+<!-- <script src="js/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="js/jquery.dataTables.min.js" type="text/javascript"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() { 
+	console.log('heeeeyyy');
+
+	$('#listTickets').DataTable({
+		"ajax":{
+			url:"../users/classes/TicketManager/manageTickets",
+			type:"POST",
+			data:{
+				action:'listTicket'
+			},
+			dataType:"json",
+			success:function (response){
+					alert(reponse);
+				}
+			
+		},
+		"columnDefs":[
+			{
+				"targets":[0, 6, 7, 8, 9],
+				"orderable":false,
+			},
+		],
+		"pageLength": 10,
+		"lengthChange": false,
+		"processing":true,
+		"serverSide":true,
+		"order":[],
+	});
+	
+	$('#listTickets').DataTable().ajax.reload();
+
+});
+
+$('#open-ticket-details').click(function(){
+	console.log('here');
+	$.ajax({
+     type: "POST",
+	url: '../users/classes/TicketManager/manageTickets', 
+	data: {
+		action:'getTicketDetails',
+		id:34
+	},
+	dataType: "json",
+	success: function (data) {
+		alert(data);
+	}
+	})
+})
+
+</script>
