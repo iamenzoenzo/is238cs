@@ -73,7 +73,7 @@
                          <span class="mbr-iconfont mbri-play" style="color: rgb(20, 157, 204); fill: rgb(20, 157, 204);"></span>
                 </div>
 
-                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="/helpdesk/users/login.php">Login</a></div>
+                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="/helpdesk/index.php">Login</a></div>
             </div>
         </div>
     </div>
