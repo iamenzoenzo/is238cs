@@ -1,11 +1,11 @@
 <?php
 
-require 'Tickets.php';
+require '/classes/Tickets.php';
 $tickets = new Tickets;
 
 class TicketManager {
 
-	public function __construct(){		
+	public function __construct(){
         $this->dbConnect = $this->dbConnect();
     }
 
@@ -24,7 +24,7 @@ class TicketManager {
 		}
 		if(!empty($_POST['action']) && $_POST['action'] == 'getTicketDetails') {
 			return $tickets->getTicketDetails($_POST['id']);
-			
+
 		}
 		if(!empty($_POST['action']) && $_POST['action'] == 'updateTicket') {
 			$tickets->updateTicket();
