@@ -27,6 +27,7 @@ includeHook($hooks,'pre');
 if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
+
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
@@ -35,9 +36,7 @@ if($settings->twofa == 1){
 		<div class="col-md-12">
 			<p>This is where you view and manage your tickets.</p>	
 
-			<a href="../users/ticket_details.php?id=34" id="open-ticket-details">Ticket Update Test</a>
-	
-			<table id="listTickets" class="table table-hover table-responsive" width="100%" style="margin:0; padding:0;">
+			<table id="listTickets" class="table table-hover table-responsive table-bordered" width="100%" style="margin:0; padding:0; display: table;">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col">S/N</th>
@@ -57,58 +56,73 @@ if($settings->twofa == 1){
 	</div>   		
 </div>
 
-<!-- <script src="js/jquery.min.js" type="text/javascript"></script> -->
-<!-- <script src="js/jquery.dataTables.min.js" type="text/javascript"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <script>
-$(document).ready(function() { 
-	console.log('heeeeyyy');
+	$(document).ready(function() { 
 
-	$('#listTickets').DataTable({
-		"ajax":{
-			url:"../users/classes/TicketManager/manageTickets",
-			type:"POST",
-			data:{
-				action:'listTicket'
-			},
-			dataType:"json",
-			success:function (response){
-					alert(reponse);
+		$.ajax({
+				url: '../users/TicketManager.php',
+				type:'POST',
+				data: {
+						action:'showAllTickets'
+				},
+				error: function() {
+						
+				},
+				dataType: 'json',
+				success: function(data) {
+					$('#listTickets').dataTable({
+						"lengthChange": false,
+						"processing":true,
+						"dataSrc": "",
+						"order":[],
+						"data": data['data'],
+						"columnDefs":[
+							{
+								"targets":[0, 1, 2, 3, 4, 5, 6, 7],
+								"orderable":false,
+							},
+						],
+						"pageLength": 10
+					});
+					console.log('yehey');
 				}
-			
-		},
-		"columnDefs":[
-			{
-				"targets":[0, 6, 7, 8, 9],
-				"orderable":false,
-			},
-		],
-		"pageLength": 10,
-		"lengthChange": false,
-		"processing":true,
-		"serverSide":true,
-		"order":[],
+		});
 	});
-	
-	$('#listTickets').DataTable().ajax.reload();
-
-});
-
-$('#open-ticket-details').click(function(){
-	console.log('here');
-	$.ajax({
-    	type: "POST",
-		url: '../users/TicketManager/manageTickets', 
-		data: {
-			action:'getTicketDetails',
-			id:34
-		},
-		success: function (data) {
-			alert(data);
-		}
-	})
-})
-
 </script>
+
+<style>
+
+.action-btn{
+	padding-top:3px;
+	padding-bottom:2px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.row-content td{
+	padding-bottom:9px;
+}
+
+</style>
