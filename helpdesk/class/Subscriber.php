@@ -72,15 +72,13 @@ public function getSubscriberNumberById($subscriberId){
 
 }
 
-public function updateSubscriber($subscriberId,$accessToken){
-    $date = new DateTime();
-    $dateTimestamp = $date->getTimestamp();
-    $dateTime = date('Y-m-d H:i:s',$dateTimestamp);
+public function updateSubscriber($mobileNo,$accessToken){
 
+    $updated_date = date("Y/m/d H:i:s", strtotime('now')); 
     $sqlQuery = "
     UPDATE ".$this->subscribersTable."
-    SET accessToken = '".$accessToken."', date_modified='".$dateTime."' 
-    WHERE idSubscribers = ".$subscriberId.";";
+    SET accessToken = '".$accessToken."', date_modified='".$updated_date."' 
+    WHERE mobileNumber = '".$mobileNo."';";
     mysqli_query($this->dbConnect, $sqlQuery);
     return "success";
 
