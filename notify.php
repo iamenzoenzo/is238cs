@@ -2,7 +2,7 @@
 include 'helpdesk/init.php';
 date_default_timezone_set('Asia/Manila'); 
 
-/* Test JSON
+/*
 $json_data = '{
     "inboundSMSMessageList": {
       "inboundSMSMessage": [
@@ -10,14 +10,14 @@ $json_data = '{
           "dateTime": "Sun Nov 17 2019 08:21:05 GMT+0000 (UTC)",
           "destinationAddress": "tel:21588207",
           "messageId": "5dd102f145526e546defac59",
-          "message": "the last part of a reply message ",
+          "message": "this is the message",
           "resourceURL": null,
           "senderAddress": "tel:+639363139273",
-          "multipartRefId": "002",
-          "multipartSeqNum": "2"
+          "multipartRefId": "00000xx1",
+          "multipartSeqNum": "1"
         }
       ],
-      "numberOfMessagesInThisBatch": 2,
+      "numberOfMessagesInThisBatch": 1,
       "resourceURL": null,
       "totalNumberOfPendingMessages": 0
     }
@@ -54,11 +54,7 @@ $access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 
 $randomTicketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
 
-$autoReplyMessageText="Thank you for contacting TeamLaban's PLEMA. Your helpdesk reference is ".$randomTicketRef.
-            ". To follow up or reply use the following format: PLEMA-REPLY ".$randomTicketRef.
-            "<SPACE> Followed by your message.";
-
-$autoReplyInvalidTicket = "Invalid Ticket ID. Please make sure that you are replying to a correct ticket ID using the same mobile number.";
+$autoReplyMessageText="Thank you for contacting #TeamLaban's PLEMA. Our helpdesks officers will attend to you soon.";
 
 if(isset($messId)){
     //Save the message
@@ -67,41 +63,13 @@ if(isset($messId)){
     //Check if not multipart message
     if($numberOfMessagesInThisBatch==1){
         
-        //check if this message is a reply
-        if($inbound->isReply($message,$keywords_list)){
-            
-            //get ticket reference
-            $ticketRef = $inbound->getReplyTicketReference($message);
-                                 
-            if($inbound->validTicketReference($MobileNo,$ticketRef)){
-                //save to replies table.
-                $user_message = $inbound->getReplyMessage($message);
+        
+        $inbound->saveToTickets($MobileNo,$message,'Open');
+        //Delete message by id
+        $inbound->deleteMessagesByMessageId($messId);                
+        //auto-reply to subscriber
+        $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
 
-                $date = date_format(date_create($dateTime),"Y/m/d H:i:s");
-                
-                //get TicketId
-                $ticketId = $inbound->getTicketIdByByReference($ticketRef,$MobileNo);
-                
-                //save to replies
-                $inbound->saveToReplies($ticketId,$user_message,$date);
-            }else{
-                //Reply to user and remind to use valid ticket reference.
-                $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
-            }
-
-        }else{
-            //not a reply. Save to tickets table
-            $ticketId = $inbound->saveToTickets($MobileNo,$message,'Open',$randomTicketRef);                 
-
-            if($ticketId!=0){
-                
-                //Delete message by id
-                $inbound->deleteMessagesByMessageId($messId);
-                
-                //auto-reply to subscriber
-                $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
-            }
-        }
     }else{
         
         //check if all messages were received, else do nothing
@@ -117,40 +85,12 @@ if(isset($messId)){
                 $message=$message.$mess['message'];
             }
 
-            //check message if reply
-            if($inbound->isReply($message,$keywords_list)){
-                //get ticket reference
-                $ticketRef = $inbound->getReplyTicketReference($message);
-                                    
-                if($inbound->validTicketReference($MobileNo,$ticketRef)){
-                    //save to replies table.
-                    $user_message = $inbound->getReplyMessage($message);
-
-                    $date = date_format(date_create($dateTime),"Y/m/d H:i:s");
-                    
-                    //get TicketId
-                    $ticketId = $inbound->getTicketIdByByReference($ticketRef,$MobileNo);
-                    
-                    //save to replies
-                    $inbound->saveToReplies($ticketId,$user_message,$date);
-
-                    //Delete message by multiPartId
-                    $inbound->deleteMessagesByMultipartRefId($multipartRefId);
-                }else{
-                    //Reply to user and remind to use valid ticket reference.
-                    $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyInvalidTicket);
-                }
-            }else{
-                //not a reply. Save to tickets table
-                $ticketId = $inbound->saveToTickets($MobileNo,$message,'Open',$randomTicketRef);                 
-
-                if($ticketId!=0){
-                    //Delete message by multiPartId
-                    $inbound->deleteMessagesByMultipartRefId($multipartRefId);
-                    //auto-reply to subscriber
-                    $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
-                }
-            }                       
+            //Save to tickets table
+            $inbound->saveToTickets($MobileNo,$message,'Open');
+            //Delete message by multiPartId
+            $inbound->deleteMessagesByMultipartRefId($multipartRefId);
+            //auto-reply to subscriber
+            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);                 
                         
         }else{
             echo "still have pending messages";
