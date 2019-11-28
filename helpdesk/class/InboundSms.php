@@ -57,9 +57,9 @@ public function validTicketReference($mobileNo,$TicketReference){
 public function deleteMessagesByMultipartRefId($multipartRefId){
     $sqlQuery = "
     UPDATE ".$this->messagesTable."
-    SET isDeleted = 1 WHERE multipartRefId = ".$multipartRefId.";";
+    SET isDeleted = 1 WHERE multipartRefId = '".$multipartRefId."';";
     mysqli_query($this->dbConnect, $sqlQuery);
-    return "success";
+    return "Success";
 }
 
 public function deleteMessagesByDbId($messageDbId){
@@ -79,10 +79,11 @@ public function deleteMessagesByMessageId($messageId){
 
 }
 
-public function saveToTickets($MobileNumber,$message,$Status,$ticketRef) {
+public function saveToTickets($MobileNumber,$message,$Status) {
+	$expiry = date("Y/m/d H:i:s", strtotime('now + 1 days')); 
 
-	$sqlQuery = "INSERT INTO ".$this->ticketsTable." (TicketReference,MobileNumber,message,Status)
-	VALUES('".$ticketRef."', '".$MobileNumber."','".$message."', '".$Status."');";
+	$sqlQuery = "INSERT INTO ".$this->ticketsTable." (MobileNumber,message,Status,CreatedBy,expiry_date)
+	VALUES('".$MobileNumber."','".$message."', '".$Status."','".$MobileNumber."','".$expiry."');";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	return $result;
 }
