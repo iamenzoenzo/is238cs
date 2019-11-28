@@ -18,7 +18,7 @@ if(isset($_GET["subscriber_number"])&& isset($_GET["access_token"])){
     if($access_token!=$_GET["access_token"]){
       
       //update access_token
-      $subs->updateSubscriber($subscriberId,$_GET["access_token"]);
+      $subs->updateSubscriber($_GET["subscriber_number"],$_GET["access_token"]);
       $outbound->sendSms($api_short_code, $_GET["access_token"],$_GET["subscriber_number"],$autoReplyMessageReturningSubscriber);
       
     }
