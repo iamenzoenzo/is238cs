@@ -1,4 +1,5 @@
 <?php
+
 class Database {    
     public function dbConnect() {        
         static $DBH = null;      

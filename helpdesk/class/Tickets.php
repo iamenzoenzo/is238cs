@@ -38,9 +38,11 @@ class Tickets extends Database {
 			$ticketRows = array();			
 			$status = '';
 			if($ticket['ticket_status'] == 'Open')	{
-				$status = '<span class="label label-success">Open</span>';
+				$status = '<span class="label label-warning">Open</span>';
 			} else if($ticket['ticket_status'] == 'Closed') {
 				$status = '<span class="label label-danger">Closed</span>';
+			} else if($ticket['ticket_status'] == 'Resolved') {
+				$status = '<span class="label label-success">Resolved</span>';
 			}	
 			$title = $ticket['ticket_reference'];
 			$ticketRows[] = $ticket['ticket_id'];
@@ -91,22 +93,25 @@ class Tickets extends Database {
 	}
 	
 	public function updateTicketInfo($ticketId,$ticketInfo,$infoType){
-		if(isset($_SESSION["admin"])) {
-			$updateField = "admin_read = '1'";
-		} else {
-			$updateField = "user_read = '1'";
-		}
-		$updateTicket = "UPDATE ".$this->ticketTable." SET ";
+		// if(isset($_SESSION["admin"])) {
+		// 	$updateField = "admin_read = '1'";
+		// } else {
+		// 	$updateField = "user_read = '1'";
+		// }
+		
+		$updateTicket = "UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
 		$sqlWhere = "WHERE idTickets = ".$ticketId;
 		
 		if($infoType == 'status'){
-			$ticketInfo .= " status = ".$ticketStatus." ".$sqlWhere;
+			$updateTicket .= " Status = '".$ticketInfo."' ".$sqlWhere;
 		}
 		if($infoType == 'assignee'){
-			$ticketInfo .= " assignedTo = ".$ticketStatus." ".$sqlWhere;
+			$updateTicket .= " assignedTo = ".$ticketInfo." ".$sqlWhere;
 		}
 
 		mysqli_query($this->dbConnect, $updateTicket);
+
+		return [$this->getTicketDetails($ticketId),$updateTicket];
 	}
 
 	public function getTicketDetails($id) {  		
@@ -124,7 +129,7 @@ class Tickets extends Database {
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
-		return json_encode($row);       
+		return $row;       
 	} 
 	   
 	public function saveTicketReplies () {
@@ -146,12 +151,20 @@ class Tickets extends Database {
 	}	
 
 	public function getTicketReplies($id) {  		
-		$sqlQuery = "SELECT r.id, r.text as message, r.date, u.nick_name as creater, d.name as department, u.user_group  
-			FROM ".$this->ticketRepliesTable." r
-			LEFT JOIN ".$this->ticketTable." t ON r.ticket_id = t.id
-			LEFT JOIN hd_users u ON r.user = u.id 
-			LEFT JOIN hd_departments d ON t.department = d.id 
-			WHERE r.ticket_id = '".$id."'";	
+		$sqlQuery = "
+			SELECT
+				t.idTicket_replies as reply_id,
+				t.ticket_id as ticket_id,
+				t.Agent as reply_author,
+				t.Reply as reply_message,
+				t.date_modified as reply_modified,
+				t.created as reply_created
+			FROM
+				teamlaban.".$this->ticketRepliesTable." t
+			WHERE
+				t.ticket_id = ".$id."
+			ORDER BY t.created
+		";	
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
        	$data= array();
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

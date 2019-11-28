@@ -12,19 +12,17 @@ if($settings->twofa == 1){
 print('id::'+$id);
 }
 
-// require '../users/TicketManager.php';
-// $ticketInfo = new TicketManager();
-
 $ticketDetails = [
 	'ticket_id' => 34,
-	'ticket_status'=>'open',
-	'ticket_title' => 'Ticket Reference Here',
-	'ticket_message' => 'Ticket Message Here',
-	'ticket_created' => date('M/D/Y')
+	'ticket_status'=>'Open',
+	'ticket_title' => '66E67',
+	'ticket_author' => '9985936013',
+	'ticket_message' => 'Tao po',
+	'ticket_created' => '2019-11-22 00:50:48'
 ];
-$ticketReplies = [
-	['reply_author' =>'Assignee Here', 'reply_date' => date('M/D/Y'), 'reply_message' => 'Reply 1 Here'],
-	['reply_author' =>'Assignee Here', 'reply_date' => date('M/D/Y'), 'reply_message' => 'Reply 2 Here']
+
+$ticketReplies =  [
+	['reply_author' =>null, 'reply_date' => "2019-11-22 00:51:41", 'reply_message' => "Eto yung reply ko."]
 ];
 ?>
 
@@ -38,19 +36,19 @@ $ticketReplies = [
 				<div class="card panel panel-default arrow left">
 					<div class="card-header panel-heading right">
 						<div class="row">
-							<?php if($ticketDetails['ticket_status'] == 'closed') { ?>
+							<?php if($ticketDetails['ticket_status'] == 'Closed') { ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-danger btn-sm">
 								Closed
 								</button>
 							</div>
-							<?php } else if($ticketDetails['ticket_status'] == 'open'){ ?>
+							<?php } else if($ticketDetails['ticket_status'] == 'Open'){ ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-warning btn-sm">
 								Open
 								</button>
 							</div>
-							<?php } else if($ticketDetails['ticket_status'] == 'resolved'){ ?>
+							<?php } else if($ticketDetails['ticket_status'] == 'Resolved'){ ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-success btn-sm">
 								Open
@@ -58,75 +56,57 @@ $ticketReplies = [
 							</div>
 							<?php } ?>
 							<div class="col-md-9 col-sm-9" style="padding-top:5px;">
-								<span><h5 class="ticket-title" id="ticket-title"></h5></span>
+								<span><h5 class="ticket-title" id="ticket-title"><?php echo $ticketDetails['ticket_title']; ?></h5></span>
 							</div>
 						</div>
 						
 					</div>
 					<div class="card-body panel-body">
 						<div class="comment-post card-text" style="margin-top:20px; margin-bottom:20px;">
-							<p class="ticket-message" id="ticket-message"></p>
+							<p class="ticket-message" id="ticket-message"><?php echo $ticketDetails['ticket_message']; ?></p>
 						</div>
 					</div>
 					<div class="card-footer panel-heading right">
 						<span class="glyphicon glyphicon-time"></span> 
-						<time class="comment-date ticket-created" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i></time>
+						<time class="comment-date ticket-created" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>&nbsp<?php echo $ticketDetails['ticket_created']; ?></time>
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span> 
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-briefcase"></span>
 					</div>
 				</div>
 			</div>
 		</article>
-
-		<?php foreach ($ticketReplies as $replies) { ?>
-			<article class="row justify-content-center">
-				<div class="col-md-10 col-sm-10" style="margin-top:10px;">
-					<div class="card panel panel-default arrow right">
-						<div class="card-header panel-heading">
-							<div class = "row">
-								<div class="col-md-9 col-sm-9">
-									<span class="glyphicon glyphicon-user"></span> <?php echo $replies['reply_author']; ?>
+		
+		<div class="replies" id="replies">
+			<?php foreach ($ticketReplies as $replies) { ?>
+				<article class="row justify-content-center">
+					<div class="col-md-10 col-sm-10" style="margin-top:10px;">
+						<div class="card panel panel-default arrow right">
+							<div class="card-header panel-heading">
+								<div class = "row">
+									<div class="col-md-9 col-sm-9">
+										<span class="glyphicon glyphicon-user"></span> <?php echo $replies['reply_author']; ?>
+									</div>
+									<div class="col-md-3 col-sm-3">
+										<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $replies['reply_date']; ?></time>
+									</div>	
 								</div>
-								<div class="col-md-3 col-sm-3">
-									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $replies['reply_date']; ?></time>
-								</div>	
 							</div>
-						</div>
-						<div class="card-body panel-body">
-							<div class=" card-text comment-post">
-							<p>
-							<?php echo $replies['reply_message']; ?>
-							</p>
+							<div class="card-body panel-body">
+								<div class=" card-text comment-post">
+								<p>
+								<?php echo $replies['reply_message']; ?>
+								</p>
+								</div>
 							</div>
-						</div>
 
+						</div>
 					</div>
-				</div>
-			</article>
-		<?php } ?>
+				</article>
+			<?php } ?>
+		</div>
 </div>
 
 <script>
-	$(document).ready(function() { 
-		
-		$.ajax({
-			url:'../users/TicketManager.php',
-			type:'POST',
-			dataType:'json',
-			data:{
-				action:'viewTicketInfo',
-				id: 34
-			},
-			success: function(data){
-				document.getElementById("ticket-title").innerHTML = data['ticket_reference'];
-				document.getElementById("ticket-message").innerHTML = data['ticket_message'];
-				document.getElementById("ticket-created").innerHTML = data['ticket_creation'];
-				console.log('success');
-			},
-			error: function(data){
+	
 
-			}
-		});
-		
-	});
 </script>

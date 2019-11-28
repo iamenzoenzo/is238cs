@@ -10,19 +10,20 @@ if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
 
-require '../users/Tickets.php';
-$tickets = new Tickets;
+// require '../users/Tickets.php';
+// $tickets = new Tickets;
 
-$ticketDetails = [
+$ticketInfo = [
 	'ticket_id' => 34,
-	'ticket_status'=>'open',
-	'ticket_title' => 'Ticket Reference Here',
-	'ticket_message' => 'Ticket Message Here',
-	'ticket_created' => date('M/D/Y')
+	'ticket_status'=>'Resolved',
+	'ticket_title' => '66E67',
+	'ticket_author' => '9985936013',
+	'ticket_message' => 'Tao po',
+	'ticket_created' => '2019-11-22 00:50:48'
 ];
-$ticketReplies = [
-	['reply_author' =>'Assignee Here', 'reply_date' => date('M/D/Y'), 'reply_message' => 'Reply 1 Here'],
-	['reply_author' =>'Assignee Here', 'reply_date' => date('M/D/Y'), 'reply_message' => 'Reply 2 Here']
+
+$ticketReplies =  [
+	['reply_author' =>null, 'reply_date' => "2019-11-22 00:51:41", 'reply_message' => "Eto yung reply ko."]
 ];
 ?>
 
@@ -36,37 +37,37 @@ $ticketReplies = [
 				<div class="card panel panel-default arrow left">
 					<div class="card-header panel-heading right">
 						<div class="row">
-							<?php if($ticketDetails['ticket_status'] == 'closed') { ?>
+							<?php if($ticketInfo['ticket_status'] == 'Closed') { ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-danger btn-sm">
 								Closed
 								</button>
 							</div>
-							<?php } else if($ticketDetails['ticket_status'] == 'open'){ ?>
+							<?php } else if($ticketInfo['ticket_status'] == 'Open'){ ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-warning btn-sm">
 								Open
 								</button>
 							</div>
-							<?php } else if($ticketDetails['ticket_status'] == 'resolved'){ ?>
+							<?php } else if($ticketInfo['ticket_status'] == 'Resolved'){ ?>
 							<div class="col-md-1 col-sm-1">
 								<button type="button" class="btn btn-success btn-sm">
-								Open
+								Resolved
 								</button>
 							</div>
 							<?php } ?>
 							<div class="col-md-9 col-sm-9" style="padding-top:5px;">
-								<span class="ticket-title"><?php echo $ticketDetails['ticket_title']; ?></span>
+								<span class="ticket-title"><h5 id="ticket-title"><?php echo $ticketInfo['ticket_title']; ?></h5></span>
 							</div>
 							<div class="col-md-2 col-sm-2"> 
 								<div class="dropdown">
-									<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="statusUpdateBtn" onchange="statusUpdate()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										Update Status
 									</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-										<a class="dropdown-item" href="#">Open</a>
-										<a class="dropdown-item" href="#">Resolved</a>
-										<a class="dropdown-item" href="#">Close</a>
+										<a class="dropdown-item" href="#" value='open'>Open</a>
+										<a class="dropdown-item" href="#" value='resolved'>Resolved</a>
+										<a class="dropdown-item" href="#" value='closed'>Closed</a>
 									</div>
 								</div>
 							</div>
@@ -75,11 +76,12 @@ $ticketReplies = [
 					</div>
 					<div class="card-body panel-body">
 						<div class="comment-post card-text" style="margin-top:20px; margin-bottom:20px;">
-							<p><?php echo $ticketDetails['ticket_message']; ?></p>
+							<p id="ticket-message"><?php echo $ticketInfo['ticket_message']; ?></p>
 						</div>
 					</div>
 					<div class="card-footer panel-heading right">
-						<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $ticketDetails['ticket_created']; ?></time>
+						<span class="glyphicon glyphicon-time"></span> 
+						<time class="comment-date" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $ticketInfo['ticket_created']; ?></time>
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span> 
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-briefcase"></span>
 					</div>
@@ -138,26 +140,44 @@ $ticketReplies = [
 
 <script>
 
-	$('#replyBtn').click(function(){
-		// event.preventDefault();
+	$('.dropdown-item').click(function(){
+		console.log('yoe');
+		console.log($(this).attr("value"));
 
-		console.log('new reply created');
-		var newReply = $('#ticketReply').serializeArray();
-		console.log(newReply);
+		var status = $(this).attr("value");
+		var id = 34;
 
+		if(status == 'open'){
+			status = 'Open';
+		}
+		else if(status == 'closed'){
+			status = 'Closed';
+		}
+		else if(status == 'resolved'){
+			status = 'Resolved';
+		}
+
+		console.log(status);
+		
 		$.ajax({
-			type: "POST",
-			url: '../users/Tickets/saveTicketReplies', 
-			data: {
-				action:newReply['action'],
-				id:newReply['ticketId'],
-				message:newReply['message'],
-				reply:newReply['reply']
+			url:'../users/TicketManager.php',
+			type:'POST',
+			dataType:'json',
+			data:{
+				action:'updateTicket',
+				id: id,
+				info: status,
+				data_type: 'status'
 			},
-			success: function (data) {
+			success: function(){
+				console.log(data);
 				console.log('success');
-				alert(data);
+			},
+			error: function(data){
+
 			}
 		});
-	})
+	});
+
+
 </script>
