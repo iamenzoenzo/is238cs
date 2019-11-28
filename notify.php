@@ -13,7 +13,7 @@ $json_data = '{
           "message": "this is the message",
           "resourceURL": null,
           "senderAddress": "tel:+639363139273",
-          "multipartRefId": "00000xx1",
+          "multipartRefId": "00000xx1xxx",
           "multipartSeqNum": "1"
         }
       ],
@@ -22,8 +22,8 @@ $json_data = '{
       "totalNumberOfPendingMessages": 0
     }
   }';
-*/
 
+*/
 //get POST data from globelabs API via file_get_contents method
 $json_data = file_get_contents('php://input');
 
