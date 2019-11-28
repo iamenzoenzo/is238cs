@@ -11,7 +11,7 @@ $json_data = '{
           "messageId": "5dd102f145526e546defac59",
           "message": "plema-reply A5C4A test reply message ",
           "resourceURL": null,
-          "senderAddress": "tel:+639363139273",
+          "senderAddress": "tel:+639268406884",
           "multipartRefId": "00000x1",
           "multipartSeqNum": "1"
         }
@@ -51,9 +51,7 @@ if($numberOfMessagesInThisBatch>1){
 
 $access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 
-$date = date_format(date_create($dateTime),"Y/m/d H:i:s");
-$expiry = date("Y/m/d H:i:s", strtotime('now + 1 days')); 
-echo $expiry;
+$subs->updateSubscriber($MobileNo,$access_token);
 
 /*
 
