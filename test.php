@@ -12,11 +12,11 @@ $json_data = '{
           "message": "plema-reply A5C4A test reply message ",
           "resourceURL": null,
           "senderAddress": "tel:+639363139273",
-          "multipartRefId": "",
-          "multipartSeqNum": ""
+          "multipartRefId": "00000x1",
+          "multipartSeqNum": "1"
         }
       ],
-      "numberOfMessagesInThisBatch": 1,
+      "numberOfMessagesInThisBatch": 2,
       "resourceURL": null,
       "totalNumberOfPendingMessages": 0
     }
@@ -51,17 +51,9 @@ if($numberOfMessagesInThisBatch>1){
 
 $access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 
-$randomTicketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
-
-$autoReplyMessageText="Thank you for contacting TeamLaban's PLEMA. Your helpdesk reference is ".$randomTicketRef.
-            ". To follow up or reply use the following format: PLEMA-REPLY ".$randomTicketRef.
-            "<SPACE> Followed by your message.";
-
-$autoReplyInvalidTicket = "Invalid Ticket ID. Please make sure that you are replying to a correct ticket ID using the same mobile number.";
-
-echo $tickets->updateExpiryDate(32);
-
-
+$date = date_format(date_create($dateTime),"Y/m/d H:i:s");
+$expiry = date("Y/m/d H:i:s", strtotime('now + 1 days')); 
+echo $expiry;
 
 /*
 
