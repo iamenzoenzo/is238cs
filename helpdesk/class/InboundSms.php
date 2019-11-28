@@ -81,9 +81,10 @@ public function deleteMessagesByMessageId($messageId){
 
 public function saveToTickets($MobileNumber,$message,$Status) {
 	$expiry = date("Y/m/d H:i:s", strtotime('now + 1 days')); 
+	$created_date = date("Y/m/d H:i:s", strtotime('now')); 
 
-	$sqlQuery = "INSERT INTO ".$this->ticketsTable." (MobileNumber,message,Status,CreatedBy,expiry_date)
-	VALUES('".$MobileNumber."','".$message."', '".$Status."','".$MobileNumber."','".$expiry."');";
+	$sqlQuery = "INSERT INTO ".$this->ticketsTable." (MobileNumber,message,Status,CreatedBy,expiry_date,createDate)
+	VALUES('".$MobileNumber."','".$message."', '".$Status."','".$MobileNumber."','".$expiry."','".$created_date."');";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	return $result;
 }
