@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 
 class Subscriber extends Database {
     private $subscribersTable = 'Subscribers';
@@ -10,8 +11,6 @@ public function __construct(){
 
 public function saveSubscriber($Mobile_Number,$Access_Token) {
 
-    $date = new DateTime();
-    $date = $date->getTimestamp();
     $sqlQuery = "INSERT INTO ".$this->subscribersTable." (mobileNumber, accessToken)
                 VALUES('".$Mobile_Number."', '".$Access_Token."')";
     $result = mysqli_query($this->dbConnect, $sqlQuery);
@@ -26,8 +25,10 @@ public function getSubscriberIdByNumber($subscriberNumber){
     $row = mysqli_fetch_array($result);
     $userId = $row['idSubscribers'];
     if($userId!=0){
-    return $userId;
-    }else{return 0;}
+        return $userId;
+    }else{
+        return 0;
+    }
 }
 
 public function getAccessTokenById($subscriberId){
@@ -71,12 +72,13 @@ public function getSubscriberNumberById($subscriberId){
 
 }
 
-public function updateSubscriber($subscriberId,$accessToken){
+public function updateSubscriber($mobileNo,$accessToken){
 
+    $updated_date = date("Y/m/d H:i:s", strtotime('now')); 
     $sqlQuery = "
-    UPDATE ".$database."".$this->subscribersTable."
-    SET accessToken = '".$accessToken."'
-    WHERE idSubscribers = ".$subscriberId.";";
+    UPDATE ".$this->subscribersTable."
+    SET accessToken = '".$accessToken."', date_modified='".$updated_date."' 
+    WHERE mobileNumber = '".$mobileNo."';";
     mysqli_query($this->dbConnect, $sqlQuery);
     return "success";
 
