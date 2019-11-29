@@ -53,8 +53,15 @@ $access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 
 $subs->updateSubscriber($MobileNo,$access_token);
 
-/*
+echo $phonenumber->savePhoneNumber("09268406887","MNL","Metro Manila","PNP","Jeffry Manhulad");
+$pns = $phonenumber->getPhoneNumberByAgencyCode("MNL","PNP");
+$message="";
+foreach($pns as $pn){
+    $message=$message.$pn['phone_number']."; ";
+}
+echo $message;
 
+/*
 
 if(isset($messId)){
     //Save the message
