@@ -49,12 +49,9 @@ if($numberOfMessagesInThisBatch>1){
     $multipartSeqNum = '';
 }
 
-$access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
-
-$subs->updateSubscriber($MobileNo,$access_token);
-
+//echo $outbound->assignAgent($MobileNumber,$AgentName);
+$outbound->returnExpiredTickets();
 /*
-
 
 if(isset($messId)){
     //Save the message
