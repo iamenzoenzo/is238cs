@@ -20,7 +20,7 @@ public function savePhoneNumber($Phone_Number,$City_Code,$City_Name,$Agency_Code
 
 public function getPhoneNumberByCityCode($City_Code){
 
-    $sqlQuery = "SELECT Phone_numbers.phone_number FROM ".$this->phoneNumbersTable.
+    $sqlQuery = "SELECT Phone_numbers.phone_number,Phone_numbers.agency_code FROM ".$this->phoneNumbersTable.
     " WHERE  city_code='".$City_Code."'";
     $result = mysqli_query($this->dbConnect, $sqlQuery);
     $data= array();
@@ -29,6 +29,18 @@ public function getPhoneNumberByCityCode($City_Code){
 	}
 	return $data;
 }
+
+public function getCityNameByCityCode($City_Code){
+    
+    $sqlQuery = "SELECT Phone_numbers.city_name FROM ".$this->phoneNumbersTable.
+    " WHERE Phone_numbers.city_code='".$City_Code."';";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $row = mysqli_fetch_array($result);
+    return $row['city_name'];
+    
+
+}
+
 public function getPhoneNumberByAgencyCode($City_Code,$Agency_Code){
 
     $sqlQuery = "SELECT Phone_numbers.phone_number FROM ".$this->phoneNumbersTable.
@@ -40,4 +52,53 @@ public function getPhoneNumberByAgencyCode($City_Code,$Agency_Code){
 	}
 	return $data;
 }
+public function getCityCodes(){
+
+    $sqlQuery = "SELECT DISTINCT Phone_numbers.city_code FROM ".$this->phoneNumbersTable." ORDER BY city_code DESC;";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $data= array();
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		$data[]=$row;
+	}
+	return $data;
+}
+
+public function getAgencyCodes(){
+
+    $sqlQuery = "SELECT DISTINCT Phone_numbers.agency_code FROM ".$this->phoneNumbersTable." ORDER BY agency_code ASC;";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $data= array();
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		$data[]=$row;
+	}
+	return $data;
+}
+
+public function validCityCode($City_Code){
+
+    $sqlQuery = "SELECT DISTINCT Phone_numbers.city_code FROM ".$this->phoneNumbersTable.
+    " WHERE city_code='".$City_Code."' ORDER BY city_code ASC;";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $count = mysqli_num_rows($result);
+	if($count!=0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+public function validAgencyCode($Agency_Code){
+
+    $sqlQuery = "SELECT DISTINCT Phone_numbers.agency_code FROM ".$this->phoneNumbersTable.
+    " WHERE agency_code='".$Agency_Code."' ORDER BY agency_code ASC;";
+    $result = mysqli_query($this->dbConnect, $sqlQuery);
+    $count = mysqli_num_rows($result);
+	if($count!=0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 }
