@@ -99,7 +99,7 @@ if(isset($messId)){
                             $phones=$phones.$pn['phone_number'].",";
                         }
                         echo "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
-                        .$key[1]." ".$key[2].": ".substr($phones,0,strlen($phones)-1).".";
+                        .$phonenumber->getCityNameByCityCode($key[1])." ".$key[2].": ".substr($phones,0,strlen($phones)-1).".";
                     }else{
                         $AgencyPhones = $phonenumber->getPhoneNumberByCityCode($key[1]);
                         foreach($AgencyPhones as $pn){
