@@ -42,6 +42,19 @@ public function checkIfAllMessagesReceived($multipartRefId,$numberOfMessageInThi
 	}
 }
 
+
+public function checkIfThreadStatusInProgress($MobileNumber){
+	$sqlQuery = "SELECT * FROM ".$this->ticketsTable.
+	" WHERE  MobileNumber='".$MobileNumber."' AND Status='In Progress' AND assignedTo <> '';";
+	$result = mysqli_query($this->dbConnect, $sqlQuery);
+	$count = mysqli_num_rows($result);
+	if($count>0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 public function validTicketReference($mobileNo,$TicketReference){
 	$sqlQuery = "SELECT * FROM ".$this->ticketsTable.
 	" WHERE  TicketReference='".$TicketReference."' AND MobileNumber='".$mobileNo."';";
