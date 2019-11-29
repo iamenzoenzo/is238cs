@@ -25,8 +25,13 @@ require_once $abs_us_root.$us_url_root.'users/includes/template/prep.php';
 $hooks =  getMyHooks();
 includeHook($hooks,'pre');
 if($settings->twofa == 1){
-  $google2fa = new PragmaRX\Google2FA\Google2FA();
+	$google2fa = new PragmaRX\Google2FA\Google2FA();
 }
+
+require '../init.php';
+include '../users/TicketManager.php';
+
+$tickets = $tickets->getAllTickets();
 
 ?>
 
@@ -50,6 +55,17 @@ if($settings->twofa == 1){
 					</tr>
 				</thead>
 				<tbody class="table-striped">
+					<?php foreach ($tickets as $index => $ticket){
+							echo '<tr><td>'.$ticket[0].'</td>'.
+									'<td>'.$ticket[1].'</td>'.
+									'<td>'.$ticket[2].'</td>'.
+									'<td>'.$ticket[3].'</td>'.
+									'<td>'.$ticket[4].'</td>'.
+									'<td>'.$ticket[5].'</td>'.
+									'<td>'.$ticket[6].'</td>'.
+									'<td>'.$ticket[7].'</td></tr>';
+							}
+					?>
 				</tbody>
 			</table>
 		</div>
@@ -81,34 +97,34 @@ if($settings->twofa == 1){
 <script>
 	$(document).ready(function() { 
 
-		$.ajax({
-				url: '../users/TicketManager.php',
-				type:'POST',
-				data: {
-						action:'showAllTickets'
-				},
-				error: function() {
+		// $.ajax({
+		// 		url: '../users/TicketManager.php',
+		// 		type:'POST',
+		// 		data: {
+		// 				action:'showAllTickets'
+		// 		},
+		// 		error: function() {
 						
-				},
-				dataType: 'json',
-				success: function(data) {
-					$('#listTickets').dataTable({
-						"lengthChange": false,
-						"processing":true,
-						"dataSrc": "",
-						"order":[],
-						"data": data['data'],
-						"columnDefs":[
-							{
-								"targets":[0, 1, 2, 3, 4, 5, 6, 7],
-								"orderable":false,
-							},
-						],
-						"pageLength": 10
-					});
-					console.log('yehey');
-				}
-		});
+		// 		},
+		// 		dataType: 'json',
+		// 		success: function(data) {
+		// 			$('#listTickets').dataTable({
+		// 				"lengthChange": false,
+		// 				"processing":true,
+		// 				"dataSrc": "",
+		// 				"order":[],
+		// 				"data": data['data'],
+		// 				"columnDefs":[
+		// 					{
+		// 						"targets":[0, 1, 2, 3, 4, 5, 6, 7],
+		// 						"orderable":false,
+		// 					},
+		// 				],
+		// 				"pageLength": 10
+		// 			});
+		// 			console.log('yehey');
+		// 		}
+		// });
 	});
 </script>
 

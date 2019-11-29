@@ -8,22 +8,13 @@ $hooks =  getMyHooks();
 includeHook($hooks,'pre');
 if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
-
-print('id::'+$id);
 }
 
-$ticketDetails = [
-	'ticket_id' => 34,
-	'ticket_status'=>'Open',
-	'ticket_title' => '66E67',
-	'ticket_author' => '9985936013',
-	'ticket_message' => 'Tao po',
-	'ticket_created' => '2019-11-22 00:50:48'
-];
+require '../init.php';
+include '../users/TicketManager.php';
 
-$ticketReplies =  [
-	['reply_author' =>null, 'reply_date' => "2019-11-22 00:51:41", 'reply_message' => "Eto yung reply ko."]
-];
+$ticketDetails = $tickets->getTicketDetails($_GET['id']);
+$ticketReplies =  $tickets->getTicketReplies($_GET['id']);
 ?>
 
 
@@ -56,7 +47,7 @@ $ticketReplies =  [
 							</div>
 							<?php } ?>
 							<div class="col-md-9 col-sm-9" style="padding-top:5px;">
-								<span><h5 class="ticket-title" id="ticket-title"><?php echo $ticketDetails['ticket_title']; ?></h5></span>
+								<span><h5 class="ticket-title" id="ticket-title"><?php echo $ticketDetails['ticket_reference']; ?></h5></span>
 							</div>
 						</div>
 						
@@ -68,7 +59,7 @@ $ticketReplies =  [
 					</div>
 					<div class="card-footer panel-heading right">
 						<span class="glyphicon glyphicon-time"></span> 
-						<time class="comment-date ticket-created" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>&nbsp<?php echo $ticketDetails['ticket_created']; ?></time>
+						<time class="comment-date ticket-created" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>&nbsp<?php echo $ticketDetails['ticket_creation']; ?></time>
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span> 
 						&nbsp;&nbsp;<span class="glyphicon glyphicon-briefcase"></span>
 					</div>
@@ -87,7 +78,7 @@ $ticketReplies =  [
 										<span class="glyphicon glyphicon-user"></span> <?php echo $replies['reply_author']; ?>
 									</div>
 									<div class="col-md-3 col-sm-3">
-										<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $replies['reply_date']; ?></time>
+										<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $replies['reply_created']; ?></time>
 									</div>	
 								</div>
 							</div>

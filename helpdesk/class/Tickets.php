@@ -63,7 +63,7 @@ class Tickets extends Database {
 			"data"    			=> 	$ticketData
 		);
 		
-		return json_encode($output);
+		return $output['data'];
 	}
 
 	public function getRepliedTitle($title) {

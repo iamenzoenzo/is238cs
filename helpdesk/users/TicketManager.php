@@ -1,7 +1,9 @@
 <?php
 
-require '../init.php';
+// require '../init.php';
 // require '../users/init.php';
+
+include '../Tickets.php';
 
 $tickets = new Tickets();
 
