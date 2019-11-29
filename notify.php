@@ -62,13 +62,65 @@ if(isset($messId)){
 
     //Check if not multipart message
     if($numberOfMessagesInThisBatch==1){
+
+        if($inbound->hasKeyword($message,$keywords_list)){
+    
+            $key = explode(' ', $message,4);
         
+            //PLEMA-HELP
+            if($key[0]=="PLEMA-HELP"){                
+                $autoReplyMessageText="Thanks for contacting PLEMA. To get all emergency phone numbers of a place,
+                  text PLEMA-GET SPACE CITY CODE. Example: \"PLEMA-GET MNL\". Here are available city codes you can use: ";
+                
+                $cc = $phonenumber->getCityCodes();
+                $allCityCodes="";
+                foreach($cc as $c){
+                    $allCityCodes=$allCityCodes.$c['city_code'].",";
+                }
+                $batch1 = $autoReplyMessageText." ".substr($allCityCodes,0,strlen($allCityCodes)-1);
+                
+                $ac = $phonenumber->getAgencyCodes();
+                $allAgencyCodes="";
+                foreach($ac as $a){
+                    $allAgencyCodes=$allAgencyCodes.$a['agency_code'].",";
+                }
+                echo $batch1.". To get specific phone number of government agencies, text
+                PLEMA-GET<SPACE>CITY CODE SPACE AGENCY CODE. Example: \"PLEMA-GET MNL PNP\". Here are available agency codes you can use
+                ".substr($allAgencyCodes,0,strlen($allAgencyCodes)-1)."."; 
+                
+            }
+            else{
+                //PLEMA-GET
+                if($phonenumber->validCityCode($key[1])){               
+                    $phones=""; 
+                    if($phonenumber->validAgencyCode($key[2])){            
+                        $AgencyPhones = $phonenumber->getPhoneNumberByAgencyCode($key[1],$key[2]);
+                        foreach($AgencyPhones as $pn){
+                            $phones=$phones.$pn['phone_number'].",";
+                        }
+                        echo "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
+                        .$key[1]." ".$key[2].": ".substr($phones,0,strlen($phones)-1).".";
+                    }else{
+                        $AgencyPhones = $phonenumber->getPhoneNumberByCityCode($key[1]);
+                        foreach($AgencyPhones as $pn){
+                            $phones=$phones.$pn['agency_code'].": ".$pn['phone_number'].",";
+                        }
+                        echo "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
+                        .$phonenumber->getCityNameByCityCode($key[1]).". ".substr($phones,0,strlen($phones)-1).".";
+                    }
+                }
+            }
+        }else{
+            
+            // No keyword
+            $inbound->saveToTickets($MobileNo,$message,'Open');
+            //Delete message by id
+            $inbound->deleteMessagesByMessageId($messId);                
+            //auto-reply to subscriber
+            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
+
+        }      
         
-        $inbound->saveToTickets($MobileNo,$message,'Open');
-        //Delete message by id
-        $inbound->deleteMessagesByMessageId($messId);                
-        //auto-reply to subscriber
-        $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
 
     }else{
         
