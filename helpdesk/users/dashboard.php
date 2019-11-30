@@ -116,6 +116,12 @@ $tickets = $tickets->getAllTickets();
 		// 		}
 		// });
 	});
+
+	$('#claimThreadBtn').click(function(){
+
+		console.log('claim thread');
+
+	});
 </script>
 
 <style>

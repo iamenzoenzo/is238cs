@@ -41,7 +41,8 @@ class Tickets extends Database {
 			$ticketRows[] = $ticket['subscriber_name'];
 			$ticketRows[] = $ticket['thread_status'];
 			$ticketRows[] = '<a href="../users/ticket_view.php?id='.$ticket['subscriber_name'].'" class="btn btn-success btn-xs view-action-btn"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
-							'<a href="../users/ticket_details.php?id='.$ticket['subscriber_name'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';
+							'<a href="../users/ticket_details.php?id='.$ticket['subscriber_name'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>'.' '.
+							'<a href="#" class="btn btn-warning btn-xs update-action-btn" id="claimThreadBtn"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></a>';
 			
 			$ticketData[] = $ticketRows;
 		}
