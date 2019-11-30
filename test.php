@@ -49,7 +49,9 @@ if($numberOfMessagesInThisBatch>1){
     $multipartSeqNum = '';
 }
 
+$MobileNo=$_GET["mob"];
 
+$access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 //echo $inbound->hasKeyword($_GET["mes"],$keywords_list);
 
 
@@ -58,27 +60,34 @@ if($inbound->hasKeyword($_GET["mes"],$keywords_list)){
     $key = explode(' ', $_GET["mes"],4);
 
     //PLEMA-HELP
-    if($key[0]=="PLEMA-HELP"){                
-        $autoReplyMessageText="Thanks for contacting PLEMA. To get all emergency phone numbers of a place,
-          text PLEMA-GET SPACE CITY CODE. Example: \"PLEMA-GET MNL\". Here are available city codes you can use: ";
+    if(strtoupper($key[0])=="PLEMA-HELP"){                
         
+
+        //get all city codes
         $cc = $phonenumber->getCityCodes();
         $allCityCodes="";
         foreach($cc as $c){
             $allCityCodes=$allCityCodes.$c['city_code'].",";
-        }
-        $batch1 = $autoReplyMessageText." ".substr($allCityCodes,0,strlen($allCityCodes)-1);
-        
+        }  
+
+        //get all agency codes
         $ac = $phonenumber->getAgencyCodes();
         $allAgencyCodes="";
         foreach($ac as $a){
             $allAgencyCodes=$allAgencyCodes.$a['agency_code'].",";
         }
-        echo $batch1.". To get specific phone number of government agencies, text
-        PLEMA-GET<SPACE>CITY CODE SPACE AGENCY CODE. Example: \"PLEMA-GET MNL PNP\". Here are available agency codes you can use
-        ".substr($allAgencyCodes,0,strlen($allAgencyCodes)-1)."."; 
+
+        $finalMessage = "Thanks for contacting PLEMA. To get all emergency phone numbers of a place, text PLEMA-GET SPACE CITY CODE. Example: PLEMA-GET MNL. Here are available city codes you can use: "
+        .substr($allCityCodes,0,strlen($allCityCodes)-1)
+        .". To get specific phone number of government agencies, text PLEMA-GET SPACE CITY CODE SPACE AGENCY CODE. Example: PLEMA-GET MNL PNP. "
+        .substr($allAgencyCodes,0,strlen($allAgencyCodes)-1);
+
+        //auto-reply to subscriber
+        echo $outbound->sendSms($api_short_code,$access_token,$MobileNo,$finalMessage);
         
-    }else{
+    }
+    else{
+        //PLEMA-GET
         if($phonenumber->validCityCode($key[1])){               
             $phones=""; 
             if($phonenumber->validAgencyCode($key[2])){            
@@ -89,6 +98,7 @@ if($inbound->hasKeyword($_GET["mes"],$keywords_list)){
                 echo "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
                 .$phonenumber->getCityNameByCityCode($key[1])." ".$key[2].": ".substr($phones,0,strlen($phones)-1).".";
             }else{
+                //no agency for this on this city yet
                 $AgencyPhones = $phonenumber->getPhoneNumberByCityCode($key[1]);
                 foreach($AgencyPhones as $pn){
                     $phones=$phones.$pn['agency_code'].": ".$pn['phone_number'].",";
@@ -96,6 +106,8 @@ if($inbound->hasKeyword($_GET["mes"],$keywords_list)){
                 echo "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
                 .$phonenumber->getCityNameByCityCode($key[1]).". ".substr($phones,0,strlen($phones)-1).".";
             }
+        }else{
+            //No city code maintained yet
         }
     }
 }
