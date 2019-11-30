@@ -37,4 +37,39 @@ public function sendSms($short_code, $access_token,$recipient_mobile_number,$mes
     return $response;
     }
 }
+
+//assign agent to ticket, set status to In Progress and set expiry to 24 hours
+public function assignAgent($MobileNumber,$AgentName){
+    $expiry_date = date("Y/m/d H:i:s", strtotime('now + 1 days'));
+    $sqlQuery = "UPDATE Tickets"."
+    SET assignedTo = '".$AgentName."',
+    Status='In Progress', expiry_date='".$expiry_date."' 
+    WHERE MobileNumber = '".$MobileNumber."'
+    AND Status <> 'Closed';";
+    mysqli_query($this->dbConnect, $sqlQuery);
+    return "success";	
+}
+
+//query mobileNo with expired tickets, update thread set assignedTo = null and expiry is null
+public function returnExpiredTickets(){
+    $curr = date("Y/m/d H:i:s", strtotime('now'));
+    $sqlQuery = "SELECT Tickets.MobileNumber FROM Tickets".
+	" WHERE  expiry_date < '".$curr.
+    "' AND Status <> 'Closed'";
+	$result = mysqli_query($this->dbConnect, $sqlQuery);
+	$data= array();
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+           // assignAgent($row["MobileNumber"],"");
+            $sqlUpdate = "UPDATE Tickets"."
+            SET assignedTo = null,
+            Status='Open', expiry_date = null 
+            WHERE MobileNumber = '".$row["MobileNumber"]."'
+            AND Status <> 'Closed';";
+            mysqli_query($this->dbConnect, $sqlUpdate);
+        }
+    return "success";	
+    
+}
+
+
 }
