@@ -28,9 +28,9 @@ if($settings->twofa == 1){
 	$google2fa = new PragmaRX\Google2FA\Google2FA();
 }
 
-require '../init.php';
+// require '../init.php';
 include '../users/TicketManager.php';
-
+// print_r($_SESSION);
 $tickets = $tickets->getAllTickets();
 
 ?>
@@ -44,26 +44,16 @@ $tickets = $tickets->getAllTickets();
 			<table id="listTickets" class="table table-hover table-responsive table-bordered" width="100%" style="margin:0; padding:0; display: table;">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col">S/N</th>
-						<th scope="col">Ticket ID</th>
-						<th scope="col">Subject</th>
-						<th scope="col">Created By</th>					
-						<th scope="col">Created</th>	
-						<th scope="col">Status</th>
-						<th scope="col">Assignee</th>
+						<th scope="col">Subscriber Name</th>
+						<th scope="col">Thread Status</th>
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody class="table-striped">
 					<?php foreach ($tickets as $index => $ticket){
 							echo '<tr><td>'.$ticket[0].'</td>'.
-									'<td>'.$ticket[1].'</td>'.
-									'<td>'.$ticket[2].'</td>'.
-									'<td>'.$ticket[3].'</td>'.
-									'<td>'.$ticket[4].'</td>'.
-									'<td>'.$ticket[5].'</td>'.
-									'<td>'.$ticket[6].'</td>'.
-									'<td>'.$ticket[7].'</td></tr>';
+									 '<td>'.$ticket[1].'</td>'.
+									 '<td>'.$ticket[2].'</td>'.'</tr>';
 							}
 					?>
 				</tbody>

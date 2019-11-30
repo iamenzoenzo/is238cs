@@ -1,9 +1,9 @@
 <?php
 
-// require '../init.php';
+require '../init.php';
 // require '../users/init.php';
 
-include '../Tickets.php';
+// include '../Tickets.php';
 
 $tickets = new Tickets();
 
@@ -34,11 +34,10 @@ if(!empty($_POST['action']) && $_POST['action'] == 'updateTicket') {
 	$updatedTicket = $tickets->updateTicketInfo($_POST['id'],$_POST['info'],$_POST['data_type']);
 	print_r($updatedTicket);
 	return $updatedTicket;
-
 }
 
 if(!empty($_POST['action']) && $_POST['action'] == 'saveTicketReplies') {
-	$tickets->saveTicketReplies($_POST['id'],$_POST['message'],$_POST['ticket_id']);
+	$tickets->createTicket($_POST['subscriberId'],$_POST['message'],$_POST['timestamp'],$_POST['status']);
 }
 
 ?>

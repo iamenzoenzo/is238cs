@@ -10,11 +10,8 @@ if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
 
-require '../init.php';
 include '../users/TicketManager.php';
-
-$ticketInfo = $tickets->getTicketDetails($_GET['id']);
-$ticketReplies =  $tickets->getTicketReplies($_GET['id']);
+$messages = $tickets->getSubscriberMessages($_GET['id']);
 ?>
 
 
@@ -22,81 +19,24 @@ $ticketReplies =  $tickets->getTicketReplies($_GET['id']);
 
 <div class="container" style="margin-top:2%">
 	<section class="comment-list">
-		<article class="row justify-content-center">
-			<div class="col-md-10 col-sm-10" style="padding:0px;">
-				<div class="card panel panel-default arrow left">
-					<div class="card-header panel-heading right">
-						<div class="row">
-							<?php if($ticketInfo['ticket_status'] == 'Closed') { ?>
-							<div class="col-md-1 col-sm-1">
-								<button type="button" class="btn btn-danger btn-sm">
-								Closed
-								</button>
-							</div>
-							<?php } else if($ticketInfo['ticket_status'] == 'Open'){ ?>
-							<div class="col-md-1 col-sm-1">
-								<button type="button" class="btn btn-warning btn-sm">
-								Open
-								</button>
-							</div>
-							<?php } else if($ticketInfo['ticket_status'] == 'Resolved'){ ?>
-							<div class="col-md-1 col-sm-1">
-								<button type="button" class="btn btn-success btn-sm">
-								Resolved
-								</button>
-							</div>
-							<?php } ?>
-							<div class="col-md-9 col-sm-9" style="padding-top:5px;">
-								<span class="ticket-title"><h5 id="ticket-title"><?php echo $ticketInfo['ticket_reference']; ?></h5></span>
-							</div>
-							<div class="col-md-2 col-sm-2"> 
-								<div class="dropdown">
-									<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="statusUpdateBtn" onchange="statusUpdate()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Update Status
-									</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuBtn">
-										<a class="dropdown-item" href="#" value='open'>Open</a>
-										<a class="dropdown-item" href="#" value='resolved'>Resolved</a>
-										<a class="dropdown-item" href="#" value='closed'>Closed</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-					<div class="card-body panel-body">
-						<div class="comment-post card-text" style="margin-top:20px; margin-bottom:20px;">
-							<p id="ticket-message"><?php echo $ticketInfo['ticket_message']; ?></p>
-						</div>
-					</div>
-					<div class="card-footer panel-heading right">
-						<span class="glyphicon glyphicon-time"></span> 
-						<time class="comment-date" id="ticket-created" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $ticketInfo['ticket_creation']; ?></time>
-						&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span> 
-						&nbsp;&nbsp;<span class="glyphicon glyphicon-briefcase"></span>
-					</div>
-				</div>
-			</div>
-		</article>
-
-		<?php foreach ($ticketReplies as $replies) { ?>
+		<?php foreach ($messages as $index=>$value) {  ?>
 			<article class="row justify-content-center">
 				<div class="col-md-10 col-sm-10" style="margin-top:10px;">
 					<div class="card panel panel-default arrow right">
 						<div class="card-header panel-heading">
 							<div class = "row">
 								<div class="col-md-9 col-sm-9">
-									<span class="glyphicon glyphicon-user"></span> <?php echo $replies['reply_author']; ?>
+									<span class="glyphicon glyphicon-user"></span> <?php echo $value[4]; ?>
 								</div>
 								<div class="col-md-3 col-sm-3">
-									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $replies['reply_created']; ?></time>
+									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
 								</div>	
 							</div>
 						</div>
 						<div class="card-body panel-body">
 							<div class=" card-text comment-post">
 							<p>
-							<?php echo $replies['reply_message']; ?>
+							<?php echo $value[2]; ?>
 							</p>
 							</div>
 						</div>
@@ -121,7 +61,7 @@ $ticketReplies =  $tickets->getTicketReplies($_GET['id']);
 					</div>
 				</div>
 			</article>
-			<input type="hidden" name="ticketId" id="ticketId" value="<?php echo $ticketDetails['ticket_id']; ?>" />
+			<input type="hidden" name="ticketId" id="subscriberId" value="<?php echo $value[1]; ?>" />
 			<input type="hidden" name="action" id="action" value="saveTicketReplies" />
 		</form>
 	</section>
@@ -130,44 +70,40 @@ $ticketReplies =  $tickets->getTicketReplies($_GET['id']);
 
 <script>
 
-	$('.dropdown-item').click(function(){
-		console.log('yoe');
-		console.log($(this).attr("value"));
-
-		var status = $(this).attr("value");
-		var id = 34;
-
-		if(status == 'open'){
-			status = 'Open';
-		}
-		else if(status == 'closed'){
-			status = 'Closed';
-		}
-		else if(status == 'resolved'){
-			status = 'Resolved';
-		}
-
-		console.log(status);
+	$('#replyBtn').click(function(){
 		
+		var formData =  $('#ticketReply').serializeArray();
+		var message = formData[0]['value'];
+		var subscriberId = formData[1]['value'];
+
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var dateTime = date+' '+time;
+
+		console.log(message);
+
 		$.ajax({
 			url:'../users/TicketManager.php',
 			type:'POST',
-			dataType:'json',
 			data:{
-				action:'updateTicket',
-				id: id,
-				info: status,
-				data_type: 'status'
+				action:'saveTicketReplies',
+				subscriberId: subscriberId,
+				message: message,
+				timestamp: dateTime,
+				status: 'Open'
 			},
 			success: function(){
-				console.log(data);
-				console.log('success');
+				setInterval('refreshPage()', 5000);
 			},
 			error: function(data){
-
 			}
 		});
 	});
+
+	function refreshPage() {
+		location.reload(true);
+	}
 
 
 </script>

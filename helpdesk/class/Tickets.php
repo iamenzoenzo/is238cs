@@ -15,18 +15,20 @@ class Tickets extends Database {
 	} 
 	public function getAllTickets(){
 
-		$sqlWhere = "";
+		$user = $_SESSION['user'];
+
+		$sqlWhere = "
+		WHERE
+			t.Status is not null
+			AND t.Status = 'Open'
+			AND (t.assignedTo is null or t.assignedTo = '".$user."')
+		GROUP BY  t.MobileNumber ";
 
 		$sqlQuery = "
-			SELECT 
-				t.idTickets as ticket_id,
-				t.TicketReference as ticket_reference,
-				t.MobileNumber as ticket_author,
-				t.message as ticket_message,
-				t.assignedTo as ticket_assignee,
-				t.createDate as ticket_creation,
-				t.status as ticket_status
-			FROM teamlaban.".$this->ticketTable." t". 
+		SELECT
+			t.MobileNumber as subscriber_name,
+			t.Status as thread_status
+		FROM teamlaban.".$this->ticketTable." t". 
 			$sqlWhere;
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
@@ -36,24 +38,10 @@ class Tickets extends Database {
 		
 		while( $ticket = mysqli_fetch_assoc($result) ) {		
 			$ticketRows = array();			
-			$status = '';
-			if($ticket['ticket_status'] == 'Open')	{
-				$status = '<span class="label label-warning">Open</span>';
-			} else if($ticket['ticket_status'] == 'Closed') {
-				$status = '<span class="label label-danger">Closed</span>';
-			} else if($ticket['ticket_status'] == 'Resolved') {
-				$status = '<span class="label label-success">Resolved</span>';
-			}	
-			$title = $ticket['ticket_reference'];
-			$ticketRows[] = $ticket['ticket_id'];
-			$ticketRows[] = $ticket['ticket_reference'];
-			$ticketRows[] = $ticket['ticket_message'];
-			$ticketRows[] = $ticket['ticket_author'];
-			$ticketRows[] = $ticket['ticket_creation']; 			
-			$ticketRows[] = $status;
-			$ticketRows[] = $ticket['ticket_assignee']; 			
-			$ticketRows[] = '<a href="../users/ticket_view.php?id='.$ticket['ticket_id'].'" class="btn btn-success btn-xs view-action-btn"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
-							'<a href="../users/ticket_details.php?id='.$ticket['ticket_id'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+			$ticketRows[] = $ticket['subscriber_name'];
+			$ticketRows[] = $ticket['thread_status'];
+			$ticketRows[] = '<a href="../users/ticket_view.php?id='.$ticket['subscriber_name'].'" class="btn btn-success btn-xs view-action-btn"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
+							'<a href="../users/ticket_details.php?id='.$ticket['subscriber_name'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';
 			
 			$ticketData[] = $ticketRows;
 		}
@@ -71,33 +59,28 @@ class Tickets extends Database {
 		return $title; 		
 	}
 	
-	public function createTicket() {      
-		// Create new ticket using subscriber info and combined message
-		// should use subscriber info as parameter
-		// retrieve messages from subscriber
-		// merge messages into ticket message
-		if(!empty($_POST['subscriberinfo']) && !empty($_POST['subscribermessage'])) {                
+	public function createTicket($subscriberId, $message, $timestamp, $status) {      
+
+		$user = $_SESSION['user'];
+		
+		if(!empty($_POST['subscriberId']) && !empty($_POST['message'])) {                
 			
 			$date = new DateTime();
 			$date = $date->getTimestamp();
 			$uniqid = uniqid(); 
 			
-			$message = "";              
 			$queryInsert = "
-				INSERT INTO ".$this->ticketTable." (idTickets, TicketReference, MobileNumber, message, assignedTo, createDate, modifiedDate, Status)
-				VALUES ('".$ticket_id."', '".$ticket_reference."', '".$ticket_author."', '".$ticket_message."', '".$ticket_assignee."', '".$ticket_date."', '".$ticket_modified_date."','".$ticket_status."')";			
+				INSERT INTO ".$this->tableSchema.".".$this->ticketTable."
+					(MobileNumber, message, assignedTo, createDate, CreatedBy, Status)
+				VALUES
+					('".$subscriberId."', '".$message."', '".$user."', '".$timestamp."', '".$user."', '".$status."');
+				";			
 			
-			mysqli_query($this->dbConnect, $queryInsert);			
-			echo 'success ' . $uniqid;
+			mysqli_query($this->dbConnect, $queryInsert);	
 		}
 	}
 	
 	public function updateTicketInfo($ticketId,$ticketInfo,$infoType){
-		// if(isset($_SESSION["admin"])) {
-		// 	$updateField = "admin_read = '1'";
-		// } else {
-		// 	$updateField = "user_read = '1'";
-		// }
 		
 		$updateTicket = "UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
 		$sqlWhere = "WHERE idTickets = ".$ticketId;
@@ -131,6 +114,47 @@ class Tickets extends Database {
 		
 		return $row;       
 	} 
+
+	public function getSubscriberMessages($subscriberNumber){
+
+		$sqlWhere = "
+		WHERE
+				t.CreatedBy is not null
+				-- AND t.CreatedBy = t.MobileNumber
+				-- and createdby in list of users
+				AND t.MobileNumber = '".$subscriberNumber."'
+		";
+		
+		$sqlQuery = "
+			SELECT 
+				t.idTickets as message_id,
+				t.MobileNumber as subscriber_id,
+				t.message as message,
+				t.createDate as message_created,
+				t.CreatedBy as message_creator,
+				t.expiry_date as message_expiry
+			FROM
+				teamlaban.".$this->ticketTable." t
+			".$sqlWhere." ORDER BY t.createDate DESC";	
+
+		$result = mysqli_query($this->dbConnect, $sqlQuery);
+		
+		while( $ticket = mysqli_fetch_assoc($result) ) {		
+			$ticketRows = array();			
+			$ticketRows[] = $ticket['message_id'];
+			$ticketRows[] = $ticket['subscriber_id'];
+			$ticketRows[] = $ticket['message'];
+			$ticketRows[] = $ticket['message_created'];
+			$ticketRows[] = $ticket['message_creator'];
+			$ticketRows[] = $ticket['message_expiry'];
+
+			$ticketData[] = $ticketRows;
+		}
+		
+		return $ticketData;
+		
+		return $row;  
+	}
 	   
 	public function saveTicketReplies () {
 
@@ -173,74 +197,7 @@ class Tickets extends Database {
         return $data;
 	}
 
-	// public function showTickets(){
-	// 	$sqlWhere = '';	
-	// 	if(!isset($_SESSION["admin"])) {
-	// 		$sqlWhere .= " WHERE t.user = '".$_SESSION["userid"]."' ";
-	// 		if(!empty($_POST["search"]["value"])){
-	// 			$sqlWhere .= " and ";
-	// 		}
-	// 	} else if(isset($_SESSION["admin"]) && !empty($_POST["search"]["value"])) {
-	// 		$sqlWhere .= " WHERE ";
-	// 	} 		
-	// 	$time = new time;  			 
-	// 	$sqlQuery = "SELECT t.id, t.uniqid, t.title, t.init_msg as message, t.date, t.last_reply, t.resolved, u.nick_name as creater, d.name as department, u.user_group, t.user, t.user_read, t.admin_read
-	// 		FROM hd_tickets t 
-	// 		LEFT JOIN hd_users u ON t.user = u.id 
-	// 		LEFT JOIN hd_departments d ON t.department = d.id $sqlWhere ";
-	// 	if(!empty($_POST["search"]["value"])){
-	// 		$sqlQuery .= ' (uniqid LIKE "%'.$_POST["search"]["value"].'%" ';					
-	// 		$sqlQuery .= ' OR title LIKE "%'.$_POST["search"]["value"].'%" ';
-	// 		$sqlQuery .= ' OR resolved LIKE "%'.$_POST["search"]["value"].'%" ';
-	// 		$sqlQuery .= ' OR last_reply LIKE "%'.$_POST["search"]["value"].'%") ';			
-	// 	}
-	// 	if(!empty($_POST["order"])){
-	// 		$sqlQuery .= 'ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
-	// 	} else {
-	// 		$sqlQuery .= 'ORDER BY t.id DESC ';
-	// 	}
-	// 	if($_POST["length"] != -1){
-	// 		$sqlQuery .= 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
-	// 	}	
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-	// 	$numRows = mysqli_num_rows($result);
-	// 	$ticketData = array();	
-	// 	while( $ticket = mysqli_fetch_assoc($result) ) {		
-	// 		$ticketRows = array();			
-	// 		$status = '';
-	// 		if($ticket['resolved'] == 0)	{
-	// 			$status = '<span class="label label-success">Open</span>';
-	// 		} else if($ticket['resolved'] == 1) {
-	// 			$status = '<span class="label label-danger">Closed</span>';
-	// 		}	
-	// 		$title = $ticket['title'];
-	// 		if((isset($_SESSION["admin"]) && !$ticket['admin_read'] && $ticket['last_reply'] != $_SESSION["userid"]) || (!isset($_SESSION["admin"]) && !$ticket['user_read'] && $ticket['last_reply'] != $ticket['user'])) {
-	// 			$title = $this->getRepliedTitle($ticket['title']);			
-	// 		}
-	// 		$disbaled = '';
-	// 		if(!isset($_SESSION["admin"])) {
-	// 			$disbaled = 'disabled';
-	// 		}			
-	// 		$ticketRows[] = $ticket['id'];
-	// 		$ticketRows[] = $ticket['uniqid'];
-	// 		$ticketRows[] = $title;
-	// 		$ticketRows[] = $ticket['department'];
-	// 		$ticketRows[] = $ticket['creater']; 			
-	// 		$ticketRows[] = $time->ago($ticket['date']);
-	// 		$ticketRows[] = $status;
-	// 		$ticketRows[] = '<a href="ticket.php?id='.$ticket["uniqid"].'" class="btn btn-success btn-xs update">View Ticket</a>';	
-	// 		$ticketRows[] = '<button type="button" name="update" id="'.$ticket["id"].'" class="btn btn-warning btn-xs update" '.$disbaled.'>Edit</button>';
-	// 		$ticketRows[] = '<button type="button" name="delete" id="'.$ticket["id"].'" class="btn btn-danger btn-xs delete"  '.$disbaled.'>Close</button>';
-	// 		$ticketData[] = $ticketRows;
-	// 	}
-	// 	$output = array(
-	// 		"draw"				=>	intval($_POST["draw"]),
-	// 		"recordsTotal"  	=>  $numRows,
-	// 		"recordsFiltered" 	=> 	$numRows,
-	// 		"data"    			=> 	$ticketData
-	// 	);
-	// 	echo json_encode($output);
-	// }	
+	
 	// public function getRepliedTitle($title) {
 	// 	$title = $title.'<span class="answered">Answered</span>';
 	// 	return $title; 		
