@@ -21,7 +21,7 @@ class Tickets extends Database {
 		$sqlWhere = "
 		WHERE
 			t.Status is not null
-			AND t.Status = 'Open'
+			AND t.Status in ('Open','In Progress')
 			AND (t.assignedTo is null or t.assignedTo = '".$user."')
 		GROUP BY  t.MobileNumber ";
 
@@ -73,11 +73,31 @@ class Tickets extends Database {
 					(MobileNumber, message, assignedTo, createDate, CreatedBy, Status)
 				VALUES
 					('".$subscriberId."', '".$message."', '".$user."', '".$timestamp."', '".$user."', '".$status."');
-				";
-			print_r($queryInsert);			
+				";			
 			
-			mysqli_query($this->dbConnect, $queryInsert);	
+			mysqli_query($this->dbConnect, $queryInsert);
+
+			$this->updateSubscriberMessageInfo($subscriberId,'Closed','status');
+			$this->sendSmsReply($subscriberId,$message);
 		}
+	}
+
+	public function updateSubscriberMessageInfo($subscriberId,$ticketInfo,$infoType){
+
+		$updateTicket = "UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
+		$sqlWhere = "WHERE MobileNumber = '".$subscriberId."' AND Status ='In Progress'";
+		
+		if($infoType == 'status'){
+			$updateTicket .= " Status = '".$ticketInfo."' ".$sqlWhere;
+		}
+
+		mysqli_query($this->dbConnect, $updateTicket);
+	}
+
+	public function sendSmsReply($MobileNo,$message){
+		$access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
+		$outbound->sendSms($api_short_code,$access_token,$MobileNo,$message);
+
 	}
 	
 	public function updateTicketInfo($ticketId,$ticketInfo,$infoType){
