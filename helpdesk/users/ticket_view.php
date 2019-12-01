@@ -1,5 +1,4 @@
 <?php
-
 ini_set("allow_url_fopen", 1);
 if(isset($_SESSION)){session_destroy();}
 require_once 'init.php';
@@ -9,14 +8,13 @@ includeHook($hooks,'pre');
 if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
-
 include 'TicketManager.php';
 $messages = $tickets->getSubscriberMessages($_GET['id']);
 ?>
 
 
 <title>PLEMA Helpdesk</title>
-
+<a href="dashboard.php" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Go back to list</a>
 <div class="container" style="margin-top:2%">
 	<section class="comment-list">
 
@@ -51,6 +49,5 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 </div>
 
 <script>
-
 
 </script>
