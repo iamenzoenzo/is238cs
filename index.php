@@ -82,7 +82,7 @@
             <div class="modalWindow-container">
                 <div class="modalWindow-video-container">
                     <div class="modalWindow-video">
-                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen="1" data-src="https://youtu.be/OUuk6PAorN8"></iframe>
+                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen="1" data-src="https://youtu.be/uR6ZBFkrXW4"></iframe>
                     </div>
                     <a class="close" role="button" data-dismiss="modal">
                         <span aria-hidden="true" class="mbri-close mbr-iconfont closeModal"></span>
@@ -131,7 +131,7 @@
                         <a href="https://www.instagram.com/mobirise/" target="_blank">
 
                         </a>
-                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
+                        <a href="https://www.youtube.com/channel/UCwFaEpurpgew92ivDaZeQhw" target="_blank">
 
                         </a>
                     </div>
