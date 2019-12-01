@@ -2,7 +2,7 @@
 
 ini_set("allow_url_fopen", 1);
 if(isset($_SESSION)){session_destroy();}
-require_once '../users/init.php';
+require_once 'init.php';
 require_once $abs_us_root.$us_url_root.'users/includes/template/prep.php';
 $hooks =  getMyHooks();
 includeHook($hooks,'pre');
@@ -10,7 +10,7 @@ if($settings->twofa == 1){
   $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
 
-include '../users/TicketManager.php';
+include 'TicketManager.php';
 $messages = $tickets->getSubscriberMessages($_GET['id']);
 ?>
 
@@ -30,7 +30,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 								</div>
 								<div class="col-md-3 col-sm-3">
 									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
-								</div>	
+								</div>
 							</div>
 						</div>
 						<div class="card-body panel-body">
@@ -71,7 +71,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 <script>
 
 	$('#replyBtn').click(function(){
-		
+
 		var formData =  $('#ticketReply').serializeArray();
 		var message = formData[0]['value'];
 		var subscriberId = formData[1]['value'];

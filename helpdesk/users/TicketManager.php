@@ -11,7 +11,7 @@ if(!empty($_POST['action']) && $_POST['action'] == 'auth') {
 	$users->login();
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'showAllTickets') {
-	$allTickets = $tickets->getAllTickets(); 
+	$allTickets = $tickets->getAllTickets();
 	print_r($allTickets);
 	return $allTickets;
 }
@@ -21,7 +21,7 @@ if(!empty($_POST['action']) && $_POST['action'] == 'createTicket') {
 if(!empty($_POST['action']) && $_POST['action'] == 'viewTicketInfo') {
 	$ticketInfo = $tickets->getTicketDetails($_POST['id']);
 	$ticketReplies = $tickets->getTicketReplies($_POST['id']);
-	
+
 	return json_encode(['ticketInfo'=>$ticketInfo,'ticketReplies'=>$ticketReplies]);
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'getTicketReplies') {

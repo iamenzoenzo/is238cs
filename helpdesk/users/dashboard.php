@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 ini_set("allow_url_fopen", 1);
 if(isset($_SESSION)){session_destroy();}
-require_once '../users/init.php';
+require_once 'init.php';
 require_once $abs_us_root.$us_url_root.'users/includes/template/prep.php';
 $hooks =  getMyHooks();
 includeHook($hooks,'pre');
@@ -29,7 +29,7 @@ if($settings->twofa == 1){
 }
 
 // require '../init.php';
-include '../users/TicketManager.php';
+include 'TicketManager.php';
 // print_r($_SESSION);
 $tickets = $tickets->getAllTickets();
 
@@ -39,7 +39,7 @@ $tickets = $tickets->getAllTickets();
 <div class="container dash-container rounded" style="margin-top:2%;">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<p>This is where you view and manage your tickets.</p>	
+			<p>This is where you view and manage your tickets.</p>
 
 			<table id="listTickets" class="table table-hover table-responsive table-bordered" width="100%" style="margin:0; padding:0; display: table;">
 				<thead class="thead-light">
@@ -59,7 +59,7 @@ $tickets = $tickets->getAllTickets();
 				</tbody>
 			</table>
 		</div>
-	</div>   		
+	</div>
 </div>
 
 <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,7 +85,7 @@ $tickets = $tickets->getAllTickets();
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <script>
-	$(document).ready(function() { 
+	$(document).ready(function() {
 
 		// $.ajax({
 		// 		url: '../users/TicketManager.php',
@@ -94,7 +94,7 @@ $tickets = $tickets->getAllTickets();
 		// 				action:'showAllTickets'
 		// 		},
 		// 		error: function() {
-						
+
 		// 		},
 		// 		dataType: 'json',
 		// 		success: function(data) {
