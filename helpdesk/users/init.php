@@ -1,7 +1,6 @@
 <?php
 require_once 'classes/class.autoloader.php';
-// require '../users/Tickets.php';
-// session_start();
+session_start();
 
 $abs_us_root=$_SERVER['DOCUMENT_ROOT'];
 
