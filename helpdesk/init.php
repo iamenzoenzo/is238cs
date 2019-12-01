@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include 'config.php';
 define('HOST', $host);
 define('USER', $username);
