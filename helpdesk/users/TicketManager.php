@@ -15,9 +15,6 @@ if(!empty($_POST['action']) && $_POST['action'] == 'showAllTickets') {
 	print_r($allTickets);
 	return $allTickets;
 }
-if(!empty($_POST['action']) && $_POST['action'] == 'createTicket') {
-	$tickets->createTicket();
-}
 if(!empty($_POST['action']) && $_POST['action'] == 'viewTicketInfo') {
 	$ticketInfo = $tickets->getTicketDetails($_POST['id']);
 	$ticketReplies = $tickets->getTicketReplies($_POST['id']);

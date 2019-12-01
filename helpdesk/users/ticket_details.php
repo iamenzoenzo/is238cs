@@ -93,7 +93,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 				subscriberId: subscriberId,
 				message: message,
 				timestamp: dateTime,
-				status: 'Open',
+				status: 'Closed',
 				userId: userId
 			},
 			success: function(){
