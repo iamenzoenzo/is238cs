@@ -30,7 +30,6 @@ if($settings->twofa == 1){
 
 // require '../init.php';
 include '../users/TicketManager.php';
-// print_r($_SESSION);
 $tickets = $tickets->getAllTickets();
 
 ?>

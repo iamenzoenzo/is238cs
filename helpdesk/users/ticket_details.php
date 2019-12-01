@@ -62,6 +62,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 				</div>
 			</article>
 			<input type="hidden" name="ticketId" id="subscriberId" value="<?php echo $value[1]; ?>" />
+			<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>" />
 			<input type="hidden" name="action" id="action" value="saveTicketReplies" />
 		</form>
 	</section>
@@ -75,13 +76,14 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 		var formData =  $('#ticketReply').serializeArray();
 		var message = formData[0]['value'];
 		var subscriberId = formData[1]['value'];
+		var userId = formData[2]['value'];
 
 		var today = new Date();
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 		var dateTime = date+' '+time;
 
-		console.log(message);
+		console.log(message+'//'+userId);
 
 		$.ajax({
 			url:'../users/TicketManager.php',
@@ -91,19 +93,18 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 				subscriberId: subscriberId,
 				message: message,
 				timestamp: dateTime,
-				status: 'Open'
+				status: 'Open',
+				userId: userId
 			},
 			success: function(){
-				setInterval('refreshPage()', 5000);
+				setTimeout(function(){// wait for 5 secs(2)
+					location.reload(); // then reload the page.(3)
+				}, 5000);
 			},
-			error: function(data){
+			error: function(){
 			}
 		});
 	});
-
-	function refreshPage() {
-		location.reload(true);
-	}
 
 
 </script>

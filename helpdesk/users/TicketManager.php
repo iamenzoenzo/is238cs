@@ -37,7 +37,16 @@ if(!empty($_POST['action']) && $_POST['action'] == 'updateTicket') {
 }
 
 if(!empty($_POST['action']) && $_POST['action'] == 'saveTicketReplies') {
-	$tickets->createTicket($_POST['subscriberId'],$_POST['message'],$_POST['timestamp'],$_POST['status']);
+
+	if(isset($_POST['message']) && isset($_POST['subscriberId'])){
+		$tickets->createTicket($_POST['subscriberId'],$_POST['message'],$_POST['timestamp'],$_POST['status'],$_POST['userId']);
+		// return true;
+	}
+	else{
+		return true;
+	}
+
+	
 }
 
 ?>

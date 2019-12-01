@@ -8,6 +8,7 @@ class Tickets extends Database {
     private $ticketTable = 'Tickets';
 	private $ticketRepliesTable = 'Ticket_replies';
 	private $tableSchema = 'teamlaban';
+	private $secondaryTableSchema = 'plemadb';
 	private $dbConnect = false;
 
 	public function __construct(){		
@@ -15,7 +16,7 @@ class Tickets extends Database {
 	} 
 	public function getAllTickets(){
 
-		$user = $_SESSION['user'];
+		$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
 		$sqlWhere = "
 		WHERE
@@ -60,22 +61,20 @@ class Tickets extends Database {
 		return $title; 		
 	}
 	
-	public function createTicket($subscriberId, $message, $timestamp, $status) {      
+	public function createTicket($subscriberId, $message, $timestamp, $status, $user) {      
 
-		$user = $_SESSION['user'];
-		
 		if(!empty($_POST['subscriberId']) && !empty($_POST['message'])) {                
 			
 			$date = new DateTime();
 			$date = $date->getTimestamp();
-			$uniqid = uniqid(); 
 			
 			$queryInsert = "
 				INSERT INTO ".$this->tableSchema.".".$this->ticketTable."
 					(MobileNumber, message, assignedTo, createDate, CreatedBy, Status)
 				VALUES
 					('".$subscriberId."', '".$message."', '".$user."', '".$timestamp."', '".$user."', '".$status."');
-				";			
+				";
+			print_r($queryInsert);			
 			
 			mysqli_query($this->dbConnect, $queryInsert);	
 		}
@@ -132,10 +131,11 @@ class Tickets extends Database {
 				t.MobileNumber as subscriber_id,
 				t.message as message,
 				t.createDate as message_created,
-				t.CreatedBy as message_creator,
+				concat(u.fname,' ',u.lname) as message_creator,
 				t.expiry_date as message_expiry
 			FROM
 				teamlaban.".$this->ticketTable." t
+				LEFT JOIN ".$this->secondaryTableSchema.".users u on u.id = t.CreatedBy and u.id is not null
 			".$sqlWhere." ORDER BY t.createDate DESC";	
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
@@ -163,9 +163,11 @@ class Tickets extends Database {
 		if($_POST['message']) {
 			$date = new DateTime();
 			$date = $date->getTimestamp();
+			
 			$queryInsert = "INSERT INTO ".$this->ticketRepliesTable." (user, text, ticket_id, date) 
 				VALUES('".$_SESSION["userid"]."', '".$_POST['message']."', '".$_POST['ticketId']."', '".$date."')";
 			mysqli_query($this->dbConnect, $queryInsert);				
+			
 			$updateTicket = "UPDATE ".$this->ticketTable." 
 				SET last_reply = '".$_SESSION["userid"]."', user_read = '0', admin_read = '0' 
 				WHERE id = '".$_POST['ticketId']."'";				
@@ -197,118 +199,4 @@ class Tickets extends Database {
 		}
         return $data;
 	}
-
-	
-	// public function getRepliedTitle($title) {
-	// 	$title = $title.'<span class="answered">Answered</span>';
-	// 	return $title; 		
-	// }
-	// public function createTicket() {      
-	// 	if(!empty($_POST['subject']) && !empty($_POST['message'])) {                
-	// 		$date = new DateTime();
-	// 		$date = $date->getTimestamp();
-	// 		$uniqid = uniqid();                
-	// 		$message = strip_tags($_POST['subject']);              
-	// 		$queryInsert = "INSERT INTO ".$this->ticketTable." (uniqid, user, title, init_msg, department, date, last_reply, user_read, admin_read, resolved) 
-	// 		VALUES('".$uniqid."', '".$_SESSION["userid"]."', '".$_POST['subject']."', '".$message."', '".$_POST['department']."', '".$date."', '".$_SESSION["userid"]."', 0, 0, '".$_POST['status']."')";			
-	// 		mysqli_query($this->dbConnect, $queryInsert);			
-	// 		echo 'success ' . $uniqid;
-	// 	} else {
-	// 		echo '<div class="alert error">Please fill in all fields.</div>';
-	// 	}
-	// }	
-	// public function getTicketDetails(){
-	// 	if($_POST['ticketId']) {	
-	// 		$sqlQuery = "
-	// 			SELECT * FROM ".$this->ticketTable." 
-	// 			WHERE id = '".$_POST["ticketId"]."'";
-	// 		$result = mysqli_query($this->dbConnect, $sqlQuery);	
-	// 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	// 		echo json_encode($row);
-	// 	}
-	// }
-	// public function updateTicket() {
-	// 	if($_POST['ticketId']) {	
-	// 		$updateQuery = "UPDATE ".$this->ticketTable." 
-	// 		SET title = '".$_POST["subject"]."', department = '".$_POST["department"]."', init_msg = '".$_POST["message"]."', resolved = '".$_POST["status"]."'
-	// 		WHERE id ='".$_POST["ticketId"]."'";
-	// 		$isUpdated = mysqli_query($this->dbConnect, $updateQuery);		
-	// 	}	
-	// }		
-	// public function closeTicket(){
-	// 	if($_POST["ticketId"]) {
-	// 		$sqlDelete = "UPDATE ".$this->ticketTable." 
-	// 			SET resolved = '1'
-	// 			WHERE id = '".$_POST["ticketId"]."'";		
-	// 		mysqli_query($this->dbConnect, $sqlDelete);		
-	// 	}
-	// }	
-	// public function getDepartments() {       
-	// 	$sqlQuery = "SELECT * FROM ".$this->departmentsTable;
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-	// 	while($department = mysqli_fetch_assoc($result) ) {       
-    //         echo '<option value="' . $department['id'] . '">' . $department['name']  . '</option>';           
-    //     }
-    // }	    
-    // public function ticketInfo($id) {  		
-	// 	$sqlQuery = "SELECT t.id, t.uniqid, t.title, t.user, t.init_msg as message, t.date, t.last_reply, t.resolved, u.nick_name as creater, d.name as department 
-	// 		FROM ".$this->ticketTable." t 
-	// 		LEFT JOIN hd_users u ON t.user = u.id 
-	// 		LEFT JOIN hd_departments d ON t.department = d.id 
-	// 		WHERE t.uniqid = '".$id."'";	
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-    //     $tickets = mysqli_fetch_assoc($result);
-    //     return $tickets;        
-    // }    
-	// public function saveTicketReplies () {
-	// 	if($_POST['message']) {
-	// 		$date = new DateTime();
-	// 		$date = $date->getTimestamp();
-	// 		$queryInsert = "INSERT INTO ".$this->ticketRepliesTable." (user, text, ticket_id, date) 
-	// 			VALUES('".$_SESSION["userid"]."', '".$_POST['message']."', '".$_POST['ticketId']."', '".$date."')";
-	// 		mysqli_query($this->dbConnect, $queryInsert);				
-	// 		$updateTicket = "UPDATE ".$this->ticketTable." 
-	// 			SET last_reply = '".$_SESSION["userid"]."', user_read = '0', admin_read = '0' 
-	// 			WHERE id = '".$_POST['ticketId']."'";				
-	// 		mysqli_query($this->dbConnect, $updateTicket);
-	// 	} 
-	// }	
-	// public function getTicketReplies($id) {  		
-	// 	$sqlQuery = "SELECT r.id, r.text as message, r.date, u.nick_name as creater, d.name as department, u.user_group  
-	// 		FROM ".$this->ticketRepliesTable." r
-	// 		LEFT JOIN ".$this->ticketTable." t ON r.ticket_id = t.id
-	// 		LEFT JOIN hd_users u ON r.user = u.id 
-	// 		LEFT JOIN hd_departments d ON t.department = d.id 
-	// 		WHERE r.ticket_id = '".$id."'";	
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-    //    	$data= array();
-	// 	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-	// 		$data[]=$row;            
-	// 	}
-    //     return $data;
-    // }
-	// public function updateTicketReadStatus($ticketId) {
-	// 	$updateField = '';
-	// 	if(isset($_SESSION["admin"])) {
-	// 		$updateField = "admin_read = '1'";
-	// 	} else {
-	// 		$updateField = "user_read = '1'";
-	// 	}
-	// 	$updateTicket = "UPDATE ".$this->ticketTable." 
-	// 		SET $updateField
-	// 		WHERE id = '".$ticketId."'";				
-	// 	mysqli_query($this->dbConnect, $updateTicket);
-	// }
-
-	// public function updateExpiryDate($ticketId) {	
-	// 	$date = new DateTime();
-	// 	$dateTimestamp = $date->getTimestamp();
-
-	// 	$dateTime = date('Y-m-d H:i:s',$dateTimestamp);
-	// 	$exprDate = date('Y-m-d H:i:s', strtotime('+1 day', $dateTimestamp));
-
-	// 	$updateTicket = "UPDATE Tickets SET expiry_date='".$exprDate."',modifiedDate='".$dateTime."'
-	// 		WHERE idTickets = ".$ticketId."";					
-	// 	mysqli_query($this->dbConnect, $updateTicket);
-	// }
 }
