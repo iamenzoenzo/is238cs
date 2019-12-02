@@ -7,7 +7,7 @@ if(!empty($_POST['action']) && $_POST['action'] == 'auth') {
 	$users->login();
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'showAllTickets') {
-	$allTickets = $tickets->getAllTickets();
+	$allTickets = $tickets->getAllTickets($_POST['userId']);
 	print_r($allTickets);
 	return $allTickets;
 }

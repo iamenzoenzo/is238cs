@@ -26,7 +26,8 @@ if($settings->twofa == 1){
 }
 // require '../init.php';
 include 'TicketManager.php';
-$tickets = $tickets->getAllTickets();
+// print_r($_SESSION);
+$tickets = $tickets->getAllTickets($_SESSION['user']);
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
@@ -79,29 +80,35 @@ $tickets = $tickets->getAllTickets();
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
+
+<script type="text/javascript" src="../users/js/jquery.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script>
 	
 	$('.claimThreadBtn').click(function(){
 		var subscriberId = $(this).attr("id").split('-')[1];
 		var userId = $('#userId').val();
 
-		$.ajax({
-			url:'../users/TicketManager.php',
-			type:'POST',
-			data:{
-				action:'claimThread',
-				subscriberId: subscriberId,
-				status: 'In Progress',
-				userId: userId
-			},
-			success: function(){
-				setTimeout(function(){// wait for 5 secs(2)
-					location.reload(); // then reload the page.(3)
-				}, 5000);
-			},
-			error: function(){
-			}
-		});
+		console.log(userId);
+
+		// $.ajax({
+		// 	url:'../users/TicketManager.php',
+		// 	type:'POST',
+		// 	data:{
+		// 		action:'claimThread',
+		// 		subscriberId: subscriberId,
+		// 		status: 'In Progress',
+		// 		userId: userId
+		// 	},
+		// 	success: function(){
+		// 		setTimeout(function(){// wait for 5 secs(2)
+		// 			location.reload(); // then reload the page.(3)
+		// 		}, 5000);
+		// 	},
+		// 	error: function(){
+		// 	}
+		// });
 	});
 </script>
 

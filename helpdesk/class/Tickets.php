@@ -16,9 +16,9 @@ class Tickets extends Database {
         $this->dbConnect = $this->dbConnect();
 	} 
 
-	public function getAllTickets(){
+	public function getAllTickets($user){
 
-		$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+		// $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
 		$sqlWhere = "
 		WHERE
