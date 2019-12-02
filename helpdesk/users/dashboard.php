@@ -35,7 +35,8 @@ $tickets = $tickets->getAllTickets($_SESSION['user']);
 <div class="container dash-container rounded" style="margin-top:2%;">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<p>This is where you view and manage your tickets.</p>
+			<br>
+			<h1>List of active messages.</h1>
 
 			<table id="listTickets" class="table table-hover table-responsive table-bordered" width="100%" style="margin:0; padding:0; display: table;">
 				<thead class="thead-light">
@@ -48,7 +49,7 @@ $tickets = $tickets->getAllTickets($_SESSION['user']);
 				<tbody class="table-striped">
 					<?php foreach ($tickets as $index => $ticket){
 							echo '<tr><td>'.$ticket[0].'</td>'.
-									 '<td>'.$ticket[1].'</td>'.
+									 '<td>'.'<p>Active</p>'.'</td>'.
 									 '<td>'.$ticket[2].'</td>'.'</tr>';
 							}
 					?>
@@ -85,7 +86,7 @@ $tickets = $tickets->getAllTickets($_SESSION['user']);
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script>
-	
+
 	$('.claimThreadBtn').click(function(){
 		var subscriberId = $(this).attr("id").split('-')[1];
 		var userId = $('.userId').attr("id").split('-')[1];
