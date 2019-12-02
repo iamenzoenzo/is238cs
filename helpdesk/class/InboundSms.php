@@ -136,6 +136,17 @@ public function isReply($textMessage,$keywords_list){
     }
 }
 
+public function hasKeyword($textMessage,$keywords_list){
+
+	$key = explode(' ', $textMessage,2);
+	
+    if(in_array(strtoupper($key[0]),$keywords_list)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 public function getReplyTicketReference($textMessage){
     $key = explode(' ', $textMessage,3);
     return strtoupper($key[1]);

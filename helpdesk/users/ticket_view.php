@@ -14,7 +14,9 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 
 
 <title>PLEMA Helpdesk</title>
+
 <a href="dashboard.php" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Go back to list</a>
+
 <div class="container" style="margin-top:2%">
 	<section class="comment-list">
 

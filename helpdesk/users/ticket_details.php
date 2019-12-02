@@ -14,7 +14,9 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 
 
 <title>PLEMA Helpdesk</title>
+
 <a href="dashboard.php" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Go back to list</a>
+
 <div class="container" style="margin-top:2%">
 	<section class="comment-list">
 		<?php foreach ($messages as $index=>$value) {  ?>
@@ -55,7 +57,10 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 			<article class="row justify-content-center">
 				<div class="col-md-10 col-sm-10">
 					<div class="form-group">
+            <div class="text-center">
+            <a href="dashboard.php" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Go back to list</a>
 						<input type="submit" name="reply" id="replyBtn" class="btn btn-success" value="Reply" />
+            </div>
 					</div>
 				</div>
 			</article>
@@ -63,6 +68,9 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 			<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>" />
 			<input type="hidden" name="action" id="action" value="saveTicketReplies" />
 		</form>
+
+
+
 	</section>
 </div>
 

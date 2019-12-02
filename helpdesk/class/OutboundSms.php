@@ -55,9 +55,10 @@ public function returnExpiredTickets(){
     $curr = date("Y/m/d H:i:s", strtotime('now'));
     $sqlQuery = "SELECT Tickets.MobileNumber FROM Tickets".
 	" WHERE  expiry_date < '".$curr.
-    "' AND Status <> 'Closed'";
+    "' AND Status <> 'Closed' and assignedTo <> null;";
 	$result = mysqli_query($this->dbConnect, $sqlQuery);
 	$data= array();
+ $counter=0;
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
            // assignAgent($row["MobileNumber"],"");
             $sqlUpdate = "UPDATE Tickets"."
@@ -66,8 +67,9 @@ public function returnExpiredTickets(){
             WHERE MobileNumber = '".$row["MobileNumber"]."'
             AND Status <> 'Closed';";
             mysqli_query($this->dbConnect, $sqlUpdate);
+            $counter++;
         }
-    return "success";	
+    return $counter." messages had been returned to dashboard.";	
     
 }
 
