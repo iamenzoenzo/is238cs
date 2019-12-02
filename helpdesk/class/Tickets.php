@@ -166,7 +166,7 @@ class Tickets extends Database {
 			FROM
 				teamlaban.".$this->ticketTable." t
 				LEFT JOIN ".$this->secondaryTableSchema.".users u on u.id = t.assignedTo and u.id is not null
-			".$sqlWhere." ORDER BY t.createDate DESC";	
+			".$sqlWhere." ORDER BY t.createDate ASC";	
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		
