@@ -30,7 +30,7 @@ $tickets = $tickets->getAllTickets();
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
-<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>" />
+<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>"> </input>
 <div class="container dash-container rounded" style="margin-top:2%;">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
@@ -83,8 +83,8 @@ $tickets = $tickets->getAllTickets();
 	
 	$('.claimThreadBtn').click(function(){
 		var subscriberId = $(this).attr("id").split('-')[1];
-		var userId = $('#userId').attr("id");
-		
+		var userId = $('#userId').val();
+
 		$.ajax({
 			url:'../users/TicketManager.php',
 			type:'POST',

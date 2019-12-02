@@ -236,11 +236,13 @@ class Tickets extends Database {
 	//assign agent to ticket, set status to In Progress and set expiry to 24 hours
 	public function assignAgent($MobileNumber,$AgentName){
 		$expiry_date = date("Y/m/d H:i:s", strtotime('now + 1 days'));
+		
 		$sqlQuery = "UPDATE Tickets"."
 		SET assignedTo = '".$AgentName."',
 		Status='In Progress', expiry_date='".$expiry_date."' 
 		WHERE MobileNumber = '".$MobileNumber."'
 		AND Status <> 'Closed';";
+
 		mysqli_query($this->dbConnect, $sqlQuery);
 		return "success";	
 	}
