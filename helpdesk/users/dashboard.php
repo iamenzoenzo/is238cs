@@ -31,7 +31,7 @@ $tickets = $tickets->getAllTickets($_SESSION['user']);
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
-<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>"> </input>
+<input type="hidden" class="userId" id="userId-<?php echo $_SESSION['user']; ?>"> </input>
 <div class="container dash-container rounded" style="margin-top:2%;">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
@@ -88,27 +88,27 @@ $tickets = $tickets->getAllTickets($_SESSION['user']);
 	
 	$('.claimThreadBtn').click(function(){
 		var subscriberId = $(this).attr("id").split('-')[1];
-		var userId = $('#userId').val();
+		var userId = $('.userId').attr("id").split('-')[1];
 
-		console.log(userId);
+		// console.log(userId);
 
-		// $.ajax({
-		// 	url:'../users/TicketManager.php',
-		// 	type:'POST',
-		// 	data:{
-		// 		action:'claimThread',
-		// 		subscriberId: subscriberId,
-		// 		status: 'In Progress',
-		// 		userId: userId
-		// 	},
-		// 	success: function(){
-		// 		setTimeout(function(){// wait for 5 secs(2)
-		// 			location.reload(); // then reload the page.(3)
-		// 		}, 5000);
-		// 	},
-		// 	error: function(){
-		// 	}
-		// });
+		$.ajax({
+			url:'../users/TicketManager.php',
+			type:'POST',
+			data:{
+				action:'claimThread',
+				subscriberId: subscriberId,
+				status: 'In Progress',
+				userId: userId
+			},
+			success: function(){
+				setTimeout(function(){// wait for 5 secs(2)
+					location.reload(); // then reload the page.(3)
+				}, 5000);
+			},
+			error: function(){
+			}
+		});
 	});
 </script>
 
