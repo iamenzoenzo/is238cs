@@ -1,6 +1,6 @@
 <?php
 include 'helpdesk/init.php';
-date_default_timezone_set('Asia/Manila'); 
+date_default_timezone_set('Asia/Manila');
 
 /*
 $json_data = '{
@@ -54,7 +54,7 @@ $access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 
 $randomTicketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
 
-$autoReplyMessageText="Thank you for contacting #TeamLaban's PLEMA. Our helpdesks officers will attend to you soon.";
+$autoReplyMessageText="Thank you for contacting #TeamLaban's PLEMA. Our helpdesks officers will attend to you soon. To get the list of keywords, simply text PLEMA-HELP.";
 
 if(isset($messId)){
     //Save the message
@@ -62,25 +62,25 @@ if(isset($messId)){
 
     //Check if not multipart message
     if($numberOfMessagesInThisBatch==1){
-        
-        
+
+
         $inbound->saveToTickets($MobileNo,$message,'Open');
         //Delete message by id
-        $inbound->deleteMessagesByMessageId($messId);                
+        $inbound->deleteMessagesByMessageId($messId);
         //auto-reply to subscriber
         $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
 
     }else{
-        
+
         //check if all messages were received, else do nothing
         $allMessagesReceived = $inbound->checkIfAllMessagesReceived($multipartRefId,$numberOfMessagesInThisBatch);
-        
+
         if($allMessagesReceived==1){
-            
+
             //get all messages and concat it.
             $message="";
             $messages = $inbound->getMessagesByMultipartReferenceId($multipartRefId);
-            
+
             foreach($messages as $mess){
                 $message=$message.$mess['message'];
             }
@@ -90,8 +90,8 @@ if(isset($messId)){
             //Delete message by multiPartId
             $inbound->deleteMessagesByMultipartRefId($multipartRefId);
             //auto-reply to subscriber
-            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);                 
-                        
+            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$autoReplyMessageText);
+
         }else{
             echo "still have pending messages";
         }
