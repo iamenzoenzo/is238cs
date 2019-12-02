@@ -5,16 +5,16 @@ date_default_timezone_set('Asia/Manila');
 // require '../class/Subscriber.php';
 
 
-class Tickets extends Database {  
+class Tickets extends Database {
     private $ticketTable = 'Tickets';
 	private $ticketRepliesTable = 'Ticket_replies';
 	private $tableSchema = 'teamlaban';
 	private $secondaryTableSchema = 'plemadb';
 	private $dbConnect = false;
 
-	public function __construct(){		
+	public function __construct(){
         $this->dbConnect = $this->dbConnect();
-	} 
+	}
 
 	public function getAllTickets($user){
 
@@ -31,22 +31,22 @@ class Tickets extends Database {
 		SELECT
 			t.MobileNumber as subscriber_name,
 			t.Status as thread_status
-		FROM teamlaban.".$this->ticketTable." t". 
+		FROM teamlaban.".$this->ticketTable." t".
 			$sqlWhere;
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		$numRows = mysqli_num_rows($result);
 
-		$ticketData = array();	
-		
-		while( $ticket = mysqli_fetch_assoc($result) ) {		
-			$ticketRows = array();			
+		$ticketData = array();
+
+		while( $ticket = mysqli_fetch_assoc($result) ) {
+			$ticketRows = array();
 			$ticketRows[] = $ticket['subscriber_name'];
 			$ticketRows[] = ($ticket['thread_status'] == 'Open' || $ticket['thread_status'] == 'In Progress' ? 'Active' : $ticket['thread_status']);
 			$ticketRows[] = '<a href="../users/ticket_view.php?id='.$ticket['subscriber_name'].'" class="btn btn-success btn-xs view-action-btn"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
 							'<a href="../users/ticket_details.php?id='.$ticket['subscriber_name'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>'.' '.
-							'<a href="#" class="btn btn-warning btn-xs update-action-btn claimThreadBtn" value="'.$ticket['subscriber_name'].'" id="claimThreadBtn-'.$ticket['subscriber_name'].'"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></a>';
-			
+							'<a href="#" class="btn btn-info btn-xs update-action-btn claimThreadBtn" value="'.$ticket['subscriber_name'].'" id="claimThreadBtn-'.$ticket['subscriber_name'].'"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></a>';
+
 			$ticketData[] = $ticketRows;
 		}
 		$output = array(
@@ -54,29 +54,29 @@ class Tickets extends Database {
 			"recordsFiltered" 	=> 	$numRows,
 			"data"    			=> 	$ticketData
 		);
-		
+
 		return $output['data'];
 	}
 
 	public function getRepliedTitle($title) {
 		$title = $title.'<span class="answered">Answered</span>';
-		return $title; 		
+		return $title;
 	}
-	
-	public function createTicket($subscriberId, $message, $timestamp, $status, $user) {      
 
-		if(!empty($_POST['subscriberId']) && !empty($_POST['message'])) {                
-			
+	public function createTicket($subscriberId, $message, $timestamp, $status, $user) {
+
+		if(!empty($_POST['subscriberId']) && !empty($_POST['message'])) {
+
 			$date = new DateTime();
 			$date = $date->getTimestamp();
-			
+
 			$queryInsert = "
 				INSERT INTO ".$this->tableSchema.".".$this->ticketTable."
 					(MobileNumber, message, assignedTo, createDate, CreatedBy, Status)
 				VALUES
 					('".$subscriberId."', '".$message."', '".$user."', '".$timestamp."', '".$user."', '".$status."');
-				";			
-			
+				";
+
 			mysqli_query($this->dbConnect, $queryInsert);
 
 			$this->updateSubscriberMessageInfo($subscriberId,'Closed','status');
@@ -87,7 +87,7 @@ class Tickets extends Database {
 
 		$updateTicket = " UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
 		$sqlWhere = "WHERE MobileNumber = '".$subscriberId."' AND Status ='In Progress'";
-		
+
 		if($infoType == 'status'){
 			$updateTicket .= " Status = '".$ticketInfo."' ".$sqlWhere;
 		}
@@ -106,12 +106,12 @@ class Tickets extends Database {
 
 		return "success";
 	}
-	
+
 	public function updateTicketInfo($ticketId,$ticketInfo,$infoType){
-		
+
 		$updateTicket = "UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
 		$sqlWhere = "WHERE idTickets = ".$ticketId;
-		
+
 		if($infoType == 'status'){
 			$updateTicket .= " Status = '".$ticketInfo."' ".$sqlWhere;
 		}
@@ -124,9 +124,9 @@ class Tickets extends Database {
 		return [$this->getTicketDetails($ticketId),$updateTicket];
 	}
 
-	public function getTicketDetails($id) {  		
+	public function getTicketDetails($id) {
 		$sqlQuery = "
-			SELECT 
+			SELECT
 				t.idTickets as ticket_id,
 				t.TicketReference as ticket_reference,
 				t.MobileNumber as ticket_author,
@@ -134,13 +134,13 @@ class Tickets extends Database {
 				t.assignedTo as ticket_assignee,
 				t.createDate as ticket_creation,
 				t.status as ticket_status
-			FROM teamlaban.".$this->ticketTable." t 
-			WHERE t.idTickets = ".$id;	
+			FROM teamlaban.".$this->ticketTable." t
+			WHERE t.idTickets = ".$id;
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		
-		return $row;       
-	} 
+
+		return $row;
+	}
 
 	public function getSubscriberMessages($subscriberNumber){
 
@@ -151,9 +151,9 @@ class Tickets extends Database {
 				-- and createdby in list of users
 				AND t.MobileNumber = '".$subscriberNumber."'
 		";
-		
+
 		$sqlQuery = "
-			SELECT 
+			SELECT
 				t.idTickets as message_id,
 				t.MobileNumber as subscriber_id,
 				t.message as message,
@@ -166,12 +166,12 @@ class Tickets extends Database {
 			FROM
 				teamlaban.".$this->ticketTable." t
 				LEFT JOIN ".$this->secondaryTableSchema.".users u on u.id = t.assignedTo and u.id is not null
-			".$sqlWhere." ORDER BY t.createDate ASC";	
+			".$sqlWhere." ORDER BY t.createDate ASC";
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
-		
-		while( $ticket = mysqli_fetch_assoc($result) ) {		
-			$ticketRows = array();			
+
+		while( $ticket = mysqli_fetch_assoc($result) ) {
+			$ticketRows = array();
 			$ticketRows[] = $ticket['message_id'];
 			$ticketRows[] = $ticket['subscriber_id'];
 			$ticketRows[] = $ticket['message'];
@@ -181,33 +181,33 @@ class Tickets extends Database {
 
 			$ticketData[] = $ticketRows;
 		}
-		
+
 		return $ticketData;
-		
-		return $row;  
+
+		return $row;
 	}
-	   
+
 	public function saveTicketReplies () {
 
-		
+
 		if($_POST['message']) {
 			$date = new DateTime();
 			$date = $date->getTimestamp();
-			
-			$queryInsert = "INSERT INTO ".$this->ticketRepliesTable." (user, text, ticket_id, date) 
+
+			$queryInsert = "INSERT INTO ".$this->ticketRepliesTable." (user, text, ticket_id, date)
 				VALUES('".$_SESSION["userid"]."', '".$_POST['message']."', '".$_POST['ticketId']."', '".$date."')";
-			mysqli_query($this->dbConnect, $queryInsert);				
-			
-			$updateTicket = "UPDATE ".$this->ticketTable." 
-				SET last_reply = '".$_SESSION["userid"]."', user_read = '0', admin_read = '0' 
-				WHERE id = '".$_POST['ticketId']."'";				
+			mysqli_query($this->dbConnect, $queryInsert);
+
+			$updateTicket = "UPDATE ".$this->ticketTable."
+				SET last_reply = '".$_SESSION["userid"]."', user_read = '0', admin_read = '0'
+				WHERE id = '".$_POST['ticketId']."'";
 			mysqli_query($this->dbConnect, $updateTicket);
-		} 
+		}
 
 		echo ['success'=> true];
-	}	
+	}
 
-	public function getTicketReplies($id) {  		
+	public function getTicketReplies($id) {
 		$sqlQuery = "
 			SELECT
 				t.idTicket_replies as reply_id,
@@ -221,11 +221,11 @@ class Tickets extends Database {
 			WHERE
 				t.ticket_id = ".$id."
 			ORDER BY t.created
-		";	
+		";
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
        	$data= array();
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-			$data[]=$row;            
+			$data[]=$row;
 		}
         return $data;
 	}
@@ -233,14 +233,14 @@ class Tickets extends Database {
 	//assign agent to ticket, set status to In Progress and set expiry to 24 hours
 	public function assignAgent($MobileNumber,$AgentName){
 		$expiry_date = date("Y/m/d H:i:s", strtotime('now + 1 days'));
-		
+
 		$sqlQuery = "UPDATE Tickets"."
 		SET assignedTo = '".$AgentName."',
-		Status='In Progress', expiry_date='".$expiry_date."' 
+		Status='In Progress', expiry_date='".$expiry_date."'
 		WHERE MobileNumber = '".$MobileNumber."'
 		AND Status <> 'Closed';";
 
 		mysqli_query($this->dbConnect, $sqlQuery);
-		return "success";	
+		return "success";
 	}
 }
