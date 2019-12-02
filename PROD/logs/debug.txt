@@ -1,0 +1,80 @@
+
+ACCESS TOKEN: hDcM8YAzmor3HnQn2m_lhuzBik9iiyyCdtwd7ogb9PU
+MOBILE NUMBER: 9357121042
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+ACCESS TOKEN: x_TWieoCdz8auWZPzik2XcR1_bf5Ax-NlKq_DCX3s94
+MOBILE NUMBER: 9357121042
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+ACCESS TOKEN: 
+MOBILE NUMBER: 
+NOTIFY---
+
+Wed, 13 Nov 2019 12:48:21 +0000 - URL:/notify.phpNOTIFY---
+
+Wed, 13 Nov 2019 12:56:31 +0000 - URL:/notify.phpNOTIFY---
+
+Wed, 13 Nov 2019 12:57:34 +0000 - URL:/notify.phpWed, 13 Nov 2019 14:22:54 +0000| SMS Data: <br />
+<b>Notice</b>:  Array to string conversion in <b>/var/www/html/notify.php</b> on line <b>55</b><br />
+Array<br />
+<b>Notice</b>:  Array to string conversion in <b>/var/www/html/notify.php</b> on line <b>55</b><br />
+TEST|ArrayTEST|{"inboundSMSMessageList":
+                {"inboundSMSMessage":[
+                    {
+                        "dateTime":"Thu Nov 14 2019 14:04:09 GMT+0000 (UTC)",
+                        "destinationAddress":"tel:21580472",
+                        "messageId":"5dcd5ed906698f02f18b8052",
+                        "message":" this FREE renewal now by signing up through this link: bit.ly/SMACrenew. T&Cs apply. DTI19379S2019",
+                        "resourceURL":null,
+                        "senderAddress":"tel:+639363139273",
+                        "multipartRefId":"121212",
+                        "multipartSeqNum":"2"
+                    }],
+                    "numberOfMessagesInThisBatch":"2",
+                    "resourceURL":null,
+                    "totalNumberOfPendingMessages":0
+                }
+            }TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:21:05 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd102f145526e546defac59","message":"Hello jeff","resourceURL":null,"senderAddress":"tel:+639271280446"}],"numberOfMessagesInThisBatch":1,"resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:24:05 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd103a52439ae9ebf1fff4d","message":"You are now subscribed to TeamLaban and allowed your mobile number:\n- to receive sms\n\n\nfor the use of this service. To unsubscribe for free, text STOP to","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"717654653daf24fe67977174859b17d7","multipartSeqNum":"1"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:24:07 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd103a7df5589694444c7ce","message":" 21588207 or text HELP for other options.To know more about this service, text INFO to 21588207, or email bvcerbas@up.edu.ph. This message is FREE of cha","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"717654653daf24fe67977174859b17d7","multipartSeqNum":"2"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:24:18 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd103b2642eec7b8eb91eb2","message":"rge.","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"717654653daf24fe67977174859b17d7","multipartSeqNum":"3"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{
+  "inboundSMSMessageList": {
+    "inboundSMSMessage": [
+      {
+        "dateTime": "Sun Nov 17 2019 08:24:18 GMT+0000 (UTC)",
+        "destinationAddress": "tel:21588207",
+        "messageId": "5dd103b2642eec7b8eb91eb2",
+        "message": "rge.",
+        "resourceURL": null,
+        "senderAddress": "tel:+639271280446",
+        "multipartRefId": "717654653daf24fe67977174859b17d7",
+        "multipartSeqNum": "3"
+      }
+    ],
+    "numberOfMessagesInThisBatch": "3",
+    "resourceURL": null,
+    "totalNumberOfPendingMessages": 0
+  }
+}TEST|{
+  "inboundSMSMessageList": {
+    "inboundSMSMessage": [
+      {
+        "dateTime": "Sun Nov 17 2019 08:24:18 GMT+0000 (UTC)",
+        "destinationAddress": "tel:21588207",
+        "messageId": "5dd103b2642eec7b8eb91eb2",
+        "message": "rge.",
+        "resourceURL": null,
+        "senderAddress": "tel:+639271280446",
+        "multipartRefId": "717654653daf24fe67977174859b17d7",
+        "multipartSeqNum": "3"
+      }
+    ],
+    "numberOfMessagesInThisBatch": "3",
+    "resourceURL": null,
+    "totalNumberOfPendingMessages": 0
+  }
+}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:50:50 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd109eab39be111b3add082","message":"You are now subscribed to TeamLaban and allowed your mobile number:\n- to receive sms\n\n\nfor the use of this service. To unsubscribe for free, text STOP to","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"492c3a3f76c4261633522b8690ccc621","multipartSeqNum":"1"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:50:52 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd109ec1de7d41b73e9b7af","message":" 21588207 or text HELP for other options.To know more about this service, text INFO to 21588207, or email bvcerbas@up.edu.ph. This message is FREE of cha","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"492c3a3f76c4261633522b8690ccc621","multipartSeqNum":"2"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:50:36 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd109dc1e9d8c67d9c9f8e3","message":"rge.","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"492c3a3f76c4261633522b8690ccc621","multipartSeqNum":"3"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:51:38 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd10a1a5ab1814fcb9143dc","message":"You are now subscribed to TeamLaban and allowed your mobile number:\n- to receive sms\n\n\nfor the use of this service. To unsubscribe for free, text STOP to","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"f198012a90ffa1ae7c1878b8045d24df","multipartSeqNum":"1"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:51:27 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd10a0fd6a8ceff2d6f0887","message":" 21588207 or text HELP for other options.To know more about this service, text INFO to 21588207, or email bvcerbas@up.edu.ph. This message is FREE of cha","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"f198012a90ffa1ae7c1878b8045d24df","multipartSeqNum":"2"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}TEST|{"inboundSMSMessageList":{"inboundSMSMessage":[{"dateTime":"Sun Nov 17 2019 08:51:38 GMT+0000 (UTC)","destinationAddress":"tel:21588207","messageId":"5dd10a1ab39be10a6dadd0fa","message":"rge.","resourceURL":null,"senderAddress":"tel:+639271280446","multipartRefId":"f198012a90ffa1ae7c1878b8045d24df","multipartSeqNum":"3"}],"numberOfMessagesInThisBatch":"3","resourceURL":null,"totalNumberOfPendingMessages":0}}
