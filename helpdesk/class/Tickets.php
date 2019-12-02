@@ -14,6 +14,7 @@ class Tickets extends Database {
 	public function __construct(){		
         $this->dbConnect = $this->dbConnect();
 	} 
+
 	public function getAllTickets(){
 
 		$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
@@ -43,7 +44,7 @@ class Tickets extends Database {
 			$ticketRows[] = $ticket['thread_status'];
 			$ticketRows[] = '<a href="../users/ticket_view.php?id='.$ticket['subscriber_name'].'" class="btn btn-success btn-xs view-action-btn"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>'.' '.
 							'<a href="../users/ticket_details.php?id='.$ticket['subscriber_name'].'" class="btn btn-warning btn-xs update-action-btn"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>'.' '.
-							'<a href="#" class="btn btn-warning btn-xs update-action-btn" id="claimThreadBtn"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></a>';
+							'<a href="#" class="btn btn-warning btn-xs update-action-btn claimThreadBtn" value="'.$ticket['subscriber_name'].'" id="claimThreadBtn-'.$ticket['subscriber_name'].'"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></a>';
 			
 			$ticketData[] = $ticketRows;
 		}
@@ -84,7 +85,7 @@ class Tickets extends Database {
 
 	public function updateSubscriberMessageInfo($subscriberId,$ticketInfo,$infoType){
 
-		$updateTicket = "UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
+		$updateTicket = " UPDATE ".$this->tableSchema.".".$this->ticketTable." SET ";
 		$sqlWhere = "WHERE MobileNumber = '".$subscriberId."' AND Status ='In Progress'";
 		
 		if($infoType == 'status'){
@@ -98,6 +99,18 @@ class Tickets extends Database {
 		$access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
 		$outbound->sendSms($api_short_code,$access_token,$MobileNo,$message);
 
+	}
+
+	public function updateThreadMessageStatus($subscriberId,$status,$assignee){
+
+		$sqlWhere = " WHERE MobileNumber = ".$subscriberId." AND Status in ('Open') ";
+		$updateTicket = " UPDATE ".$this->tableSchema.".".$this->ticketTable." SET Status = 'In Progress'".$sqlWhere;
+
+		mysqli_query($this->dbConnect, $updateTicket);
+
+		$this->assignAgent($subscriberId,$assignee);
+
+		return "success";
 	}
 	
 	public function updateTicketInfo($ticketId,$ticketInfo,$infoType){
@@ -155,7 +168,7 @@ class Tickets extends Database {
 				t.expiry_date as message_expiry
 			FROM
 				teamlaban.".$this->ticketTable." t
-				LEFT JOIN ".$this->secondaryTableSchema.".users u on u.id = t.CreatedBy and u.id is not null
+				LEFT JOIN ".$this->secondaryTableSchema.".users u on u.id = t.assignedTo and u.id is not null
 			".$sqlWhere." ORDER BY t.createDate DESC";	
 
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
@@ -218,5 +231,17 @@ class Tickets extends Database {
 			$data[]=$row;            
 		}
         return $data;
+	}
+
+	//assign agent to ticket, set status to In Progress and set expiry to 24 hours
+	public function assignAgent($MobileNumber,$AgentName){
+		$expiry_date = date("Y/m/d H:i:s", strtotime('now + 1 days'));
+		$sqlQuery = "UPDATE Tickets"."
+		SET assignedTo = '".$AgentName."',
+		Status='In Progress', expiry_date='".$expiry_date."' 
+		WHERE MobileNumber = '".$MobileNumber."'
+		AND Status <> 'Closed';";
+		mysqli_query($this->dbConnect, $sqlQuery);
+		return "success";	
 	}
 }

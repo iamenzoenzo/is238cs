@@ -22,10 +22,13 @@ if(!empty($_POST['action']) && $_POST['action'] == 'getTicketReplies') {
 	print($ticketReplies);
 	return $ticketReplies;
 }
+if(!empty($_POST['action']) && $_POST['action'] == 'claimThread') {
+	// update modifier, modified date, status
+	$updatedTicket = $tickets->updateThreadMessageStatus($_POST['subscriberId'],$_POST['status'],$_POST['userId']);
+}
 if(!empty($_POST['action']) && $_POST['action'] == 'updateTicket') {
 	// update modifier, modified date, status
 	$updatedTicket = $tickets->updateTicketInfo($_POST['id'],$_POST['info'],$_POST['data_type']);
-	print_r($updatedTicket);
 	return $updatedTicket;
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'saveTicketReplies') {

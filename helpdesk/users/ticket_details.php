@@ -67,7 +67,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 </div>
 
 
-<script>
+<script type="text/javascript">
 	$('#replyBtn').click(function(){
 
 		var formData =  $('#ticketReply').serializeArray();
@@ -78,7 +78,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 		var dateTime = date+' '+time;
-		console.log(message+'//'+userId);
+		
 		$.ajax({
 			url:'TicketManager.php',
 			type:'POST',

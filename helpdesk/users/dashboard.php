@@ -30,6 +30,7 @@ $tickets = $tickets->getAllTickets();
 ?>
 
 <title>PLeMA - Philippine Local eMergency App</title>
+<input type="hidden" name="userId" id="userId" value="<?php echo $_SESSION['user']; ?>" />
 <div class="container dash-container rounded" style="margin-top:2%;">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
@@ -79,38 +80,28 @@ $tickets = $tickets->getAllTickets();
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <script>
-	$(document).ready(function() {
-		// $.ajax({
-		// 		url: '../users/TicketManager.php',
-		// 		type:'POST',
-		// 		data: {
-		// 				action:'showAllTickets'
-		// 		},
-		// 		error: function() {
-
-		// 		},
-		// 		dataType: 'json',
-		// 		success: function(data) {
-		// 			$('#listTickets').dataTable({
-		// 				"lengthChange": false,
-		// 				"processing":true,
-		// 				"dataSrc": "",
-		// 				"order":[],
-		// 				"data": data['data'],
-		// 				"columnDefs":[
-		// 					{
-		// 						"targets":[0, 1, 2, 3, 4, 5, 6, 7],
-		// 						"orderable":false,
-		// 					},
-		// 				],
-		// 				"pageLength": 10
-		// 			});
-		// 			console.log('yehey');
-		// 		}
-		// });
-	});
-	$('#claimThreadBtn').click(function(){
-		console.log('claim thread');
+	
+	$('.claimThreadBtn').click(function(){
+		var subscriberId = $(this).attr("id").split('-')[1];
+		var userId = $('#userId').attr("id");
+		
+		$.ajax({
+			url:'../users/TicketManager.php',
+			type:'POST',
+			data:{
+				action:'claimThread',
+				subscriberId: subscriberId,
+				status: 'In Progress',
+				userId: userId
+			},
+			success: function(){
+				setTimeout(function(){// wait for 5 secs(2)
+					location.reload(); // then reload the page.(3)
+				}, 5000);
+			},
+			error: function(){
+			}
+		});
 	});
 </script>
 
