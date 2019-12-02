@@ -10,13 +10,14 @@
   <meta name="description" content="">
 
   <title>PLEMA Digital</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
@@ -49,17 +50,26 @@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="index.php">
+                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                        HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="faq.html"><span class="mbrib-question mbr-iconfont mbr-iconfont-btn"></span>
 
+                        FAQ</a>
+                </li></ul>
 
         </div>
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/o">portfolio web templates</a></section><section class="header8 cid-rIIK2ZOBXa mbr-parallax-background" id="header8-c">
+<section class="engine"><a href="https://mobirise.info/l">free website templates</a></section><section class="header8 cid-rIIK2ZOBXa mbr-parallax-background" id="header8-c">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(118, 118, 118);">
+    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 51, 102);">
     </div>
 
     <div class="container align-center">
@@ -73,7 +83,7 @@
                          <span class="mbr-iconfont mbri-play" style="color: rgb(20, 157, 204); fill: rgb(20, 157, 204);"></span>
                 </div>
 
-                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="/helpdesk/index.php">Login</a></div>
+                <div class="mbr-section-btn text-center"><a class="btn btn-md btn-primary display-4" href="https://www.plema.digital/users/login.php">Login</a></div>
             </div>
         </div>
     </div>
@@ -131,7 +141,7 @@
                         <a href="https://www.instagram.com/mobirise/" target="_blank">
 
                         </a>
-                        <a href="https://www.youtube.com/channel/UCwFaEpurpgew92ivDaZeQhw" target="_blank">
+                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">
 
                         </a>
                     </div>
