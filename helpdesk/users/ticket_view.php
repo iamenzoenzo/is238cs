@@ -25,13 +25,13 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 			<article class="row justify-content-center">
 				<div class="col-md-10 col-sm-10" style="margin-top:10px;">
 					<div class="card panel panel-default arrow right">
-						<div class="card-header panel-heading">
+						<div class="card-header panel-heading <?php echo ($value[4] == $value[1] ? "bg-info" : "bg-success"); ?>">
 							<div class = "row">
 								<div class="col-md-9 col-sm-9">
 									<span class="glyphicon glyphicon-user"></span> <?php echo $value[4]; ?>
 								</div>
 								<div class="col-md-3 col-sm-3">
-									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
+									<time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
 								</div>
 							</div>
 						</div>
