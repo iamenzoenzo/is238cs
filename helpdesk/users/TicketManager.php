@@ -34,7 +34,11 @@ if(!empty($_POST['action']) && $_POST['action'] == 'updateTicket') {
 if(!empty($_POST['action']) && $_POST['action'] == 'saveTicketReplies') {
 	if(isset($_POST['message']) && isset($_POST['subscriberId'])){
 		$tickets->createTicket($_POST['subscriberId'],$_POST['message'],$_POST['timestamp'],$_POST['status'],$_POST['userId']);
-		// return true;
+		
+		$access_token = $subs->getAccessTokenByMobileNumber($_POST['subscriberId']);
+		$outbound->sendSms($api_short_code,$access_token,$_POST['subscriberId'],$_POST['message']);
+
+		return true;
 	}
 	else{
 		return true;

@@ -2,7 +2,8 @@
 date_default_timezone_set('Asia/Manila');
 
 // require '../init.php';
-// require '../class/Database.php';
+// require '../class/Subscriber.php';
+
 
 class Tickets extends Database {  
     private $ticketTable = 'Tickets';
@@ -79,7 +80,6 @@ class Tickets extends Database {
 			mysqli_query($this->dbConnect, $queryInsert);
 
 			$this->updateSubscriberMessageInfo($subscriberId,'Closed','status');
-			$this->sendSmsReply($subscriberId,$message);
 		}
 	}
 
@@ -93,12 +93,6 @@ class Tickets extends Database {
 		}
 
 		mysqli_query($this->dbConnect, $updateTicket);
-	}
-
-	public function sendSmsReply($MobileNo,$message){
-		$access_token = $subs->getAccessTokenByMobileNumber($MobileNo);
-		$outbound->sendSms($api_short_code,$access_token,$MobileNo,$message);
-
 	}
 
 	public function updateThreadMessageStatus($subscriberId,$status,$assignee){
