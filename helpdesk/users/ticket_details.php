@@ -29,7 +29,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 									<span class="glyphicon glyphicon-user"></span> <?php echo $value[4]; ?>
 								</div>
 								<div class="col-md-3 col-sm-3">
-									<span class="glyphicon glyphicon-time"></span> <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
+									<time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?php echo $value[3]; ?></time>
 								</div>
 							</div>
 						</div>
@@ -86,7 +86,7 @@ $messages = $tickets->getSubscriberMessages($_GET['id']);
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 		var dateTime = date+' '+time;
-		
+
 		$.ajax({
 			url:'TicketManager.php',
 			type:'POST',
