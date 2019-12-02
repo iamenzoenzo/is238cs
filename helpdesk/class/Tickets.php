@@ -23,7 +23,7 @@ class Tickets extends Database {
 		$sqlWhere = "
 		WHERE
 			t.Status is not null
-			AND t.Status in ('Open','In Progress')
+			AND t.Status in ('Open','In Progress','Closed')
 			AND (t.assignedTo is null or t.assignedTo = '".$user."')
 		GROUP BY  t.MobileNumber ";
 
