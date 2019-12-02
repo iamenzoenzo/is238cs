@@ -164,7 +164,10 @@ class Tickets extends Database {
 				t.MobileNumber as subscriber_id,
 				t.message as message,
 				t.createDate as message_created,
-				concat(u.fname,' ',u.lname) as message_creator,
+				CASE
+					WHEN t.CreatedBy = t.MobileNumber THEN t.MobileNumber
+					WHEN t.CreatedBy = u.id THEN concat(u.fname,'',u.lname)
+				END as message_creator,
 				t.expiry_date as message_expiry
 			FROM
 				teamlaban.".$this->ticketTable." t
