@@ -9,8 +9,8 @@ $json_data = '{
         {
           "dateTime": "Sun Nov 17 2019 08:21:05 GMT+0000 (UTC)",
           "destinationAddress": "tel:21588207",
-          "messageId": "5dd102f145526e546defac59",
-          "message": "this is the message",
+          "messageId": "a",
+          "message": "plema-get mnl",
           "resourceURL": null,
           "senderAddress": "tel:+639363139273",
           "multipartRefId": "00000xx1xxx",
@@ -22,8 +22,8 @@ $json_data = '{
       "totalNumberOfPendingMessages": 0
     }
   }';
-
 */
+
 //get POST data from globelabs API via file_get_contents method
 $json_data = file_get_contents('php://input');
 
@@ -56,7 +56,7 @@ $randomTicketRef = strtoupper(substr(md5(microtime()),rand(0,26),5));
 
 $autoReplyMessageText="Thank you for contacting #TeamLaban's PLEMA. Our helpdesks officers will attend to you soon.";
 
-if(isset($messId)){
+if(isset($message)){
     //Save the message
     $inbound->saveMessages($dateTime,$destinationAddress,$messId,$message,$resourceURL,$senderAddress,$numberOfMessagesInThisBatch,$totalNumberOfPendingMessages,$multipartRefId,$multipartSeqNum,0);
 
@@ -64,32 +64,39 @@ if(isset($messId)){
     if($numberOfMessagesInThisBatch==1){
 
         if($inbound->hasKeyword($message,$keywords_list)){
-    
             $key = explode(' ', $message,4);
+        
+            //get all city codes
+            $cc = $phonenumber->getCityCodes();
+            $allCityCodes="";
+            foreach($cc as $c){
+                $allCityCodes=$allCityCodes.$c['city_code'].",";
+            }  
+        
+            //get all agency codes
+            $ac = $phonenumber->getAgencyCodes();
+            $allAgencyCodes="";
+            foreach($ac as $a){
+                $allAgencyCodes=$allAgencyCodes.$a['agency_code'].",";
+            }
+
+            $cp = $phonenumber->getPhoneNumberByCityCode(strtoupper($key[1]));
+            $allCityPhones="";
+            foreach($cp as $pp){
+                $allCityPhones=$allCityPhones.$pp['agency_code'].": ".$pp['phone_number'].", ";
+            }
         
             //PLEMA-HELP 
             if(strtoupper($key[0])=="PLEMA-HELP"){  
-
-                //get all city codes
-                $cc = $phonenumber->getCityCodes();
-                $allCityCodes="";
-                foreach($cc as $c){
-                    $allCityCodes=$allCityCodes.$c['city_code'].",";
-                }  
-
-                //get all agency codes
-                $ac = $phonenumber->getAgencyCodes();
-                $allAgencyCodes="";
-                foreach($ac as $a){
-                    $allAgencyCodes=$allAgencyCodes.$a['agency_code'].",";
-                }
-
+        
+                
+        
                 $finalMessage = "Thanks for contacting PLEMA. To get all emergency phone numbers of a place, text PLEMA-GET SPACE CITY CODE. Example: PLEMA-GET MNL. Here are available city codes you can use: "
                 .substr($allCityCodes,0,strlen($allCityCodes)-1)
                 .". To get specific phone number of government agencies, text PLEMA-GET SPACE CITY CODE SPACE AGENCY CODE. Example: PLEMA-GET MNL PNP. "
                 ."Here are available agency codes you can use: "
                 .substr($allAgencyCodes,0,strlen($allAgencyCodes)-1);
-
+        
                 //auto-reply to subscriber
                 $outbound->sendSms($api_short_code,$access_token,$MobileNo,$finalMessage);
                 
@@ -97,34 +104,47 @@ if(isset($messId)){
             //PLEMA-GET
             else{
                 //city code exist
-                if($phonenumber->validCityCode($key[1])){               
+                if($phonenumber->validCityCode(strtoupper($key[1]))){               
                     $phones=""; 
-                    if($phonenumber->validAgencyCode($key[2])){            
-                        $AgencyPhones = $phonenumber->getPhoneNumberByAgencyCode($key[1],$key[2]);
-                        foreach($AgencyPhones as $pn){
-                            $phones=$phones.$pn['phone_number'].",";
+                    if(count($key)>2){
+                        if($phonenumber->validAgencyCode(strtoupper($key[2]))){            
+                            $AgencyPhones = $phonenumber->getPhoneNumberByAgencyCode($key[1],$key[2]);
+                            foreach($AgencyPhones as $pn){
+                                $phones=$phones.$pn['phone_number'].",";
+                            }
+                            $finalMessage = "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
+                            .$phonenumber->getCityNameByCityCode(strtoupper($key[1]))." ".strtoupper($key[2]).": "
+                            .substr($phones,0,strlen($phones)-1);
+                            //Delete message by id
+                            $inbound->deleteMessagesByMessageId($messId);
+                            //auto-reply to subscriber
+                            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$finalMessage);
+                        }else{
+                            //no agency for this on this city yet
+                            $MessageReply = "Sorry. We have no emergency phone number record for ".$key[2]." of ".$key[1]. 
+                            " yet. Please hold on a second. Our helpdesk officers shall contact you in a moment.";
+                            $inbound->deleteMessagesByMessageId($messId);
+                            $inbound->saveToTickets($MobileNo,$message,'Open');
+                            //Delete message by id
+                            $inbound->deleteMessagesByMessageId($messId); 
+                            //auto-reply to subscriber
+                            $outbound->sendSms($api_short_code,$access_token,$MobileNo,$MessageReply);
                         }
-                        $finalMessage = "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
-                        .$phonenumber->getCityNameByCityCode($key[1])." ".$key[2].": "
-                        .substr($phones,0,strlen($phones)-1);
-                        //Delete message by id
-                        $inbound->deleteMessagesByMessageId($messId);
-                        //auto-reply to subscriber
-                        $outbound->sendSms($api_short_code,$access_token,$MobileNo,$finalMessage);
+        
                     }else{
-                        //no agency for this on this city yet
-                        $MessageReply = "Sorry. We have no emergency phone number record for ".$key[2]." of ".$key[1]. 
-                        " yet. Please hold on a second. Our helpdesk officers shall contact you in a moment.";
-                        $inbound->deleteMessagesByMessageId($messId);
-                        $inbound->saveToTickets($MobileNo,$message,'Open');
-                        //Delete message by id
+                        //get all city codes
+                        $finalMessage = "Thanks for contacting PLEMA. Here are the emergency phone numbers of "
+                            .$phonenumber->getCityNameByCityCode(strtoupper($key[1])).": "
+                            .substr($allCityPhones,0,strlen($allCityPhones)-1);
+                            $inbound->saveToTickets($MobileNo,$message,'Closed');
+                            //Delete message by id
                         $inbound->deleteMessagesByMessageId($messId); 
                         //auto-reply to subscriber
-                        $outbound->sendSms($api_short_code,$access_token,$MobileNo,$MessageReply);
+                        $outbound->sendSms($api_short_code,$access_token,$MobileNo,$finalMessage);
                     }
                 }else{
                     //No city code maintained yet
-                    $MessageReply = "Sorry. We have no emergency phone number record for a city with a code ".$key[1].". Please hold on a second. Our helpdesk officers shall contact you in a moment.";
+                    $MessageReply = "Sorry. We have no emergency phone number record for a city with a code ".strtoupper($key[1]).". Please hold on a second. Our helpdesk officers shall contact you in a moment.";
                     $outbound->sendSms($api_short_code,$access_token,$MobileNo,$MessageReply);
                     // No keyword
                     $inbound->saveToTickets($MobileNo,$message,'Open');
