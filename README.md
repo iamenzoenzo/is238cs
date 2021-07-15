@@ -1,4 +1,6 @@
-# TeamLaban
+# PLEMA.digital
+
+Web application made using PHP, mySQL, Bootstrap and integrated with GlobeLabs API for online and text-based helpdesk system for storing and retrieval of Philippine contacts numbers. Users have the ability to interact with Plema using web app or sms. Developed in collaboration with Jeff, Karen, Joben and Camille.
 
 # Functions
 
